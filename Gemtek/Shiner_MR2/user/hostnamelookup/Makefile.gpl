@@ -1,0 +1,17 @@
+#
+# Makefile for GPL Release
+#
+# Copyright 2006-2008, Gemtek Corporation
+# All Rights Reserved.
+# 
+# $Id$
+#
+
+ROMFSINSTDIR = $(shell pwd)/romfs-install
+
+all:
+
+clean:
+
+romfs:
+	@cp -rfv $(ROMFSINSTDIR)/* $(ROMFSDIR)
