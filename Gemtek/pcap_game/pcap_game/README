@@ -1,0 +1,67 @@
+1. First, perform "make" command to build program, check_pcap. You will get the compiling infomation as below.
+
+[hugo@smb1 pcap_game]$ make
+gcc -Wall -std=c99 -g -D_BSD_SOURCE -O3 -c -o pcap_main.o pcap_main.c
+gcc pcap_main.o -o check_pcap
+strip -s check_pcap
+[hugo@smb1 pcap_game]$ ll check_pcap 
+-rwxrwxr-x 1 hugo hugo 10524 Sep 19 11:13 check_pcap
+[hugo@smb1 pcap_game]$
+
+2. How to run check_pcap? Please refer to the Usage as below.
+Usage:
+[1] check_pcap <pcap file name> ip <Source IP Address> <Destination IP Address> > result.txt
+Ex: check_pcap test_file.pcap ip 192.168.10.150 74.125.31.100 > result.txt
+
+And cat the result.txt to get the result of pcap file analysis.
+*************************************************
+***           Show analysis result            ***
+*************************************************
+
+<idx>   protocol  |  L4 info  |  counts
+
+<0>       TCP  sp:4165  dp:443  counts=5
+<1>       TCP  sp:4166  dp:443  counts=20
+
+*************************************************
+Summary:Total counts in all AVL nodes = 25
+Skipped packets num = 83
+Total packets number in PCAP file = 108
+Total AVL tree nodes number = 2
+*************************************************
+pcap analysis finish!
+
+
+[2] check_pcap <pcap file name> statistic > result.txt
+Ex: check_pcap test_file.pcap statistic > result.txt
+
+And cat the result.txt to get the result of pcap file analysis.
+
+The example of result.txt as below
+*************************************************
+***           Show analysis result            ***
+*************************************************
+
+<idx>   sip  |  dip  |  protocol  |  L4 info  |  counts
+
+<0>     74.125.23.19  192.168.10.150  TCP  sp:443  dp:1312  counts=8
+<1>     74.125.23.147  192.168.10.150  TCP  sp:443  dp:3959  counts=4
+<2>     74.125.31.100  192.168.10.150  TCP  sp:443  dp:4165  counts=29
+<3>     173.194.72.91  192.168.10.150  TCP  sp:443  dp:4163  counts=13
+<4>     192.168.10.1  192.168.10.150  UDP  sp:53  dp:64535  counts=2
+<5>     192.168.10.150  74.125.23.19  TCP  sp:1312  dp:443  counts=6
+<6>     192.168.10.150  74.125.23.147  TCP  sp:3959  dp:443  counts=3
+<7>     192.168.10.150  74.125.31.100  TCP  sp:4165  dp:443  counts=5
+<8>     192.168.10.150  74.125.31.100  TCP  sp:4166  dp:443  counts=20
+<9>     192.168.10.150  173.194.72.91  TCP  sp:4163  dp:443  counts=5
+<10>    192.168.10.150  173.194.72.91  TCP  sp:4164  dp:443  counts=10
+<11>    192.168.10.150  192.168.10.1  UDP  sp:50510  dp:53  counts=1
+<12>    192.168.10.150  192.168.10.1  UDP  sp:64535  dp:53  counts=1
+
+*************************************************
+Summary:Total counts in all AVL nodes = 107
+Skipped packets num = 1
+Total packets number in PCAP file = 108
+Total AVL tree nodes number = 13
+*************************************************
+pcap analysis finish!
