@@ -1,0 +1,114 @@
+#!/bin/sh
+
+mount -a
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+mkdir -p /var/run
+mkdir -p /var/rcConf/log
+mkdir -p /var/log
+mkdir -p /var/libobj
+mkdir -p /etc/Wireless/RT2860
+mkdir -p /data
+
+/etc_ro/makedevlinks
+cat /etc_ro/motd
+mdev –s
+
+ifconfig lo 127.0.0.1
+
+cat /proc/mtd | grep 'data'
+if [ $? == 0 ]; then
+	MTD=`cat /proc/mtd | grep 'data' | awk -F: '{print $1}' | awk -Fd '{print $2}'`
+	MTD_DEV=mtdblock$MTD
+	mount -t jffs2 /dev/$MTD_DEV /data/
+	if [ $? != 0 ]; then
+		echo -n "Mounting nvram failure, try to init mtdblock5 !!!"
+		mkdir -p /tmp/rootfs
+		mkfs.jffs2 -r /tmp/rootfs -o rootfs.jffs2 -e 0x1024 --pad=0x100000 -s 0x200
+		rm -rf /tmp/rootfs
+		dd if=rootfs.jffs2 of=/dev/$MTD_DEV
+		mount -t jffs2 /dev/$MTD_DEV /data/ 
+	fi
+else
+	echo 'no data partition found!'
+fi
+nvram_server &
+sleep 1
+
+if [ ! -f /data/gemtek.db ]; then
+	touch /data/gemtek.db
+	#touch /tmp/gemtek.db
+else
+	nvram_restore RT2860_NVRAM
+fi
+
+sleep 1
+
+nvram_daemon&
+
+#goahead&
+
+login=`nvram_get 2860 Login`
+pass=`nvram_get 2860 Password`
+if [ "$login" != "" -a "$pass" != "" ]; then
+#   echo "root::0:0:root:/root:/bin/bash" >> /etc/passwd
+    echo "$login::0:0:Adminstrator:/:/bin/sh" >> /etc/passwd
+#   echo "root:x:0:root" >> /etc/group
+    echo "$login:x:0:$login" >> /etc/group
+        chpasswd.sh $login $pass
+fi
+
+echo "lion debug start of log setting."
+XRUN_DEBUG=1
+echo "/dev/console" > /var/rcConf/logout
+if [ "$XRUN_DEBUG" = "1" ]; then
+echo "4" > /var/rcConf/loglevel
+else
+echo "1" > /var/rcConf/loglevel
+fi
+echo "lion debug end   of log setting."
+
+#set for dual image
+saveenv gtk_bootflag=1;
+
+#set light seneor mode=3
+reg s 0xb0000900
+reg w 20 1
+reg w 10 10
+reg w 1c 0
+reg w 10 30
+#set GPIO value
+reg s 0xb0000600
+reg w 4C 305
+
+rcConf init
+
+# reset MIC & speaker volume
+nvram_set AudioserverP_micvolume 100
+nvram_set AudioserverP_speakervolume 0xC
+
+rcConfd
+
+touch /tmp/info.ini
+echo "httpport:8084" > /tmp/info.ini
+echo "auth: admin:`nvram_get 2860 HttpdP_loginPassword`" >> /tmp/info.ini
+
+
+fw=`getenv gtk_bootfw`
+version=`cat /etc_ro/version`
+
+if [ "$fw" = "gtk_bootfw=1" ]; then
+	cfg_version=`getenv gtk_fw1_version`
+	cfg_version=${cfg_version#*=}
+	if [ "$cfg_version" != "$version" ]; then   
+		saveenv gtk_fw1_version=$version
+	fi
+elif [ "$fw" = "gtk_bootfw=2" ]; then
+	cfg_version=`getenv gtk_fw2_version`
+	cfg_version=${cfg_version#*=}
+	if [ "$cfg_version" != "$version" ]; then
+		saveenv gtk_fw2_version=$version
+	fi
+else
+	saveenv gtk_fw1_version=$version
+fi
+
