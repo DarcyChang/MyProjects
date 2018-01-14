@@ -1,0 +1,12 @@
+How to add new test for manufacture program
+
+1. ./mf-builder.sh add [feature name] [backdoor string]
+
+2. add in include/handlers.h
+
+	{"[backdoor string]_Req", [feature name]},
+
+3. add in feature/rule.mk
+
+	-include feature/[feature name]/rule.mk
+
