@@ -1,0 +1,37 @@
+watch_later
+
+curl -X GET -H "Authorization: Bearer ya29.AHES6ZQLon1gBmfUn9tr4hOUAQWOCQVeheu_ydV6FycibcE" "https://www.googleapis.com/youtube/v3/channels?part=contentDetails&mine=true&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us"
+
+get playlist
+
+curl -H "Authorization: Bearer ya29.AHES6ZQLon1gBmfUn9tr4hOUAQWOCQVeheu_ydV6FycibcE" "https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us"
+
+search playlist
+
+curl -X GET -H "Authorization: Bearer ya29.AHES6ZQLon1gBmfUn9tr4hOUAQWOCQVeheu_ydV6FycibcE" "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=cnblue&type=palylist&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us"
+
+search subscription
+
+curl -X GET -H "Authorization: Bearer ya29.AHES6ZS0YzOt5Ku-kDkNGez-NLjC3H1RvUMxmkGtLalorXU" "https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&mine=true&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us"
+
+
+most view(popular)
+curl -X GET -H "Authorization: Bearer ya29.AHES6ZTW7fZVkvrjTAnls0zDQQqregZADsXglx0LOJqgqudi6i-UeA" "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us"
+
+curl -o /tmp/ch/20/.json -H "Authorization: Bearer ya29.AHES6ZRqwQZvIJJcCiZRufbzCqg3w79-bScFSiOgkrb5hto" "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us
+
+curl -o /tmp/ch/20/.json -H "Authorization: Bearer ya29.AHES6ZRqwQZvIJJcCiZRufbzCqg3w79-bScFSiOgkrb5hto" "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUTS485gBaBFP3hyqr89BDDQ&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us" -k >/dev/null 2>&1
+
+
+curl -o /tmp/playlistid_mostview.json -H "Authorization: Bearer ya29.AHES6ZSd7VCD9na2GXGOiGV-WM8d4wnR4sdUVmj8emIucNo" "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUpCaqcrWd2WXab_pr7ub_Nw&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us" -k >/dev/null 2>&1
+
+curl -o /tmp/playlistid_20.json -H "Authorization: Bearer ya29.AHES6ZTy2PzoYymAPhqnovtx676oIa_Zvnd9wrqhqIg-Vhk" "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUfhl-IDxUrEq6RW6604eGmA&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us" -k >/dev/null 2>&1
+
+ch20 playlist
+yPlaylistId = "UUfhl-IDxUrEq6RW6604eGmA";
+
+ch131 playlist
+yPlaylistId = "UUTS485gBaBFP3hyqr89BDDQ";
+
+
+curl -o /tmp/playlistid_tmp2.json -H "Authorization: Bearer ya29.AHES6ZRw0pG1idvF1Aa9iHrqJtcvch82MXcNUz5tWNFM0tXCVCDwiQ" "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&pageToken=CBQQAA&playlistId=UUfhl-IDxUrEq6RW6604eGmA&key=AIzaSyCjWVTVPh_1yC80BuSYWKH3fQR5etaL2Us" -k >/dev/null 2>&1

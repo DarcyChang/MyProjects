@@ -1,0 +1,32 @@
+int main(int argc, char const * const * argv)
+{
+        json_object *my_array;
+        json_object *my_object;
+
+        /* step 1. create the array object */
+        my_array = json_object_new_array();
+
+        /* step 2. create object { "title": "foo", "videoid": "L7fg1fOO", "thumb": "xxx" } and put it into the array*/
+        my_object = json_object_new_object();
+        json_object_object_add(my_object, "title", json_object_new_string("foo"));
+        json_object_object_add(my_object, "videoid", json_object_new_string("L7fg1fOO"));
+        json_object_object_add(my_object, "thumb", json_object_new_string("http://x.x.x.x/foo/mdfeault.jpg"));
+        json_object_array_add(my_array, my_object);
+
+        /* step 2. create object { "title": "bar", "videoid": "L7fg1BaR", "thumb": "xxx" } and put it into the array*/
+        my_object = json_object_new_object();
+        json_object_object_add(my_object, "title", json_object_new_string("bar"));
+        json_object_object_add(my_object, "videoid", json_object_new_string("L7fg1BaR"));
+        json_object_object_add(my_object, "thumb", json_object_new_string("http://x.x.x.x/bar/mdfeault.jpg"));
+        json_object_array_add(my_array, my_object);
+
+        /* step 3. print out to check the result (Evans/Darcy) */
+        printf("3. my_array.to_string()=%s\n", json_object_to_json_string(my_array));
+        // my_array.to_string()=[ { "title": "foo", "videoid": "L7fg1fOO", "thumb": "http:\/\/x.x.x.x\/foo\/mdfeault.jpg" }, { "title": "bar", "videoid": "L7fg1BaR", "thumb": "http:\/\/x.x.x.x\/bar\/mdfeault.jpg" } ]
+
+        /* step 4. free the resource (Evans) */
+        if(my_array)
+                json_object_put(my_array);
+
+        return 0;
+}
