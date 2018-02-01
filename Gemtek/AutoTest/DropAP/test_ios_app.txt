@@ -1,0 +1,131 @@
+*** Settings ***
+Library           AppiumLibrary
+
+Test Setup     Launch APP
+Test Teardown      Close APP
+
+*** Variables ***
+${REMOTE_URL}     http://127.0.0.1:4723/wd/hub      # URL to appium server
+${PLATFORM_NAME}    iOS
+${PLATFORM_VERSION}    10.3.3
+${DEVICE_NAME}    Gemtek iPad4
+#Appium uses the *.app directory that is created by the ios build to provision the emulator.
+${APP_LOCATION}      /Users/gemtek/Projects/robot/build/outputs/ipa/DropAP.app 
+${BUNDLE_ID}         com.dropap.DropAP
+${UDID}     b44fbd9428902042cd52479e493cdfe6e56c9060
+
+${USERNAME}     changdarcy
+${PASSWORD}     changdarcy
+
+
+*** Keywords ***
+
+Launch APP
+     Open Application    ${REMOTE_URL}    platformName=${PLATFORM_NAME}    platformVersion=${PLATFORM_VERSION}    deviceName=${DEVICE_NAME}      app=${APP_LOCATION}       automationName=appium        udid=${UDID}        bundleId=${BUNDLE_ID}
+
+Close APP
+     Close All Applications
+
+username
+    Clear Text      id=使用者名稱或電子郵件
+    Input Text      id=使用者名稱或電子郵件        ${USERNAME}
+
+password
+    Input Password      id=使用者密碼     ${PASSWORD}
+
+touch login
+    Click Element       id=登入
+
+touch logout
+    Click Element       id=登出
+
+touch create DropAP
+    Click Element       id=com.dropap.dropap:id/tvAddDropAP
+
+touch check poweron
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch check wanconnected
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch next step
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch account settings
+    Click Element       id=btn menu n
+    sleep  1
+
+touch Buy DropAP
+    Click Element       id=購買 DropAP
+    sleep  1
+
+touch privacy policy
+    Click Element       id=隱私政策
+    sleep  1
+
+verify main screen
+    Page Should Contain Element     pict_id_photo_group      loglevel=DEBUG
+
+verify account settings
+    Page Should Contain Element     新增 DropAP      loglevel=DEBUG
+    Page Should Contain Element     購買 DropAP      loglevel=DEBUG
+    Page Should Contain Element     用戶手冊      loglevel=DEBUG
+    Page Should Contain Element     聯繫我們      loglevel=DEBUG
+    Page Should Contain Element     關於      loglevel=DEBUG
+    Page Should Contain Element     登出      loglevel=DEBUG
+    Page Should Contain Element     隱私政策      loglevel=DEBUG
+#    Page Should Contain Text     版本 2.75.1      loglevel=DEBUG
+
+verify Buy DropAP
+    Page Should Contain Element    DropAPストア       loglevel=DEBUG
+
+verify privacy policy
+    Page Should Contain Element    privacy-policy      loglevel=DEBUG
+
+wait login
+    Wait Until Page Contains Element      id=logo_dropap.png     timeout=15 
+
+wait main screen
+    Wait Until Page Contains Element      id=pict_id_photo_group     timeout=15 
+
+wait Buy DropAP
+    Wait Until Page Contains Element      DropAPストア     timeout=10 
+
+wait privacy policy
+    Wait Until Page Contains Element        privacy-policy     timeout=10 
+
+*** Test Cases ***
+
+test_case_16_logout
+    wait main screen
+    verify main screen
+    touch account settings
+    touch logout
+    wait login
+
+test_case_01_login
+    wait login
+    username
+    password
+    touch login 
+    wait main screen
+    verify main screen
+
+test_case_08_go_to_account_info_screen
+    wait main screen
+    touch account settings
+    verify account settings
+
+test_case_10_account_settings_buy_dropap
+    wait main screen
+    touch account settings
+    touch Buy DropAP
+    wait Buy DropAP
+    verify Buy DropAP
+
+test_case_14_account_settings_privacy_policy
+    wait main screen
+    touch account settings
+    touch privacy policy
+    wait privacy policy
+    verify privacy policy

@@ -1,0 +1,171 @@
+*** Settings ***
+Library     AppiumLibrary
+Documentation   DropAP autotest with appium library
+
+Test Setup     Launch APP
+Test Teardown      Close APP
+
+Force Tags    @FEATURE=APP_Android    @AUTHOR=Darcy_Chang
+
+*** Variables ***
+${REMOTE_URL}     http://localhost:4723/wd/hub
+${PLATFORM_NAME}    Android
+${PLATFORM_VERSION}    4.4.2
+${DEVICE_NAME}    EAAZCY17F148
+${APP}            /home/darcy/Projects/DropAP/build/outputs/apk/DropAP_APP_Production.apk
+${APP_PACKAGE_NAME}    com.dropap.dropap
+${APP_ACTIVITY}    com.dropap.dropap.activity.firstlaunch.WelcomeActivity
+
+${USERNAME}     changdarcy
+${PASSWORD}     changdarcy
+
+*** Test Cases ***
+tc_16_logout
+	[Documentation]    This is a example.
+    	[Tags]   @TCID=WRTM-326ACN-186    @DUT=WRTM-326ACN     @AUTHOR=Darcy_Chang
+    	wait main screen
+    	verify main screen
+	touch account settings
+    	touch logout
+	sleep  30
+    	wait login
+
+
+*** Keywords ***
+Launch APP
+    Open Application    ${REMOTE_URL}    platformName=${PLATFORM_NAME}    platformVersion=${PLATFORM_VERSION}    deviceName=${DEVICE_NAME}    app=${APP}    appPackage=${APP_PACKAGE_NAME}    appActivity=${APP_ACTIVITY}
+
+
+Close APP
+    Close All Applications
+
+my sleep 15 seconds    
+    sleep  15
+
+username
+    Input Text      id=com.dropap.dropap:id/emailEdt        ${USERNAME}
+
+password
+    Input Password      id=com.dropap.dropap:id/passwordEdt     ${PASSWORD}
+
+touch login
+    Click Element       id=com.dropap.dropap:id/signInBtn
+
+touch logout
+    Click Element       id=com.dropap.dropap:id/signInOutTxt
+
+touch create DropAP
+    Click Element       id=com.dropap.dropap:id/tvAddDropAP
+
+touch check poweron
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch check wanconnected
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch next step
+    Click Element       id=com.dropap.dropap:id/btnPositive
+
+touch account settings
+    Click Element       id=com.dropap.dropap:id/menuImg
+    sleep  1
+
+touch Buy DropAP
+    Click Element       id=com.dropap.dropap:id/buyDropAPTxt
+    sleep  1
+
+touch privacy policy
+    Click Element       id=com.dropap.dropap:id/privacyTxt
+    sleep  1
+
+wifi connect dropap
+    Start Activity      com.android.settings        com.android.settings.wifi.WifiSettings
+
+test_test
+    mytest
+
+verify main screen
+    Page Should Contain Element     com.dropap.dropap:id/ivGroupCircle      loglevel=DEBUG
+
+verify account settings
+    Page Should Contain Element     com.dropap.dropap:id/addDeviceTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/buyDropAPTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/userManualTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/contactUsTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/aboutTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/signInOutTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/privacyTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/versionTxt      loglevel=DEBUG
+    Page Should Contain Element     com.dropap.dropap:id/versionInfoTxt      loglevel=DEBUG
+
+verify Buy DropAP
+    Page Should Contain Element     com.dropap.dropap:id/web_view      loglevel=DEBUG
+
+verify privacy policy
+    Page Should Contain Text    PRIVACY POLICY Heading      loglevel=DEBUG
+
+wait login
+    Wait Until Page Contains Element      id=com.dropap.dropap:id/emailEdt     timeout=30 
+
+wait main screen
+    Wait Until Page Contains Element      id=com.dropap.dropap:id/ivGroupCircle     timeout=30 
+
+wait Buy DropAP
+    Wait Until Page Contains Element      id=com.dropap.dropap:id/web_view     timeout=30 
+
+wait privacy policy
+    Wait Until Page Contains      PRIVACY POLICY Heading     timeout=30 
+
+
+
+*** comment ***
+2017-11-17     Darcy_Chang
+Add a new Test Case.
+2017-11-18	Darcy_Chang
+Fix bug.
+
+
+
+test_case_16_logout
+#    Launch APP
+    wait main screen
+    verify main screen
+    touch account settings
+    touch logout
+    wait login
+#    Close APP
+
+test_case_01_login
+#    Launch APP
+    wait login
+    username
+    password
+    touch login 
+    wait main screen
+    verify main screen
+#    Close APP
+
+test_case_08_go_to_account_info_screen
+#    Launch APP
+    wait main screen
+    touch account settings
+    verify account settings
+#    Close APP
+
+test_case_10_account_settings_buy_dropap
+#    Launch APP
+    wait main screen
+    touch account settings
+    touch Buy DropAP
+    wait Buy DropAP
+    verify Buy DropAP
+#    Close APP
+
+test_case_14_account_settings_privacy_policy
+#    Launch APP
+    wait main screen
+    touch account settings
+    touch privacy policy
+    wait privacy policy
+    verify privacy policy
+#    Close APP
