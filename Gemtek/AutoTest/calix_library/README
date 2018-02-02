@@ -16,7 +16,8 @@ Following Steps for MacOS:
 mv barista /etc/
 
 Download ActivePython2.7 for MacOS
-ln -s /Library/Frameworks/Python.framework/Versions/2.7/opt/ActivePython-2.7
+sudo mkdir /opt
+sudo ln -s /Library/Frameworks/Python.framework/Versions/2.7 /opt/ActivePython-2.7
 
 export PYTHONPATH=/etc/barista/packages
 
@@ -29,3 +30,4 @@ sudo -H pip install ncclient
 sudo -H pip install junit_xml
 sudo -H pip install envelopes
 sudo -H pip install robotframework
+sudo -H pip install gitpython
