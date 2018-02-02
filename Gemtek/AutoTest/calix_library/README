@@ -1,7 +1,31 @@
 This folder is calix library that for robot framework.
 
 1. cafebot.py place /usr/bin/
+
 2. ActivePython-2.7.tar.gz  untar and place /opt/
+This packages for Linux.
+
 3. barista.tar.gz   untar and place /etc/
+Dropbox -> Darcy -> Gemtek -> AutoTest
+
 4. send_mail.tar.gz untar 
 /opt/ActivePython-2.7/bin/python mail_notification.py output.xml
+
+
+Following Steps for MacOS:
+mv barista /etc/
+
+Download ActivePython2.7 for MacOS
+ln -s /Library/Frameworks/Python.framework/Versions/2.7/opt/ActivePython-2.7
+
+export PYTHONPATH=/etc/barista/packages
+
+sudo -H pip install objgraph
+sudo -H pip install dpath
+sudo -H pip install rpyc
+sudo -H pip install paramiko
+sudo -H pip install pysnmp
+sudo -H pip install ncclient
+sudo -H pip install junit_xml
+sudo -H pip install envelopes
+sudo -H pip install robotframework
