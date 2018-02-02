@@ -1,0 +1,80 @@
+connection:
+  web:
+    type: web
+    default_element_wait: 60
+
+  n1:
+    prompt: ['~ #', '#', '>']
+    ip: 10.5.182.210
+    port: 4003
+    protocol: telnet
+    timeout: 5
+    type: linux
+    user: admin
+    password: admin
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+  cisco:
+    prompt: ['dhcpv6>', 'dhcpv6#', 'dhcpv6(config)#', 'dhcpv6(config-if-range)#', 'dhcpv6(config-line)#']
+    ip: 10.5.182.200
+    port: 2010
+    protocol: telnet
+    timeout: 5
+    type: linux
+
+  cisco_ip_server:
+    prompt: ['C1800-DHCP>', 'C1800-DHCP#', 'C1800-DHCP(config)#', 'C1800-DHCP(config-if-range)#', 'C1800-DHCP(config-line)#']
+    ip: 10.5.182.200
+    port: 2009
+    protocol: telnet
+    timeout: 5
+    type: linux
+
+  wifi_client:
+    ip: 10.5.182.195
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    prompt: ['vagrant\@thomas-VPCEB37FW\:\~\$']
+
+  apc:
+    ip: 10.5.182.201
+    type: linux
+    protocol: telnet
+    type: apc
+    user: apc
+    password: apc
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+
+  e5:
+    ip: 10.5.182.196
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['root\@E5-16F\:\~\#', 'E5-16F\#']
+
+
+  LanHost:
+    ip: 192.168.1.101
+    #timeout: 5
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@vagrant-7800-pc\:\~\$']
+
+  WanHost:
+    ip: 10.5.182.204
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@peervm1\:\~\$']

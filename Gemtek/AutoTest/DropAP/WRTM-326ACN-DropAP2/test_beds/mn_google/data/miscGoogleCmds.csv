@@ -1,0 +1,36 @@
+varName,matchVar,createCmd,deleteCmd,,,,,,,,,,,,,,,,,,dutIp
+y,google,set session pager disabled,set session pager disabled,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,set session timeout disabled,set session timeout disabled,,,,,,,,,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create vlan 2 name googleVide dhcp-snooping enabled,delete vlan 2,,2,googleVide,enabled,,,,,,,,,,,,,,192.168.1.62
+y,google,create mvr-profile video,delete mvr-profile video,,video,,,,,,,,,,,,,,,,192.168.1.62
+y,google,add vlan 2 to-mvr-profile video,remove vlan 2 from-mvr profile video,,2,video,,,,,,,,,,,,,,,192.168.1.62
+y,google,create mcast-profile video max-strms 128 mvr-profile video,delete mcast-profile video,,video,128,video,,,,,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create bw-profile t1_GWifi upstream-cir 1m upstream-pir 10m downstream-pir 10m,delete bw-profile t1_GWifi,,t1_GWifi,1,m,10,m,10,m,,,,,,,,,,192.168.1.62
+y,google,create bw-profile t2_Inet upstream-cir 36m upstream-pir 1g downstream-pir 1g,delete bw-profile t2_Inet,,t2_Inet,36,m,1,g,1,g,,,,,,,,,,192.168.1.62
+y,google,create bw-profile t3_UC-Vid upstream-cir 1m upstream-pir 5m downstream-pir 240m,delete bw-profile t3_UC-Vid,,t3_UC-Vid,1,m,5,m,240,m,,,,,,,,,,192.168.1.62
+y,google,create bw-profile t3_Ctl upstream-cir 1m upstream-pir 5m downstream-pir 5m,delete bw-profile t3_Ctl,,t3_Ctl,1,m,5,m,5,m,,,,,,,,,,192.168.1.62
+y,google,create bw-profile t4_OntMgmt upstream-cir 512k upstream-pir 1m downstream-pir 1m,delete bw-profile t4_OntMgmt,,t4_OntMgmt,512,k,1,m,1,m,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-match-list GoogleWifi,delete svc-match-list GoogleWifi,,GoogleWifi,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-match-list Internet,delete svc-match-list Internet,,Internet,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-match-list Video,delete svc-match-list Video,,Video,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-match-list Control,delete svc-match-list Control,,Control,,,,,,,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list GoogleWifi vlan 2 p-bit 0,remove tagged-rule 1 from svc-match-list GoogleWifi,1,GoogleWifi,2,0,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list GoogleWifi vlan 2 p-bit 1,remove tagged-rule 2 from svc-match-list GoogleWifi,2,GoogleWifi,2,1,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Internet vlan 2 p-bit 2,remove tagged-rule 1 from svc-match-list Internet,1,Internet,2,2,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Internet vlan 2 p-bit 3,remove tagged-rule 2 from svc-match-list Internet,2,Internet,2,3,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Video vlan 2 p-bit 4,remove tagged-rule 1 from svc-match-list Video,1,Video,2,4,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Video vlan 2 p-bit 5,remove tagged-rule 2 from svc-match-list Video,2,Video,2,5,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Control vlan 2 p-bit 6,remove tagged-rule 1 from svc-match-list Control,1,Control,2,6,,,,,,,,,,,,,,192.168.1.62
+y,google,add tagged-rule to-svc-match-list Control vlan 2 p-bit 7,remove tagged-rule 2 from svc-match-list Control,2,Control,2,7,,,,,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-tag-action GoogleWifi type add-and-change outer use-svc-vlan inner use-svc-vlan svc-match-list GoogleWifi,delete svc-tag-action GoogleWifi,,GoogleWifi,GoogleWifi,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-tag-action Internet type add-and-change outer use-svc-vlan inner use-svc-vlan svc-match-list Internet,delete svc-tag-action Internet,,Internet,Internet,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-tag-action Video type add-and-change outer use-svc-vlan inner use-svc-vlan svc-match-list Video,delete svc-tag-action Video,,Video,Video,,,,,,,,,,,,,,,192.168.1.62
+y,google,create svc-tag-action Control type add-and-change outer use-svc-vlan inner use-svc-vlan svc-match-list Control,delete svc-tag-action Control,,Control,Control,,,,,,,,,,,,,,,192.168.1.62
+,,,,,,,,,,,,,,,,,,,,,192.168.1.62
+y,google,set pon-cos-cfg cos1-type assured cos1-low-p-bit 0 cos1-high-p-bit 1 cos2-type assured cos2-low-p-bit 2 cos2-high-p-bit 3 cos3-type assured cos3-low-p-bit 4 cos3-high-p-bit 5 cos4-type assured cos4-low-p-bit 6 cos4-high-p-bit 7,set pon-cos-cfg cos1-type best-effort cos1-low-p-bit 0 cos1-high-p-bit 2 cos2-type assured cos2-low-p-bit 3 cos2-high-p-bit 3 cos3-type assured cos3-low-p-bit 4 cos3-high-p-bit 4 cos4-type expedited cos4-low-p-bit 5 cos4-high-p-bit 7,,1,assured,0,1,2,assured,2,3,3,assured,4,5,4,assured,6,7,192.168.1.62
+n,google,set pon-cos-cfg cos1-type best-effort cos1-low-p-bit 0 cos1-high-p-bit 2 cos2-type assured cos2-low-p-bit 3 cos2-high-p-bit 3 cos3-type assured cos3-low-p-bit 4 cos3-high-p-bit 4 cos4-type expedited cos4-low-p-bit 5 cos4-high-p-bit 7,,,1,best-effort,0,2,2,assured,3,3,3,assured,4,4,4,expedited,5,7,192.168.1.62

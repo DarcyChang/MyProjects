@@ -1,0 +1,9 @@
+Global TMS #,Build,Model,Radio,Bandwidth(MHz),# Clients per SSID,# SSIDs,Total Clients,Protocol,Frame Size (bytes),Direction,pps,Mbps
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,88,Unidirectional WiFi->LAN,74625.3,52.5
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,128,Unidirectional WiFi->LAN,74838.5,76.6
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,256,Unidirectional WiFi->LAN,74476.9,153
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,512,Unidirectional WiFi->LAN,74719.3,306
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,1000,Unidirectional WiFi->LAN,78709.6,630
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,1280,Unidirectional WiFi->LAN,89482.5,916
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,1460,Unidirectional WiFi->LAN,84432.7,986
+1041312,11.1.90.6,844G-1,5GHz,80,1,1,1,UDP,1518,Unidirectional WiFi->LAN,81284.4,987

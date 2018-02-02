@@ -1,0 +1,31 @@
+[general] # Section for general information about the package
+
+# A short description of the package
+description = System Test Premise Common Test Cases and Test Suites
+# A person or team that owns this package
+owner = stp
+# A list of operating systems supported by this package. UBUNTU is the only option available for now
+os = UBUNTU CENTOS
+# If the package root is different than the repo root, specify it here
+# package_root = calix/src/cafe
+
+[dependencies] #Common, non-OS-specific dependencies
+# barista dependencies
+barista = cafe
+# PyPM dependencies
+# pypm = paramiko networkx sh prettytable SQLalchemy rpyc pydispatcher pyte tinydb tornado
+# pip dependencies
+# pip = selenium sphinx sphinxcontrib_napoleon lxml trollius ncclient requests pygraphviz PyYAML pycurl paramiko networkx sh prettytable SQLalchemy rpyc pydispatcher pyte tinydb tornado dpath
+
+[dependencies:UBUNTU] # Section for defining dependencies for each OS
+# Series of commands to run before the installation of dependencies. Paths are relative to the package root.
+# preinstall = bash calix/src/setup/init_for_cpm.sh
+# List of Ubuntu packages ths package depends on
+# apt-get = tcl git libxml2-dev libxslt-dev python-dev zlib1g-dev graphviz pkg-config libgraphviz-dev
+# Series of commands to run after the installation of dependencies
+# postinstall = /opt/ActivePython-2.7/bin/pip2 install lxml --upgrade
+
+[dependencies:CENTOS]
+#preinstall = bash calix/src/setup/init_for_cpm.sh
+#yum = tcl git libxml2-devel libxslt-devel python-devel zlib-devel pkgconfig graphviz-devel
+#postinstall = /opt/ActivePython-2.7/bin/pip2 install lxml --upgrade

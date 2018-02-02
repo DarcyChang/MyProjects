@@ -1,0 +1,11 @@
+Global TMS #,Build,Model,Radio,Bandwidth(MHz),# Clients per SSID,# SSIDs,Total Clients,Protocol,Frame Size (bytes),Direction,pps,Mbps
+1065902,ac4.2M8,854G-1,5GHz,80,1,1,4,UDP,1460,Bidirectional LAN<->WiFi,74859.6,874
+1065902,ac4.2M8,854G-1,5GHz,80,2,1,8,UDP,1460,Bidirectional LAN<->WiFi,74757.2,873
+1065902,ac4.2M8,854G-1,5GHz,80,3,1,12,UDP,1460,Bidirectional LAN<->WiFi,74781.5,873
+1065902,ac4.2M8,854G-1,5GHz,80,4,1,16,UDP,1460,Bidirectional LAN<->WiFi,74778.5,873
+1065902,ac4.2M8,854G-1,5GHz,80,5,1,20,UDP,1460,Bidirectional LAN<->WiFi,66842.9,781
+1065902,ac4.2M8,854G-1,5GHz,80,6,1,24,UDP,1460,Bidirectional LAN<->WiFi,74367.6,869
+1065902,ac4.2M8,854G-1,5GHz,80,7,1,28,UDP,1460,Bidirectional LAN<->WiFi,70273.7,821
+1065902,ac4.2M8,854G-1,5GHz,80,8,1,32,UDP,1460,Bidirectional LAN<->WiFi,71104.5,831
+1065902,ac4.2M8,854G-1,5GHz,80,9,1,36,UDP,1460,Bidirectional LAN<->WiFi,74707.3,873
+1065902,ac4.2M8,854G-1,5GHz,80,10,1,40,UDP,1460,Bidirectional LAN<->WiFi,72368.0,845

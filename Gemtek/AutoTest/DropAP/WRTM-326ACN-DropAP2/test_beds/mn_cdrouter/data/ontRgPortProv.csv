@@ -1,0 +1,5 @@
+varName,createCmd,deleteCmd,matchVar,eutType,eutPort,mgmt-mode,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,8,9,7,10,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,set ont-port 836/G1 mgmt-mode external,set ont-port 836/G1 mgmt-mode native,836GE-D,ont-port,836/G1,external,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,set ont-port 844/G1 mgmt-mode external,set ont-port 844/G1 mgmt-mode native,844G-D_cdr,ont-port,844/G1,external,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,set ont-port 813/G1 mgmt-mode external,set ont-port 813/G1 mgmt-mode native,813G-D_cdr,ont-port,813/G1,external,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

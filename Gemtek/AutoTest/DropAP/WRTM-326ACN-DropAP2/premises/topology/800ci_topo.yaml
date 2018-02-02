@@ -1,0 +1,157 @@
+node_query:
+  n1:
+    type: "exa"
+  n2:
+    type: "exa"
+
+link_query:
+  l1:
+    attrs.speed: "1g"
+
+topo:
+   func: "node_chain"
+   args: [n1, l1, n2]
+
+connection:
+
+  firefox:
+    type: web
+    browser: FIREFOX
+    default_element_wait: 2
+    default_timeout: 60
+    auto_download: {
+      dir: '/tmp',
+      types: ['application/x-gzip','config/conf']
+    }
+
+  n1:
+    ip: '10.245.7.12'
+    timeout: '5'
+    protocol: telnet
+    type: 844E
+    port: 10031
+    user: ''
+    password: ''
+    login_prompt: ''
+    prompt: [' > ',' # ','HELO']
+
+  n2:
+    ip: '10.245.7.12'
+    timeout: '10'
+    protocol: telnet
+    type: 844F
+    port: 10032
+    user: ''
+    password: ''
+    login_prompt: ''
+    prompt: [' > ',' # ','HELO']
+
+  n3:
+    ip: '10.245.7.12'
+    timeout: '10'
+    protocol: telnet
+    type: linux
+    port: 10030
+    prompt: [' > ',' # ','HELO']
+
+  n4:
+    ip: '10.245.7.12'
+    timeout: '10'
+    protocol: telnet
+    type: linux
+    port: 10026
+    user: ''
+    password: ''
+    login_prompt: ''
+    prompt: [' > ',' # ','HELO']
+
+  n5:
+    ip: '10.245.7.12'
+    timeout: '10'
+    protocol: telnet
+    type: 844FB
+    port: 10014
+    user: ''
+    password: ''
+    login_prompt: ''
+    prompt: [' > ',' # ','HELO']
+
+  s1:
+    prompt: ['Guann-800CI>']
+    ip: '10.245.7.171'
+    user: 'e7support'
+    timeout: '10'
+    login_prompt: 'Username: '
+    protocol: telnet
+    password: 'admin'
+    type: linux
+    password_prompt: 'Password: '
+
+  s2:
+    prompt: [\SH3C\S]
+    user: ''
+    password: ''
+    login_prompt: ''
+    ip: '10.245.7.12'
+    port: 10005
+    timeout: '10'
+    protocol: telnet
+    type: linux
+
+  s4:
+    ip: 10.245.250.34
+    type: linux
+    protocol: ssh
+    user: calix
+    password: Calix123
+    prompt: [']\$','1\$','~\$']
+    timeout: '10'
+
+  SHELL1:
+    ip: localhost
+    password: cafetest
+    type: linux
+    user: cafetest
+    protocol: ssh
+    prompt: [']\$','1\$']
+
+  APC:
+    prompt: ['>']
+    ip: '10.245.7.111'
+    user: 'apc'
+    timeout: '10'
+    login_prompt: 'User Name :'
+    protocol: telnet
+    password: 'apc'
+    type: linux
+    password_prompt: 'Password  :'
+
+
+  ccplus_98:
+    type: restful
+    protocol: ccplus
+    url: http://10.245.250.98:8081
+    upload_host: 10.245.250.98
+    org_id:   51
+
+  ccplus_91:
+    type: restful
+    protocol: ccplus
+    url: http://10.245.250.92:8081
+    upload_host: 10.245.250.92
+    org_id:  22550
+
+  tg1:
+    ip: 10.245.252.58
+    type: ix_network
+    protocol: ix_network
+    ixnet_server: vmcdc-ixia13:8009
+    ports:
+      p1:
+        port: 9/15
+        medium: copper
+        speed: ether1000
+      p2:
+        port: 9/16
+        medium: copper
+        speed: ether1000

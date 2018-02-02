@@ -1,0 +1,47 @@
+global:
+  g_input_enter: "\r"
+  g_input_ctrl_c: "\x03"
+  g_input_ctrl_d: "\x04"
+
+  #----------n/s/h/s/tg vlan parameters here-----------
+  g_n2_dpu_data_vlan: 1100
+  g_n2_us_vlan: 1100
+  g_n1_dpu_data_vlan: 1104
+  g_n1_dpu_video_vlan: 1154
+  g_n1_us_vlan: 1104
+
+
+  g_h1_eth2_vlan: 75
+  #----------------------------------------------------
+
+  g_mgmt_vlan: 899
+
+  g_ip_format: \d+\.\d+\.\d+\.\d+
+  g_version_format: \d+\.\d+\.\d+\.\d+
+  g_HWaddr_format: '[A-F0-9]{2}(:[A-F0-9]{2}){5}'
+
+  g_dut_gui_url: http://192.168.55.1:1080
+  g_dut_gui_user: sigmu
+  g_dut_gui_pwd: secom
+  g_dut_sn: CXNKEC4F827E7352
+  g_dut_wait_time: 840
+  
+  g_dut_gw: 192.168.55.1
+  g_dut_gw_network: 192.168.55.0
+  g_dut_gw_network_prefix: 192.168.55
+  g_dut_ip_mask: 255.255.255.0
+  g_dut_static_ipaddr: 172.18.19.200
+  g_dut_static_netmask: 255.255.255.0
+  g_dut_static_gateway: 172.18.19.2
+  g_dut_static_dns1: 172.18.19.1
+  g_dut_static_dns2: 172.18.19.100
+  g_dut_gw_dhcp_server_start_ip: 192.168.55.100
+  g_dut_gw_dhcp_server_end_ip: 192.168.55.249
+  g_dut_repeater_ssid: BU1_BAT_LAB
+  g_dut_repeater_ssid_pw: vagrantvagrant
+  g_dut_pppoe_username: test
+  g_dut_pppoe_password: test
+  g_dut_invalid_pppoe_username: testwrong
+  g_dut_invalid_pppoe_password: testwrong
+  g_lanhost_lease_file: /var/lib/dhcp/dhclient.leases
+  g_fw_folder: /home/vagrant/tmp_fw/

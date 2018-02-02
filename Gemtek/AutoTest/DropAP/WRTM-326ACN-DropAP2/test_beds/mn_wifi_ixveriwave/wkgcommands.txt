@@ -1,0 +1,129 @@
+GIT Commands:
+
+
+# Example of executing demo test suite from console
+python2 -m cafe.runner.runner --cafe_runner.path ~/stp/stp/test_beds/mn_wifi_ixveriwave/ts_wifi_ssid_isolation.py -c ~/stp/stp/test_beds/mn_wifi_ixveriwave/config/config.ini
+
+
+
+python2 -m cafe.runner.runner --cafe_runner.path ~/repo/calix/src/demo/test_cases/stp/sandbox_gayle/first_ts.py
+
+python2 -m cafe.runner.runner -c ~/repo/calix/src/demo/test_cases/stp/sandbox_gayle/config.ini --cafe_runner.path ~/repo/calix/src/demo/test_cases/stp/sandbox_gayle/first_ts.py
+
+python2 -m cafe.runner.runner -c ~/repo/calix/src/demo/test_cases/stp/sandbox_gayle/config.ini --cafe_runner.path ~/repo/calix/src/demo/test_cases/stp/sandbox_gayle/first_ts.py --logger.level DEBUG
+
+python2 -m cafe.runner.runner -h
+
+Original PYTHONPATH: /opt/home/glivermo/repo/calix/src
+
+PYTHONPATH=$PYTHONPATH:/opt/home/gliverm/stp
+EXPORT $PYTHONPATH
+
+if [ -d "/opt/home/gliverm/stp" ] ; then
+  PYTHONPATH="$PYTHONPATH:/opt/home/gliverm/stp"
+fi
+EXPORT $PYTHONPATH
+
+printenv PYTHONPATH
+
+    # class ixvw_file(file):
+    #     # subclass file to have more convienient use of writeline
+    #     def __init__(self, name, mode="w"):
+    #         self = file.__init__(self, name, mode)
+    #
+    #     def wl(self, string):
+    #         # tclsession.writelines(string + '\n')
+    #         self.writelines(string + '\n')
+    #         return None
+
+
+    # e7_node_list = params.e7.keys()
+    # for e7_node in e7_node_list:
+    #     params['e7'][e7_node + '_profile'] = \
+    #         topology['nodes'][params['e7'][e7_node]]['session_profile']['mgmt_vlan']['telnet']
+    #     params['e7'][e7_node + '_session'] = \
+    #         E7ApiClass(params.session_mgr.create_session(params['e7'][e7_node], 'telnet',
+    #                                                      **params['e7'][e7_node + '_profile']),
+    #                    eq_type="e7")
+    #     params['e7'][e7_node + '_session'].login()
+
+
+def build_xconnects(params, topology):
+    """
+    Description:
+        Build all Xconnects required for test suite. All session control within function.  Assumption that all
+        XConns sessions are via mgmt_vlan IP and session type is telnet.  All XConnect information must be entered
+        in test case parameter file with the following format:
+            [xconn_x1]          - "xconn_" defines section is for a Xconnect and the "x1" defines the Xconnect instance
+            XConnA="XConn1"     - name of the E7 XConnect for the destination endpoint - must be listed in topology
+            XConnAInt="2/g1"    - E7 interface for destination endpoint
+            XConnB="XConn4"     - name of the E7 XConnect for the source endpoint - must be listed in topology
+            XConnBInt="2/g1"    - E7 interface for source endpoint
+            TlsVlan="2001"      - VLAN used for the tagged path between endpoints
+            NativeVlan="3001"   - VLAN used for the untagged path between endpoints
+    Args:
+        params(dict) : Dictionary of test suite instance parameters
+        topology(dict) : Dictionary of test suite equipment topology information
+    Returns:
+        NA
+    """
+    # TODO: Convert over to using Cafe provided parameter usage
+    # Get a list of all XConn nodes
+    xconn_node_list = []
+    keyvalues = params.keys()
+    for key in keyvalues:
+        if key[0:6] == "xconn_":
+            # Add end point A XConnect to node list if not already there
+            if params[key]['xconna'] not in xconn_node_list:
+                xconn_node_list.append(params[key]['xconna'])
+
+            # Add end point B XConnect to node list if not already there
+            if params[key]['xconnb'] not in xconn_node_list:
+                xconn_node_list.append(params[key]['xconnb'])
+    # print("xconn_node_list : ", xconn_node_list)
+
+    # Extract session information, create session, and login to each XConn node
+    xconn_info = {}
+    for xconn in xconn_node_list:
+        xconn_info[xconn] = {'profile': topology.nodes[xconn]['session_profile']['mgmt_vlan']['telnet']}
+        xconn_info[xconn] = {'session': E7ApiClass(params.session_mgr.create_session(xconn, 'telnet',
+                                                                                     **xconn_info[xconn]['profile']),
+                                                   eq_type="E7")}
+        # TODO error checking needed for when session cannot be started
+        xconn_info[xconn]['session'].login()
+        # TODO error checking needed for when login fails
+
+    # Build XConnects
+    # x1 = params['X1']
+    # print("x1: ", x1)
+    # checkpoint = stp.api.e7.e7_lib.lib_create_nl2nlringxconn(p_description="x1",
+    #                                             p_xconna_sess=xconn_info[x1['xconna']]['session'],
+    #                                             p_xconna_int=x1['xconnaint'],
+    #                                             p_xconnb_sess=xconn_info[x1['xconnb']]['session'],
+    #                                             p_xconnb_int=x1['xconnbint'],
+    #                                             p_tlsvlan=x1['tlsvlan'],
+    #                                             p_nativevlan=x1['nativevlan'])
+
+    # p_xconna_sess=xconn_info[x1['xconna']]['session'].show_tag_actions()
+
+    # print("Status of building xconn pipe: ", checkpoint)
+
+    # TODO error checking to verify if removal needed
+    # Remove each session
+    for xconn in xconn_node_list:
+        params.session_mgr.remove_session(xconn)
+
+
+def remove_xconnects():
+    """
+    Description:
+        Remove topology connections required for test suite. All session control within function.
+    Args:
+    Returns:
+    """
+    # Obtain parameter file information
+    param = cafe.Param({})
+    # TODO Modify to take filename directly from cafe config file
+    param.load_ini("/opt/home/glivermo/stp/stp/test_suites/xconn_demo/ts_xconn_demo_parms.ini")
+    print("param :", param)
+

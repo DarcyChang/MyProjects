@@ -1,0 +1,6 @@
+varName,createCmd,deleteCmd,ont,vlanId,xc,xcPort
+,,,,6,,3
+y,create tag-action add-tag 4093 interface 1/g9,delete tag-action 1/g9,836GE-D,4093,xc3,1/g9
+y,create tag-action add-tag 4093 interface 2/g9,delete tag-action 2/g9,844G-D_cdr,4093,xc3,2/g9
+y,create tag-action add-tag 4093 interface 2/g17,delete tag-action 2/g17,813G-D_cdr,4093,xc3,2/g17
+y,create tag-action add-tag 4093 interface 2/g5,delete tag-action 2/g5,844E,4093,xc3,2/g5

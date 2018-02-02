@@ -1,0 +1,146 @@
+connection:
+  web:
+    type: web
+    default_element_wait: 60
+
+  rf1:
+    ip: 10.5.182.191
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['\[vagrant\@thomas-vm\:\~\]\$']
+    interface: eth2
+    pptp_interface: pptp-vpn
+    l2tp_interface: l2tp-vpn
+  
+  dut1:
+    prompt: ['~ #', '#', '>', 'root\@BKwifi\:\~\#']
+    ip: 192.168.55.1
+    protocol: ssh
+    timeout: 5
+    type: linux
+    user: root
+    password: gemtek
+  
+  dut1_ssh:
+    prompt: ['root\@BKwifi\:\~\#']
+    ip: 192.168.55.1
+    protocol: ssh
+    timeout: 5
+    type: linux
+    user: root
+    password: gemtek
+    wan_interface: eth0.2
+    pppoe_wan_interface: pppoe-wan
+
+
+  wifi_client:
+    ip: 10.5.182.195
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    prompt: ['vagrant\@thomas-VPCEB37FW\:\~\$']
+    int: ra0
+    int_2_4g: wlan0
+    int_mac: 1C:49:7B:00:B1:B2
+    int_2_4g_mac: 4c:0f:6e:df:d8:00
+    assign_static_ip: 192.168.55.155
+
+  cisco:
+    prompt: ['Password OK', 'dhcpv6', 'dhcpv6>', 'dhcpv6#', 'dhcpv6(config)#', 'dhcpv6(config-if)#', 'dhcpv6(config-if-range)#', 'dhcpv6(config-line)#']
+    #prompt: ['Password OK', '2921-ipv6', 'c2921-ipv6>', 'c2921-ipv6#', 'c2921-ipv6(config)#', 'c2921-ipv6(config-if)#', 'c2921-ipv6(config-if-range)#', 'c2921-ipv6(config-line)#']
+    login_prompt: 'Username'
+    password_prompt: 'Password:'
+    user: 'lab'
+    password: 'lab'
+    ip: 10.5.182.200
+    port: 2010
+    term_port: 10
+    vendor: cisco
+    hostname: dhcpv6
+    protocol: telnet
+    timeout: 5
+    type: linux
+    wan_vlan: vlan 2
+    false_wan_vlan: vlan 6
+    test_ethernet_port: fastEthernet 6
+    pppoe_interface: virtual-template 1
+    gateway: 172.18.19.2
+    gateway2: 172.18.18.10
+
+  ts:
+    prompt: ['Password:', 'sec-comm1>', 'sec-comm1#', 'sec-comm1(config)#', 'sec-comm1(config-if-range)#', 'sec-comm1(config-line)#']
+    #login_prompt: 'Username'
+    password_prompt: 'Password:'
+    user: 'lab'
+    password: 'lab'
+    ip: 10.5.182.200
+    protocol: telnet
+    timeout: 5
+    type: linux
+
+  cisco_ip_server:
+    prompt: ['C1800-DHCP>', 'C1800-DHCP#', 'C1800-DHCP(config)#', 'C1800-DHCP(config-if-range)#', 'C1800-DHCP(config-line)#']
+    ip: 10.5.182.200
+    port: 2009
+    protocol: telnet
+    timeout: 5
+    type: linux
+
+
+  apc:
+    ip: 10.5.182.201
+    type: linux
+    protocol: telnet
+    type: apc
+    user: apc
+    password: apc
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+
+  e5:
+    ip: 10.5.182.196
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['root\@E5-16F\:\~\#', 'E5-16F\#']
+
+
+  lanhost:
+    ip: 10.5.182.221
+    traffic_ip: 192.168.55.121
+    timeout: 30
+    type: linux
+    hostname: thomas-lanhost
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@thomas-lanhost\:\~\$']
+    interface: eth2
+    interface_mac: 08:00:27:23:33:b7
+
+  wanhost:
+    ip: 10.5.182.212
+    traffic_ip: 172.18.18.119
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@pro-tgn-1\:\~\$']
+    interface: eth2
+    route: 172.18.19.0
+    route_mask: 255.255.255.0
+    network_route: 172.18.18.0
+    default_gw: 172.18.18.10
+    Domain_Name_URL: www.bu1lab.com   
+
+

@@ -1,0 +1,34 @@
+varName,matchVar,createCmd,deleteCmd,,,,,,,,,,,dutIp
+,,user-1,,ontLid,ONT,Card,Port,sVid,cVid,bw-profile,svc-tag-action,pon-cos,mcast-profile,
+y,google,add ont-pon-us-cos user-1 to-ont 2001 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2001,2001,1,1,1,101,2001,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2002 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2002,2002,2,1,1,101,2002,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2003 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2003,2003,3,1,1,101,2003,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2004 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2004,2004,4,1,1,101,2004,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2005 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2005,2005,5,1,1,101,2005,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2006 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2006,2006,6,1,1,101,2006,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2007 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2007,2007,7,1,1,101,2007,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+y,google,add ont-pon-us-cos user-1 to-ont 2008 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2008,2008,8,1,1,101,2008,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2009 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2009,2009,9,1,3,103,2009,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2010 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2010,2010,10,1,3,103,2010,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2011 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2011,2011,11,1,3,103,2011,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2012 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2012,2012,12,1,3,103,2012,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2013 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2013,2013,13,1,4,104,2013,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2014 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2014,2014,14,1,4,104,2014,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2015 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2015,2015,15,1,4,104,2015,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2016 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2016,2016,16,1,4,104,2016,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2017 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2017,2017,17,2,1,201,2017,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2018 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2018,2018,18,2,1,201,2018,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2019 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2019,2019,19,2,1,201,2019,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2020 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2020,2020,20,2,1,201,2020,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2021 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2021,2021,21,2,2,202,2021,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2022 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2022,2022,22,2,2,202,2022,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2023 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2023,2023,23,2,2,202,2023,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2024 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2024,2024,24,2,2,202,2024,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2025 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2025,2025,25,2,3,203,2025,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2026 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2026,2026,26,2,3,203,2026,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2027 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2027,2027,27,2,3,203,2027,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2028 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2028,2028,28,2,3,203,2028,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2029 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2029,2029,29,2,4,204,2029,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2030 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2030,2030,30,2,4,204,2030,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2031 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2031,2031,31,2,4,204,2031,t1_GWifi,GoogleWifi,user-1,,192.168.1.62
+n,google,add ont-pon-us-cos user-1 to-ont 2032 pon-us-cos-profile user-1,remove ont-pon-us-cos user-1 from-ont 2032,2032,32,2,4,204,2032,t1_GWifi,GoogleWifi,user-1,,192.168.1.62

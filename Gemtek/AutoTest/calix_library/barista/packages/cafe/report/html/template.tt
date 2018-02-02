@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>{{ escape(title) }}</title>
+        <style type="text/css">
+            {% include style.css %}
+        </style>
+        <script type="text/javascript">
+            {% include jquery-1.11.3.min.js %}
+        </script>
+        <script type="text/javascript">
+            {% include func.js %}
+        </script>
+    </head>
+    <td>
+        <h3 class='title'>{{ title }}</h3>
+        <div class='data'>
+            {% for test_suite in test_suites %}
+                <div class='suite_container'>
+                    <div class='{{ test_suite["status"] }}'>{{ test_suite['status'].upper() }}</div>
+                    <div class='suite_header'>{{ test_suite['name'] }}</div>
+                    <table class='tc_table'>
+                        <tbody>
+                        {% for test_case in test_suite['test_cases'] %}
+                            <tr><td class="tc_container">
+                                <div class='{{ test_case["status"] }}'>{{ test_case['status'].upper() }}</div>
+                                <div class="tc_header">{{ test_case['global_id'] }}</div>
+                                <table class='step_table'>
+                                    <tr><td>
+                                        <table>
+                                            <tr><td><b>Assignee:</b></td><td>{{ test_case['assignee'] }}</td></tr>
+                                            <tr><td><b>Start Time:</b></td><td>{{ test_case['start_time'] }}</td></tr>
+                                            <tr><td><b>End Time:</b></td><td>{{ test_case['end_time'] }}</td></tr>
+                                            <tr><td><b>Duration:</b></td><td>{{ test_case['duration'] }}</td></tr>
+                                        </table>
+                                    </td></tr>
+                                    {% for test_step in test_case['test_steps'] %}
+                                        <tr><td class="step_container">
+                                            <div class='{{ test_step["status"] }}'>{{ test_step['status'].upper() }}</div>
+                                            <div class="step_header">{{ test_step['title'] }}</div>
+                                            <table class="step_detail_table">
+                                                <tr><td><b>Message:</b></td><td><pre>{{ test_step['msg'] }}</pre></td></tr>
+                                                <tr><td><b>File:</b></td><td><pre>{{ test_step['filename'] }}:<b>{{ test_step['line'] }}</b></pre></td></tr>
+                                                <tr><td><b>Command:</b></td><td><pre>{{ test_step['cmd'] }}</pre></td></tr>
+                                                <tr><td><b>Response:</b></td><td><pre>{{ test_step['response'] }}</pre></td></tr>
+                                            </table>
+                                        </td></tr>
+                                    {% end %}
+                                </table>
+                            </td></tr>
+                        {% end %}
+                        </tbody>
+                    </table>
+                </div>
+            {% end %}
+        </div>
+    </body>
+</html>

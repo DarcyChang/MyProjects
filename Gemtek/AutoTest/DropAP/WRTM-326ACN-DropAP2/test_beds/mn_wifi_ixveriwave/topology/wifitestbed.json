@@ -1,0 +1,91 @@
+{
+  "desc": "Wifi E7 testbed",
+  "nodes": {
+    "e72_24g": {
+      "type": "e7",
+      "eq_type": "E7 (2-slot chassis)",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.14.12",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["CalixE7>"]
+          }
+        },
+        "craft_fe": {
+          "telnet": {
+            "host": "192.168.1.12",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["CalixE7>"]
+          }
+        }
+      }
+    },
+    "e72_5g": {
+      "type": "e7",
+      "eq_type": "E7 (2-slot chassis)",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.14.11",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt": "Username:",
+            "password_prompt": "Password:",
+            "crlf": "\r",
+            "enable_log": "True",
+            "prompt": [
+              "CalixE7>"
+            ]
+          }
+        },
+        "craft_fe": {
+          "telnet": {
+            "host": "192.168.1.11",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt": "Username:",
+            "password_prompt": "Password:",
+            "crlf": "\r",
+            "enable_log": "True",
+            "prompt": [
+              "CalixE7>"
+            ]
+          }
+        }
+      }
+    },
+    "IxVeriwave1": {
+      "type": "ixveriwave",
+      "subtype": "-",
+      "chassis": "10.83.4.199",
+      "release": "-",
+      "port": "-",
+      "session_profile": {
+        "IxOs": {
+            "hostname": "min-wifi1",
+            "user": "Testmin",
+            "password" : "Systemtest1"
+        }
+      }
+    }
+  }
+}

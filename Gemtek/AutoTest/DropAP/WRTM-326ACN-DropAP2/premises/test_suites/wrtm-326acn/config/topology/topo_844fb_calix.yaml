@@ -1,0 +1,153 @@
+connection:
+  web:
+    type: web
+    default_element_wait: 60
+    timeout: 30
+    browser: FIREFOX
+    default_timeout: 60
+    auto_download: {
+      dir: '/home/stptest2/Downloads/',
+      types: ['application/x-gzip','config/conf']
+    }
+
+  n1:
+    prompt: ['~ #', '#', '>']
+    ip: '10.245.7.12'
+    port: 10014
+    protocol: telnet
+    timeout: 5
+    type: linux
+    user: ''
+    password: ''
+    login_prompt: ''
+    password_prompt: [' > ',' # ','HELO']
+    vlan: 1080
+    incorrect_vlan: 999
+    priority: 1
+    Bonding_line1: line2
+    Bonding_line2: line3
+    apc_outlet: 1
+
+  cisco:
+#    prompt: ['2921-ipv6', 'c2921-ipv6>', 'c2921-ipv6#', 'c2921-ipv6(config)#', 'c2921-ipv6(config-if-range)#', 'c2921-ipv6(config-line)#']
+    prompt: ['2911', '2911>', '2911#', '2911(config)#', '2911(config-if-range)#', '2911(config-line)#', '2911(config-subif)#']
+    password_prompt: 'Password:'
+    password: 'cisco'
+    vendor: cisco 
+    hostname: 2911
+    ip: 10.245.6.198
+    port: 10011
+    protocol: telnet
+    timeout: 5
+    type: linux
+    gateway: 172.18.19.2
+    gateway2: 172.18.18.10
+    ethernet_port_number: gi0/1.1080
+    ipv6_ip: 2222::1
+    ipv6_mask: 64
+
+#
+#  cisco_ip_server:
+#    prompt: ['tb1-uut-switch>', 'tb1-uut-switch#', 'tb1-uut-switch(config)#', 'tb1-uut-switch(config-if-range)#', 'tb1-uut-switch(config-line)#']
+#    vendor: cisco_ip_server
+#    hostname: tb1-uut-switch
+#    ip: 10.5.182.200
+#    port: 2002
+#    protocol: telnet
+#    timeout: 5
+#    type: linux
+#    gateway: 1.1.1.254
+#    gateway2: 2.2.2.254
+#    ethernet_port_number: 0/0
+
+  wifi_client:
+    ip: 10.245.7.188
+    type: linux
+    protocol: ssh
+    user: wificlient
+    password: Calix123
+    prompt: ['wificlient\@nan.*\~']
+    int: ra0
+    int_2_4g: ra0
+    assign_static_ip: 192.168.1.188
+
+  apc:
+    ip: 10.245.7.112
+    type: apc
+    protocol: telnet
+    user: apc
+    password: apc
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+  e5:
+    ip: 10.245.87.109
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['root\@E5-16F\:\~\#', 'E5-16F\#']
+    vlan: 1070
+    priority: 1
+
+  lanhost:
+    ip: 10.245.249.135
+    traffic_ip: 192.168.1.135
+    #timeout: 5
+    type: linux
+    protocol: ssh
+    user: stptest2
+    password: Calix123
+    root_password: Calix123
+    prompt: [']\$','\$']
+    interface: eth1
+
+# 172.18.19.1 (dut ip) ...[MDU]... 172.18.19.2 (dhcp server ip) === 172.18.18.10 (gi0/2.1070 ip).....172.18.18.2 (wanhost ip) 
+  wanhost:
+    ip: 10.245.250.34
+    traffic_ip: 172.18.18.2
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: calix
+    password: Calix123
+    root_password: Calix123
+    prompt: ['\$ ']
+    interface: eth1
+    route: 172.18.19.0
+    route_mask: 255.255.255.0
+    network_route: 172.18.18.0
+    default_gw: 172.18.18.10
+    Domain_Name_URL: www.bu1lab.com
+
+
+#added by shanle to adapt to CDC scritps
+  s1:
+    prompt: ['Guann-800CI>']
+    ip: '10.245.7.171'
+    user: 'e7support'
+    timeout: '10'
+    login_prompt: 'Username: '
+    protocol: telnet
+    password: 'admin'
+    type: linux
+    password_prompt: 'Password: '
+
+  s2:
+    prompt: [\SH3C\S]
+    user: ''
+    password: ''
+    login_prompt: ''
+    ip: '10.245.7.12'
+    port: 10005
+    timeout: '10'
+    protocol: telnet
+    type: linux
+
+  shell1:
+    ip: localhost
+    password: cafetest
+    type: linux
+    user: cafetest
+    protocol: ssh
+    prompt: [']\$','1\$']

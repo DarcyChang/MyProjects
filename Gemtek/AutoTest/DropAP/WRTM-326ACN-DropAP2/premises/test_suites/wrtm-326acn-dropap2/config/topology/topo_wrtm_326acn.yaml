@@ -1,0 +1,202 @@
+connection:
+  web:
+    type: web
+    timeout: 30
+    browser: FIREFOX
+    default_element_wait: 30
+    default_timeout: 60
+    auto_download: {
+      dir: '/home/vagrant/Downloads/',
+      types: ['application/x-gzip','config/conf']
+    }
+
+  n1:
+    prompt: ['~ #', '#', '>']
+    ip: 10.5.182.210
+    port: 4001
+    protocol: telnet
+    timeout: 30
+    type: linux
+    user: admin
+    password: admin
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+    vlan: 913
+    incorrect_vlan: 999
+    priority: 1
+    Bonding_line1: line8
+    Bonding_line2: line9
+    apc_outlet: 6
+    Submask: 255.255.255.0
+
+  cisco:
+    prompt: ['Password OK', 'dhcp-3845', 'dhcp-3845>', 'dhcp-3845#', 'dhcp-3845(config)#', 'dhcp-3845(config-if)#', 'dhcp-3845(config-if-range)#', 'dhcp-3845(config-line)#']
+    login_prompt: 'Username'
+    password_prompt: 'Password:'
+    user: 'lab'
+    password: 'lab'
+    vendor: cisco
+    hostname: dhcp-3845
+    ip: 10.5.182.236
+    port: 2003
+    protocol: telnet
+    timeout: 30
+    type: linux
+    gateway: 172.18.19.2
+    gateway2: 172.18.18.10
+    ethernet_port_number: FastEthernet4/0
+    ipv6_ip: 2222::1
+    ipv6_mask: 64
+    dhcp_pool_name: AAA
+    ppoe_interface: Virtual-Template1
+
+  cisco_ip_server:
+    prompt: ['Password OK', 'tb1-uut-switch>', 'tb1-uut-switch#', 'tb1-uut-switch(config)#', 'tb1-uut-switch(config-if-range)#', 'tb1-uut-switch(config-line)#']
+    login_prompt: 'Username'
+    password_prompt: 'Password:'
+    user: 'lab'
+    password: 'lab'
+    vendor: cisco_ip_server
+    hostname: tb1-uut-switch
+    ip: 10.5.182.200
+    port: 2003
+    protocol: telnet
+    timeout: 30
+    type: linux
+    gateway: 1.1.1.254
+    gateway2: 2.2.2.254
+    ethernet_port_number: 0/0
+
+  wifi_client:
+    #ip: 10.5.182.195
+    ip: 10.5.182.197
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    #prompt: ['vagrant\@dual-wifi-client2\:\~\$']
+    prompt: ['vagrant\@lab-HP\:\~\$']
+    #prompt: ['vagrant\@thomas-VPCEB37FW\:\~\$']
+    int: wlan0
+    int_2_4g: wlan0
+    interface: wlan0
+    assign_static_ip: 192.168.1.199
+    hostname: lab-HP
+
+  wifi_client_5g:
+    ip: 10.5.182.195
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    prompt: ['vagrant\@thomas-VPCEB37FW\:\~\$']
+    int: ra0
+    int_2_4g: wlan0
+    assign_static_ip: 192.168.1.199
+
+  apc:
+    ip: 10.5.182.206
+    type: linux
+    timeout: 30
+    protocol: telnet
+    type: apc
+    user: apc
+    password: apc
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+  e5:
+    ip: 10.5.182.207
+    type: linux
+    timeout: 30
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['root\@E5-PRO\:\~\#', 'E5-PRO\#']
+    hostname: E5-PRO
+    Bonding_gfast1: gfast8
+    Bonding_gfast2: gfast9
+    group_name: gbond4
+    service_vlan1: 913
+    service_vlan2: 914
+
+
+  lanhost:
+    ip: 172.1.1.153
+    traffic_ip: 192.168.66.150
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@tgn-dropap2-lanhost\:\~\$']
+    interface: eth2
+    hostname: dropap2-lanhost
+
+# 172.18.19.1 (dut ip) ...[MDU]... 172.18.19.2 (dhcp server ip) === 172.18.18.10 (gi0/2.1070 ip).....172.18.18.2 (wanhost ip)
+  wanhost:
+    ip: 172.1.1.154
+    traffic_ip: 172.18.18.20
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@tgn-dropap2-wanhost\:\~\$']
+    interface: eth2
+    route: 172.18.19.0
+    route_mask: 255.255.255.0
+    network_route: 172.18.18.0
+    default_gw: 172.18.18.10
+    Domain_Name_URL: www.bu1lab.com
+
+  dut1:
+    prompt: ['~ #', '#', 'root\@DropAP\:\~\#']
+    ip: 192.168.66.1
+    protocol: ssh
+    timeout: 5
+    type: linux
+    user: root
+    password: gemtek
+    wan_interface: eth0.2
+
+  vm1:
+    ip: 10.5.182.235
+    traffic_ip: 192.168.66.190
+    interface: eth2
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['>', 'vagrant\@johnny-box \~\]\$']
+
+  app_lanhost:
+    ip: 172.1.1.155
+    traffic_ip: 192.168.66.180
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@app-lanhost\:\~\$']
+    interface: eth2
+    hostname: app-lanhost
+
+  app-vm:
+    ip: 10.5.182.230
+    traffic_ip: 192.168.66.191
+    interface: eth2
+    timeout: 30
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    root_password: vagrant
+    prompt: ['vagrant\@app-box \~\]\$']

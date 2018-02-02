@@ -1,0 +1,66 @@
+connection:
+  e7:
+    prompt: ['PIT-Fiji>']
+    ip: 10.245.7.32
+    type: linux
+    protocol: ssh
+    user: e7
+    password: admin
+
+  dpu:
+    prompt: ['#']
+    ip: 10.245.87.212
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+
+  801f:
+    prompt: ['~ #', 'metacli>', traf\.\d+\>]
+    ip: 10.245.7.12
+    port: 10002
+    timeout: 5
+    protocol: telnet
+    type: linux
+    user: root
+    password: superuser
+
+  gui:
+    type: web
+    default_element_wait: 30
+
+  linux_sh:
+    ip: 10.245.7.42
+    type: linux
+    protocol: ssh
+    user: testmin
+    password: Pitt12me
+
+#  tg:
+#    ip: 10.245.252.43
+#    type: stc
+#    protocol: stc
+#    ports:
+#      uport:
+#        port: 2/3
+#        medium: copper
+#        speed: 1g
+#      dport:
+#        port: 2/4
+#        medium: copper
+#        speed: 1g
+
+#  tg2:
+#    ip: 10.245.252.54
+#    type: ix_network
+#    protocol: ix_network
+#    ixnet_server: 10.245.55.200:8009
+#    ports:
+#      uport:
+#        port: 4/5
+#        medium: copper
+#        speed: ether1000
+#      dport:
+#        port: 4/6
+#        medium: copper
+#        speed: ether1000

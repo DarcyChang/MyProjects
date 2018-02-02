@@ -1,0 +1,49 @@
+varName,createCmd,deleteCmd,,,,,,,,,,,,,,,,,,dutIp
+y,set session pager disabled,set session pager disabled,,,,,,,,,,,,,,,,,,#REF!
+y,set session timeout disabled,set session timeout disabled,,,,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,#REF!
+y,create vlan 2012 name 2012_dualStack dhcp-snooping enabled,delete vlan 2012,,2012,2012_dualStack,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 1069 name 1069_ds-tr69 dhcp-snooping enabled,delete vlan 1069,,1069,1069_ds-tr69,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 412 name 412_6rd-cdr dhcp-snooping enabled,delete vlan 412,,412,412_6rd-cdr,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 413 name 413_dsl-cdr dhcp-snooping enabled,delete vlan 413,,413,413_dsl-cdr,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 2018 name 2018_6rd-core dhcp-snooping enabled,delete vlan 2018,,2018,2018_6rd-core,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 2019 name 2019_dsl-core dhcp-snooping enabled,delete vlan 2019,,2019,2019_dsl-core,enabled,,,,,,,,,,,,,,#REF!
+y,create vlan 3375 name 3375_ds-cdr dhcp-snooping enabled,delete vlan 3375,,3375,3375_ds-cdr,enabled,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,
+,,,,, acs-url , username , password , mgmt-mode , outer-vlan , p-bit , bw-profile ,,,,,,,,,#REF!
+y,create rg-mgmt-profile ccfg-ob acs-url http://10.40.179.2:8080/5050/LhvQOUDGwi username acs-user-fZf1Z password zF4grTIwuS8z85r mgmt-mode out-of-band outer-vlan 2012 p-bit 0 bw-profile be_cont,delete rg-mgmt-profile ccfg-ob,,ccfg-ob,http://10.40.179.2:8080/5050/LhvQOUDGwi,acs-user-fZf1Z,zF4grTIwuS8z85r,out-of-band,2012,0,be_cont,,,,,,,,,#REF!
+y,create rg-mgmt-profile ccfg-ib acs-url http://10.40.179.2:8080/5050/LhvQOUDGwi username acs-user-fZf1Z password zF4grTIwuS8z85r mgmt-mode in-band outer-vlan 2012 p-bit 0 bw-profile be_cont,delete rg-mgmt-profile ccfg-ib,,ccfg-ib,http://10.40.179.2:8080/5050/LhvQOUDGwi,acs-user-fZf1Z,zF4grTIwuS8z85r,in-band,2012,0,be_cont,,,,,,,,,#REF!
+y,create rg-mgmt-profile ccfg-fp acs-url http://64.84.30.235:8080 username tr069 password tr069 mgmt-mode out-of-band outer-vlan 105 p-bit 0 bw-profile be_cont,delete rg-mgmt-profile ccfg-fp,,ccfg-fp,http://64.84.30.235:8080,tr069,tr069,out-of-band,105,0,be_cont,,,,,,,,,#REF!
+y,create rg-mgmt-profile ccfg-ib_6rd acs-url http://10.40.179.2:8080/5050/LhvQOUDGwi username acs-user-fZf1Z password zF4grTIwuS8z85r mgmt-mode in-band outer-vlan 2012 p-bit 0 bw-profile be_cont,delete rg-mgmt-profile ccfg-ib_6rd,,ccfg-ib_6rd,http://10.40.179.2:8080/5050/LhvQOUDGwi,acs-user-fZf1Z,zF4grTIwuS8z85r,in-band,2012,0,be_cont,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 2012,remove erps-domain ragnarok from-vlan 2012,,ragnarok,2012,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 1069,remove erps-domain ragnarok from-vlan 1069,,ragnarok,1069,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 2018,remove erps-domain ragnarok from-vlan 2018,,ragnarok,2018,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 2019,remove erps-domain ragnarok from-vlan 2019,,ragnarok,2019,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 3375,remove erps-domain ragnarok from-vlan 3375,,ragnarok,3375,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 412,remove erps-domain ragnarok from-vlan 412,,ragnarok,412,,,,,,,,,,,,,,,#REF!
+y,add erps-domain ragnarok to-vlan 413,remove erps-domain ragnarok from-vlan 413,,ragnarok,413,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list ds-2012,delete svc-match-list ds-2012,,ds-2012,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list dsTr69-1069,delete svc-match-list dsTr69-1069,,dsTr69-1069,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list 6rdCdr-412,delete svc-match-list 6rdCdr-412,,6rdCdr-412,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list dslCdr-413,delete svc-match-list dslCdr-413,,dslCdr-413,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list 6rdCore-2018,delete svc-match-list 6rdCore-2018,,6rdCore-2018,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list dslCore-2019,delete svc-match-list dslCore-2019,,dslCore-2019,,,,,,,,,,,,,,,,#REF!
+y,create svc-match-list dsCdr-3375,delete svc-match-list dsCdr-3375,,dsCdr-3375,,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list ds-2012 vlan 2012 p-bit any,remove tagged-rule 1 from svc-match-list ds-2012,1,ds-2012,2012,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list dsTr69-1069 vlan 1069 p-bit any,remove tagged-rule 1 from svc-match-list dsTr69-1069,1,dsTr69-1069,1069,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list 6rdCdr-412 vlan 412 p-bit any,remove tagged-rule 1 from svc-match-list 6rdCdr-412,1,6rdCdr-412,412,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list dslCdr-413 vlan 413 p-bit any,remove tagged-rule 1 from svc-match-list dslCdr-413,1,dslCdr-413,413,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list 6rdCore-2018 vlan 412 p-bit any,remove tagged-rule 1 from svc-match-list 6rdCore-2018,1,6rdCore-2018,412,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list dslCore-2019 vlan 413 p-bit any,remove tagged-rule 1 from svc-match-list dslCore-2019,1,dslCore-2019,413,any,,,,,,,,,,,,,,#REF!
+y,add tagged-rule to-svc-match-list dsCdr-3375 vlan 2012 p-bit any,remove tagged-rule 1 from svc-match-list dsCdr-3375,1,dsCdr-3375,2012,any,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action ds-2012 type change-tag outer 2012 use-p-bit copy svc-match-list ds-2012,delete svc-tag-action ds-2012,,ds-2012,ds-2012,2012,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action dsTr69-1069 type change-tag outer 1069 use-p-bit copy svc-match-list dsTr69-1069,delete svc-tag-action dsTr69-1069,,dsTr69-1069,dsTr69-1069,1069,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action 6rdCdr-412 type change-tag outer 412 use-p-bit copy svc-match-list 6rdCdr-412,delete svc-tag-action 6rdCdr-412,,6rdCdr-412,6rdCdr-412,412,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action dslCdr-413 type change-tag outer 413 use-p-bit copy svc-match-list dslCdr-413,delete svc-tag-action dslCdr-413,,dslCdr-413,dslCdr-413,413,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action 6rdCore-2018 type change-tag outer 2018 use-p-bit copy svc-match-list 6rdCore-2018,delete svc-tag-action 6rdCore-2018,,6rdCore-2018,6rdCore-2018,2018,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action dslCore-2019 type change-tag outer 2019 use-p-bit copy svc-match-list dslCore-2019,delete svc-tag-action dslCore-2019,,dslCore-2019,dslCore-2019,2019,,,,,,,,,,,,,,#REF!
+y,create svc-tag-action dsCdr-3375 type change-tag outer 3375 use-p-bit copy svc-match-list dsCdr-3375,delete svc-tag-action dsCdr-3375,,dsCdr-3375,dsCdr-3375,3375,,,,,,,,,,,,,,#REF!

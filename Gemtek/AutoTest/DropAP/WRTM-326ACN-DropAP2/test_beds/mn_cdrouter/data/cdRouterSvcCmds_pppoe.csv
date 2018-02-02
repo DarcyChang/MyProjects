@@ -1,0 +1,8 @@
+varName,createCmd,deleteCmd,matchVar,eutType,ethSvc,tagSvcTa,bwProf,eutPort,ponCos,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,8,9,2,3,5,7,7,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,add eth-svc Data1 to-ont-port 836/G1 bw-profile be_cont svc-tag-action dsCdr-2323_pppoe pon-cos cos-1 admin-state enabled,remove eth-svc Data1 from-ont-port 836/G1,836GE-D,ont-port,Data1,dsCdr-2323_pppoe,be_cont,836/G1,cos-1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,add eth-svc Data1 to-ont-port 844/G1 bw-profile be_cont svc-tag-action dsCdr-2323_pppoe pon-cos cos-1 admin-state enabled,remove eth-svc Data1 from-ont-port 844/G1,844G-D_cdr,ont-port,Data1,dsCdr-2323_pppoe,be_cont,844/G1,cos-1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,add eth-svc Data1 to-ont-port 813/G1 bw-profile be_cont svc-tag-action dsCdr-2323_pppoe pon-cos cos-1 admin-state enabled,remove eth-svc Data1 from-ont-port 813/G1,813G-D_cdr,ont-port,Data1,dsCdr-2323_pppoe,be_cont,813/G1,cos-1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+y,add eth-svc Data1 to-ont-port 744/g2 bw-profile be_cont svc-tag-action dsCdr-2323_pppoe pon-cos cos-1 admin-state enabled,remove eth-svc Data1 from-ont-port 744/g2,844E,ont-port,Data1,dsCdr-2323_pppoe,be_cont,744/g2,cos-1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

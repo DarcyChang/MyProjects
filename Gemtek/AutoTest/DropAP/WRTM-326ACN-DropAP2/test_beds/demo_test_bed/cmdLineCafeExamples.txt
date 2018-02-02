@@ -1,0 +1,2 @@
+# Example of executing demo test suite from console
+python2 -m cafe.runner.runner --cafe_runner.path ~/stp/stp/test_beds/demo_test_bed/ts_demo.py -c ~/stp/stp/test_beds/demo_test_bed/config/config.ini

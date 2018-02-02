@@ -1,0 +1,9 @@
+# clients per ssid,# ssids,client security,frame size (bytes),direction,pps,Mbps
+1,1,WPA2-PSK,88,LAN->WiFi,23414.6,16.5
+1,1,WPA2-PSK,128,LAN->WiFi,28499.4,29.2
+1,1,WPA2-PSK,256,LAN->WiFi,25176.3,51.6
+1,1,WPA2-PSK,512,LAN->WiFi,14263.4,58.4
+1,1,WPA2-PSK,1000,LAN->WiFi,11977.3,95.8
+1,1,WPA2-PSK,1280,LAN->WiFi,7560.8,77.4
+1,1,WPA2-PSK,1460,LAN->WiFi,8265.1,96.5
+1,1,WPA2-PSK,1518,LAN->WiFi,7249.1,88.0

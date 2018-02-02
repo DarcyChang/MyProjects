@@ -1,0 +1,8 @@
+Scenario,Stealth Mode,Firewall,directx_out,stb1_out,stb2_out,stb3_out,dns_out,ftp_out,ftps_out,gmail_out,h323_out,http_out,https_out,icmp1_out,icmp2_out,icmp3_out,icmp4_out,imap_out,imaps_out,ipp_out,ipsec_out,irc_out,l2tp_out,msn_gaming_out,mysql_out,nntp_out,ntp_out,oracle_out,pcanywhere_out,pptp_out,pop3_out,pop3s_out,ps23_out,rip_out,realav_out,realserver_out,rtp_out,sftp_out,sip_out,sling_out,smtp_out,SQL_out,ssh_out,t120_out,telnet_out,vnc_out,wm_out,ws_out,xbox_out,xbox2_out,xbox3_out,xboxk_out,yahoo_out,all_other_ports_out
+fw_lo_dflt,en,lo,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+fw_udef-1,en,lo,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,1,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1
+fw_udef-2,en,lo,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+fw_med_dflt,en,med,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+fw_hi_dflt,en,hi,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1

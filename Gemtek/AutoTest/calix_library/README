@@ -1,0 +1,7 @@
+This folder is calix library that for robot framework.
+
+1. cafebot.py place /usr/bin/
+2. ActivePython-2.7.tar.gz  untar and place /opt/
+3. barista.tar.gz   untar and place /etc/
+4. send_mail.tar.gz untar 
+/opt/ActivePython-2.7/bin/python mail_notification.py output.xml

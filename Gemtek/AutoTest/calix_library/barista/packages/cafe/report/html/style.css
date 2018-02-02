@@ -1,0 +1,74 @@
+body {
+    border: 1px solid black;
+}
+
+.tc_table, .step_table, .step_detail_table {
+    //margin: 5px 5px 5px 50px;
+    //width: 100%;
+    border-left: 1px solid black;
+    margin-left: 35px;
+    //border-radius: 5px;
+    //display: none;
+}
+
+.step_table, .step_detail_table {
+    display: none;
+}
+
+.tc_table > tbody {
+}
+
+.title {
+    background-color: purple;
+    color: white;
+    font-weight: bolder;
+    font-size: larger;
+
+    margin: 0px;
+    padding: 10px;
+}
+
+.suite_container {
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+
+.suite_header, .tc_header, .step_header {
+    cursor: pointer;
+    min-width: 100px;
+    min-height: 1em;
+}
+
+.suite_container > div, .tc_container > div, .step_container > div {
+    //float: left;
+    display: inline-block;
+}
+
+.pass, .fail, .indt, .info, .warn, .err {
+    padding-right: 20px;
+    white-space: pre;
+}
+
+.pass {
+    color: green;
+}
+
+.fail, .err {
+    color: red;
+}
+
+.indt {
+    color: brown;
+}
+
+.warn {
+    color: orange;
+}
+
+.info {
+    color: blue;
+}
+
+.data {
+    padding: 10px;
+}

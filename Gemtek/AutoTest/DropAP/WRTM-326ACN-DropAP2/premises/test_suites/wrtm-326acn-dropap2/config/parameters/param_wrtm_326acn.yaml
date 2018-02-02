@@ -1,0 +1,85 @@
+global:
+  g_input_enter: "\r"
+  g_input_ctrl_c: "\x03"
+  g_input_ctrl_d: "\x04"
+
+  #----------n/s/h/s/tg vlan parameters here-----------
+  g_n2_dpu_data_vlan: 1100
+  g_n2_us_vlan: 1100
+  g_n1_dpu_data_vlan: 1104
+  g_n1_dpu_video_vlan: 1154
+  g_n1_us_vlan: 1104
+
+
+  g_h1_eth2_vlan: 75
+  #----------------------------------------------------
+
+  g_mgmt_vlan: 899
+
+  g_ip_format: \d+\.\d+\.\d+\.\d+
+  g_version_format: \d+\.\d+\.\d+\.\d+
+  g_HWaddr_format: '[A-F0-9]{2}(:[A-F0-9]{2}){5}'
+
+  g_dut_gui_url: http://192.168.66.1
+  g_dut_gui_user: sigmu
+  g_dut_gui_pwd: secom
+  g_dut_sn: CXNKEC4F827E7352
+  g_dut_wait_time: 840
+
+  gui_url: 192.168.66.1
+  g_dut_gw: 192.168.66.1
+  l2tp_server_gui_url: http://192.168.66.200:1080
+  g_wifi_guest_gw: 192.168.67.1
+  g_dut_gw_network: 192.168.55.0
+  g_dut_gw_network_prefix: 192.168.55
+  g_dut_ip_mask: 255.255.255.0
+  g_dut_static_ipaddr: 172.18.19.200
+  g_dut_static_netmask: 255.255.255.0
+  g_dut_static_gateway: 172.18.19.2
+  g_dut_static_dns1: 172.18.19.2
+  g_dut_static_dns2: 172.18.19.100
+  g_dut_gw_dhcp_server_start_ip: 192.168.55.100
+  g_dut_gw_dhcp_server_end_ip: 192.168.55.249
+  g_dut_DNS_from_company: 10.5.1.106
+  g_dut_home_ssid: DropAP-0baca82
+  g_dut_guest_ssid: DropAP-Guest-0baca8
+  g_dut_repeater_ssid_pw: 0123456789
+  g_dut_dummy_ssid_pw: 1122334455
+  g_dut_wep_ssid_pw: 12345
+  g_dut_pppoe_username: test
+  g_dut_pppoe_password: test
+  g_dut_invalid_pppoe_username: testwrong
+  g_dut_invalid_pppoe_password: testwrong
+  g_lanhost_lease_file: /var/lib/dhcp/dhclient.leases
+  g_fw_folder: /home/vagrant/tmp_fw/
+
+  g_app_REMOTE_URL: http://localhost:4723/wd/hub
+  g_app_PLATFORM_NAME:     Android
+  g_app_PLATFORM_VERSION: 5.0
+  g_app_device_name: EAAZCY17F178
+  g_app_APK: /home/vagrant/project/robot/build/outputs/apk/DropAP_APP_Production-V2.96.2-build#3992.apk
+  #g_app_APK: /home/vagrant/project/robot/build/outputs/apk/DropAP_APP_Production-V2.96.2-debug_v2.apk
+  g_app_version: 2.96.2 (3992)
+  #g_app_version: 2.96.2 (3000)
+  g_app_PACKAGE_NAME: com.dropap.dropap
+  g_app_ACTIVITY: com.dropap.dropap.activity.firstlaunch.WelcomeActivity
+  g_app_username: test123
+  g_app_password: test1234
+  g_app_email: gavin_chang@gemteks.com
+  second_username: gavinchang
+  second_password: gavinchang
+  g_app_home_ssid: DropAP-0bb778
+  g_app_rename_home_ssid: DropAP-0bb778-rename
+  g_app_guest_ssid: DropAP-Guest-0ba9f8
+  g_app_rename_guest_ssid: DropAP-Guest-0ba9f8-rename
+  g_dut_gui_Networking_page_url: http://192.168.66.1/cgi-bin/luci//admin/network/wan
+
+  g_cloud_domainName: https://s5-dropap.securepilot.com
+  g_cloud_deviceid: 701a05010003
+  g_cloud_devicepw: j5b5xdh1
+  g_cloud_pin: 18833648
+  g_cloud_apiKey: DropAP-GFFnDFe4WM
+  g_cloud_User: jill_test
+  g_cloud_userId: 700010073
+  g_cloud_User_pw: 12345678
+  g_cloud_apiToken: c37832b370ab9b51633ba20e2717f86435c37a95

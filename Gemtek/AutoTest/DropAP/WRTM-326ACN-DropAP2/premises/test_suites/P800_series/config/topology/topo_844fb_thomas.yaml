@@ -1,0 +1,42 @@
+connection:
+  web:
+    type: web
+    default_element_wait: 60
+
+  n1:
+    prompt: ['~ #', '#', '>']
+    ip: 10.5.161.197
+    port: 4004
+    protocol: telnet
+    timeout: 5
+    type: linux
+    user: admin
+    password: admin
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+  wifi_client:
+    ip: 10.5.182.195
+    type: linux
+    protocol: ssh
+    user: vagrant
+    password: vagrant
+    prompt: ['vagrant\@thomas-VPCEB37FW\:\~\$']
+
+  cisco:
+    prompt: ['dhcpv6>', 'dhcpv6#', 'dhcpv6(config)#', 'dhcpv6(config-if-range)#', 'dhcpv6(config-line)#']
+    ip: 10.5.161.154
+    port: 4017
+    protocol: telnet
+    timeout: 5
+    type: linux
+  
+  e5:
+    ip: 10.5.161.197
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['E5-16F#', 'root@E5-16F\:\~#', 'E5-16F\(config\)#', 'E5-16F\(config-line-line[0-9]\)']
+
+

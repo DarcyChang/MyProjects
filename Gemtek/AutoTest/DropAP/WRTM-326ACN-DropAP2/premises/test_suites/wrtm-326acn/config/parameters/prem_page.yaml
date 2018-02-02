@@ -1,0 +1,3251 @@
+Advanced:
+  AdvancedButton:
+    Comment: ''
+    Locator: xpath=//*[@id="nav_advanced"]
+    Type: Button
+  IPAddressing:
+    DHCPReservation:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      DHCPReservationList:
+        Comment: DHCP Reservation List
+        Locator: xpath=//table[@id='dhcp_reservation_list']
+        Type: table
+      Device:
+        Comment: ''
+        Locator: id=deviceTypeRadio1
+        Type: radio
+      IPAddress:
+        Comment: Select an IP address to associate with a MAC address
+        Locator: id=ip_address
+        Type: select
+      InputtedMACAddress:
+        Comment: The inputed MAC Address
+        Locator: id=macAddressObj_manual
+        Type: text
+      MACAddress:
+        Comment: ''
+        Locator: id=deviceTypeRadio2
+        Type: radio
+      SelectedDvice:
+        Comment: The selected Dvice
+        Locator: id=macAddressObj
+        Type: select
+    DHCPSettings:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BeginningIPAddress:
+        Locator: id=beg_ip_address
+        Type: text
+      CustomServers:
+        Locator: id=custom_servers
+        Type: radio
+      Days:
+        Comment: DHCP server lease time
+        Locator: id=day
+        Type: number
+      DefaultServers:
+        Comment: DHCP DNS Type
+        Locator: id=default_servers
+        Type: radio
+      DeviceIPAddress:
+        Comment: IP addressing values
+        Locator: id=ip_interface_ip_address
+        Type: text
+      Disabled:
+        Locator: id=dhcp_server_disabled
+        Type: radio
+      DomainName:
+        Locator: id=dhcp_domain_name_field
+        Type: text
+      Enabled:
+        Comment: DHCP server state
+        Locator: id=dhcp_server_enabled
+        Type: radio
+      EndingIPAddress:
+        Locator: id=end_ip_address
+        Type: text
+      HostName:
+        Comment: DHCP
+        Locator: id=dhcp_host_name_field
+        Type: text
+      Hours:
+        Locator: id=hour
+        Type: number
+      Minutes:
+        Locator: id=minute
+        Type: number
+      PermanentNOTAdvised:
+        Locator: id=reservation_enabled
+        Type: radio
+      PrimaryDNS:
+        Comment: DNS ip
+        Locator: id=PrimaryDNSAddress
+        Type: text
+      SecondaryDNS:
+        Comment: DNS ip
+        Locator: id=SecondaryDNSAddress
+        Type: text
+      Sticky:
+        Comment: DHCP Reservation
+        Locator: id=reservation_disabled
+        Type: radio
+      SubnetMask:
+        Locator: id=subnet_mask
+        Type: text
+    DNSHostMapping:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      DNSHostMappingList:
+        Comment: DNS Host Mapping List
+        Locator: xpath=//table[@id="dnsHostMappingTable"]
+        Type: table
+      HostName:
+        Comment: ''
+        Locator: id=Hostname
+        Type: text
+      IPAddress:
+        Comment: ''
+        Locator: id=IPAddress
+        Type: text
+    DynamicDNS:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      Disabled:
+        Locator: id=ddns_disabled_radio
+        Type: radio
+      DynamicDNShostname:
+        Comment: ''
+        Locator: id=ddns_hostname
+        Type: text
+      Enabled:
+        Comment: Dynamic DNS state
+        Locator: id=ddns_enabled_radio
+        Type: radio
+      Password:
+        Comment: display by default, "password_text_field" hidden
+        Locator: id=password_password_field
+        Type: text
+      PasswordShow:
+        Comment: display after click the Show checkbox, the above one is hidden
+        Locator: id=password_text_field
+        Type: password
+      Show:
+        Comment: ''
+        Locator: id=show_password_checkbox
+        Type: checkbox
+      Username:
+        Comment: ''
+        Locator: id=ddns_username
+        Type: text
+    IPTVDNSSuffix:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      IPTVDNSSuffixList:
+        Comment: IPTV DNS Suffix List
+        Locator: xpath=//table[@id="dnsSuffixTable"]
+        Type: table
+      URLName:
+        Comment: ''
+        Locator: id=urlname
+        Type: text
+    IPv6LANSettings:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      Disabled:
+        Locator: dhcpv6_server_disable
+        Type: radio
+      IPv6StatusDisable:
+        Locator: id=v6_status_disable
+        Type: radio
+      IPv6StatusEnable:
+        Comment: IPv6 Status
+        Locator: id=v6_status_enable
+        Type: radio
+      MaximumInterfaceID:
+        Comment: ''
+        Locator: id=max_iface_id
+        Type: text
+      MinimumInterfaceID:
+        Comment: ''
+        Locator: id=min_iface_id
+        Type: text
+      NameServerModeCustom:
+        Locator: xpath=//input[@type='radio' and @name='name_server_mode' and @value='static']
+        Type: radio
+      NameServerModeDefault:
+        Comment: Name Server Mode
+        Locator: xpath=//input[@type='radio' and @name='name_server_mode' and @value='auto']
+        Type: radio
+      PrimaryDNS:
+        Comment: ''
+        Locator: id=primary_dns_field
+        Type: text
+      SecondaryDNS:
+        Comment: ''
+        Locator: id=secondary_dns_field
+        Type: text
+      SelectLAN:
+        Comment: ''
+        Locator: id=lan_id
+        Type: select
+      Stateful:
+        Comment: DHCPv6 Server State
+        Locator: dhcpv6_server_stateful
+        Type: radio
+      Stateless:
+        Locator: dhcpv6_server_stateless
+        Type: radio
+  LEDSuppressControl:
+    AllSuppressed:
+      Locator: id=led_control_allSuppressed
+      Type: radio
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    CustomSuppression:
+      Locator: id=led_control_customSuppressed
+      Type: radio
+    Disabled:
+      Locator: led_disable+num
+      Type: radio
+    Enabled:
+      Comment: The suffix of id is a numeric type that use the index of the loop BE
+        data,for exampleled_enable1,led_disable1
+      Locator: led_enable+num
+      Type: radio
+    NoneSuppressed:
+      Comment: ''
+      Locator: id=led_control_noneSuppressed
+      Type: radio
+  QualityOfService:
+    QoSIPv4:
+      All:
+        Comment: IP Addresses
+        Locator: id=all_ip_address_radio
+        Type: radio
+      Apply:
+        Comment: ''
+        Locator: id=apply_edit_qos_rule_button
+        Type: button
+      Cancel:
+        Comment: ''
+        Locator: id=cancel_edit_qos_rule_button
+        Type: button
+      DSCPClass:
+        Comment: ''
+        Locator: id=dscp_selector
+        Type: select
+      Define:
+        Locator: id=define_ip_address_radio
+        Type: radio
+      DestPortRangeEnd:
+        Locator: id=dest_port_end_field
+        Type: text
+      DestPortRangeStart:
+        Locator: id=dest_port_start_field
+        Type: text
+      DestinationIP:
+        Comment: Destination IP
+        Locator: id=dest_ip_field
+        Type: text
+      DestinationIPNetmask:
+        Locator: id=dest_netmask_field
+        Type: text
+      Disabled:
+        Locator: id=qos_disabled_radio
+        Type: radio
+      Downstream:
+        Locator: id=qos_direction_downstream_radio
+        Type: radio
+      Enabled:
+        Comment: QoS state
+        Locator: id=qos_enabled_radio
+        Type: radio
+      New:
+        Comment: This button allows a new QoS rule to be created.
+        Locator: id=create_new_qos_rule_button
+        Type: button
+      QoSType:
+        Comment: ''
+        Locator: id=qos_type_selector
+        Type: select
+      QosTablelist:
+        Comment: The Qos Table list
+        Locator: id=qos_rule_table
+        Type: table
+      QueuePriority:
+        Comment: The Qos Downstream Queue Priority
+        Locator: id=qos_downstream_queue_priority
+        Type: select
+      RuleName:
+        Comment: ''
+        Locator: id=rule_name_field
+        Type: text
+      SourceIP:
+        Comment: Source IP
+        Locator: id=src_ip_field
+        Type: text
+      SourceIPNetmask:
+        Locator: id=src_netmask_field
+        Type: text
+      SrcPortRangeEnd:
+        Locator: id=src_port_end_field
+        Type: text
+      SrcPortRangeStart:
+        Locator: id=src_port_start_field
+        Type: text
+      Upstream:
+        Comment: QoS direction
+        Locator: id=qos_direction_upstream_radio
+        Type: radio
+  RemoteManagement:
+    RemoteGUI:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      Disabled:
+        Locator: id=remote_gui_disabled
+        Type: radio
+      Enabled:
+        Comment: Remote GUI state
+        Locator: id=remote_gui_enabled
+        Type: radio
+      IPv4HTTPSURL:
+        Comment: <a id="ipv4_url" ...><>
+        Locator: sizzle=a#ipv4_url
+        Type: label
+  SchedulingandBlocking:
+    SchedulingAccess:
+      Add:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      AllDays:
+        Locator: id=allWeekCheckbox
+        Type: checkbox
+      Device:
+        Comment: ''
+        Locator: id=select_device_radio
+        Type: radio
+      DeviceAccessList:
+        Comment: Details of all scheduled devices are displayed in the table below.
+        Locator: xpath=//table[@id="schedule_rule_table"]
+        Type: table
+      Friday:
+        Locator: id=friday
+        Type: checkbox
+      From:
+        Comment: Time of day ranges
+        Locator: id=fromTimeSelector
+        Type: select
+      InputtedMACAddress:
+        Comment: The inputed MAC Address
+        Locator: id=pc_name
+        Type: text
+      MACAddress:
+        Comment: ''
+        Locator: id=select_mac_radio
+        Type: radio
+      Monday:
+        Comment: Days of the week to allow Internet access
+        Locator: id=monday
+        Type: checkbox
+      Remove:
+        Comment: Rmove schedule rule table
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+      Saturday:
+        Locator: id=saturday
+        Type: checkbox
+      SelectedDevice:
+        Comment: The selected Device
+        Locator: id=lan_device_selector
+        Type: select
+      Sunday:
+        Locator: id=sunday
+        Type: checkbox
+      Thursday:
+        Locator: id=thursday
+        Type: checkbox
+      To:
+        Locator: id=toTimeSelector
+        Type: select
+      Tuesday:
+        Locator: id=tuesday
+        Type: checkbox
+      Wednesday:
+        Locator: id=wednesday
+        Type: checkbox
+    ServiceBlocking:
+      ApplyAssociation:
+        Comment: This button creates a new association between the selected service
+          rule and the selected device or IP address.
+        Locator: id=apply_edit_association_button
+        Type: button
+      ApplyService:
+        Comment: ''
+        Locator: id=apply_edit_service_button
+        Type: button
+      Cancel:
+        Comment: This button closes this pane without applying any changes.
+        Locator: id=cancel_edit_association_button
+        Type: button
+      CancelGoBack:
+        Comment: This button cancels the creation of a new service rule entry or the
+          modification of an existing service rule entry and returns back to the Create
+          New Entry pane.
+        Locator: id=cancel_edit_service_button
+        Type: button
+      ClearFields:
+        Comment: This button clears the field values in order to allow the creation
+          of a new service rule entry.
+        Locator: id=clear_edit_service_button
+        Type: button
+      Device:
+        Comment: ''
+        Locator: id=associate_rule_with_device_radio
+        Type: radio
+      Edit:
+        Comment: ''
+        Locator: id=edit_service_rule_button
+        Type: button
+      IPAddress:
+        Comment: ''
+        Locator: id=associate_rule_with_ip_radio
+        Type: radio
+      InputtedIPAddress:
+        Comment: The inputed IP Address
+        Locator: id=ip_address_field
+        Type: text
+      Name:
+        Comment: ''
+        Locator: id=service_name_field
+        Type: text
+      New:
+        Comment: This button allows a new association between a service rule and a
+          device or IP address to be created.
+        Locator: id=create_new_association_button
+        Type: button
+      NewAssociationTableList:
+        Comment: TheCreated New Association Table
+        Locator: xpath=//table[@id='associations_table']
+        Type: table
+      NewServiceRule:
+        Comment: This button allows a new service rule to be created.
+        Locator: id=create_service_rule_button
+        Type: button
+      ServiceNamesList:
+        Comment: The Service Name Table
+        Locator: xpath=//span[@id="services_table_service_name"]
+        Type: span
+      NewServiceTableList:
+        Comment: The created New Service Table
+        Locator: xpath=//table[@id='services_table']
+        Type: table
+      PortEnd:
+        Comment: ''
+        Locator: id=port_end_field
+        Type: text
+      PortStart:
+        Comment: ''
+        Locator: id=port_start_field
+        Type: text
+      Protocol:
+        Comment: ''
+        Locator: id=service_protocol_selector
+        Type: select
+      SelectedDevice:
+        Comment: The selected Device
+        Locator: id=lan_device_selector
+        Type: select
+      Service:
+        Comment: ''
+        Locator: id=service_select
+        Type: select
+      View:
+        Comment: ''
+        Locator: id=view_service_rule_button
+        Type: button
+      Remove:
+        Comment: ''
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+    WebsiteBlocking:
+      Apply:
+        Comment: This button creates a new association between the selected website
+          and the selected device or IP address.
+        Locator: id=apply_edit_association_button
+        Type: button
+      Cancel:
+        Comment: This button closes this pane without applying any changes.
+        Locator: id=cancel_edit_association_button
+        Type: button
+      Device:
+        Comment: ''
+        Locator: id=associate_website_with_device_radio
+        Type: radio
+      IPAddress:
+        Comment: ''
+        Locator: id=associate_website_with_ip_radio
+        Type: radio
+      InputtedIPAddress:
+        Comment: The inputed IP Address
+        Locator: id=ip_address_field
+        Type: text
+      New:
+        Comment: This button allows a new association between a website and a device
+          or IP address to be created.
+        Locator: id=create_new_association_button
+        Type: button
+      NewWebsiteBlockingTableList:
+        Comment: The created newWebsite Blocking Table
+        Locator: xpath=//table[@id='associations_table']
+        Type: table
+      Ok:
+        Comment: Confirm the pop-up window
+        Locator: xpath=//button[text()='Ok']
+        Type: button
+      Remove:
+        Comment: Remove association between a website and a device or IP address
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+      SelectedDevice:
+        Comment: The selected Device
+        Locator: id=associate_website_with_ip_radio
+        Type: select
+      WebsiteAddress:
+        Comment: ''
+        Locator: id=website_address_field
+        Type: text
+  Security:
+    AdministratorCredentials:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      NotRequired:
+        Comment: ''
+        Locator: id=admin_state_off
+        Type: radio
+      Password:
+        Comment: ''
+        Locator: id=admin_password_password_field
+        Type: password
+      Passwordshow:
+        Comment: ''
+        Locator: id=admin_password_text_field
+        Type: text
+      Required:
+        Comment: ''
+        Locator: id=admin_state_on
+        Type: radio
+      Show:
+        Comment: ''
+        Locator: id=show_admin_password_checkbox
+        Type: checkbox
+      Username:
+        Comment: ''
+        Locator: id=admin_username_field
+        Type: text
+    ApplicationForwarding:
+      Application:
+        Comment: ''
+        Locator: xpath=//input[@type='radio' and @name='associate_rule_with_selector' and @value='manually']
+        Type: select
+      ApplicationForwardingList:
+        Comment: TheApplication Forwarding List
+        Locator: xpath=//table[@id='associations_table']
+        Type: table
+      ApplicationsList:
+        Comment: The Applications Table
+        Locator: xpath=//table[@id='applications_table']
+        Type: table
+      Apply:
+        Comment: This button applies the field values to create a new application
+          rule entry or to modify an existing application rule entry.
+        Locator: id=apply_edit_application_button
+        Type: button
+      ApplyApplication:
+        Comment: This button creates a new association between the selected application
+          rule and the selected device or IP address.
+        Locator: xpath=//button[@id="apply_edit_association_button"]
+        Type: button
+      AssociateDevice:
+        Comment: ''
+        Locator: id=associate_rule_with_device_radio
+        Type: radio
+      AssociateIP:
+        Comment: ''
+        Locator: xpath=//input[@type='radio' and @name='associate_rule_with_selector' and @value='manually']
+        Type: radio
+      ApplicationNamesList:
+        Comment: The Application Name Table
+        Locator: id=applications_table_application_name
+        Type: span
+      ApplicationSelect:
+        Comment: ''
+        Locator: xpath=//select[@id='application_select']
+        Type: select
+      Cancel:
+        Comment: This button closes this pane without applying any changes.
+        Locator: id=cancel_edit_association_button
+        Type: button
+      CancelGoBack:
+        Comment: This button cancels the creation of a new application rule entry
+          or the modification of an existing application rule entry and returns back
+          to the Create New Association pane.
+        Locator: id=cancel_edit_application_button
+        Type: button
+      ClearFields:
+        Comment: ''
+        Locator: id=clear_edit_application_button
+        Type: button
+      Device:
+        Comment: ''
+        Locator: id=lan_device_selector
+        Type: select
+      Edit:
+        Comment: ''
+        Locator: id=edit_application_rule_button
+        Type: button
+      EditApplication:
+        Comment: This button allows a new application rule to be edit.
+        Locator: xpath=//button[text()='Edit']
+        Type: button
+      IPAddress:
+        Comment: ''
+        Locator: id=ip_address_field
+        Type: text
+      Name:
+        Comment: ''
+        Locator: id=application_name_field
+        Type: text
+      New:
+        Comment: This button allows a new association between an application rule
+          and a device or IP address to be created.
+        Locator: id=create_new_association_button
+        Type: button
+      NewApplication:
+        Comment: This button allows a new application rule to be created.
+        Locator: id=create_application_rule_button
+        Type: button
+      PortEnd:
+        Comment: ''
+        Locator: id=port_end_field
+        Type: text
+      PortStart:
+        Comment: ''
+        Locator: id=port_start_field
+        Type: text
+      Protocol:
+        Comment: ''
+        Locator: id=application_protocol_selector
+        Type: select
+      Remove:
+        Comment: Remove Port Forwarding Table
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+      View:
+        Comment: ''
+        Locator: id=view_application_rule_button
+        Type: button
+    DMZHosting:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      DMZHostedDeviceTable:
+        Comment: DMZ Hosted Device Table
+        Locator: xpath=//table[@id="dmz_table"]
+        Type: table
+      Device:
+        Comment: ''
+        Locator: xpath=//input[@id="deviceTypeRadio1"]
+        Type: radio
+      Disabled:
+        Locator: id=dmz_off
+        Type: radio
+      Enabled:
+        Comment: DMZ state
+        Locator: id=dmz_on
+        Type: radio
+      IPAddress:
+        Comment: ''
+        Locator: id=deviceTypeRadio2
+        Type: radio
+      InputtedIPAddress:
+        Comment: ''
+        Locator: id=ip_address
+        Type: text
+      Remove:
+        Comment: ''
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+      SelectedDevice:
+        Comment: ''
+        Locator: id=lan_device
+        Type: select
+    Firewall:
+      AllOtherPortsTrafficin:
+        Locator: id=all_other_ports_in
+        Type: checkbox
+      AllOtherPortsTrafficout:
+        Locator: id=all_other_ports_out
+        Type: checkbox
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      DNSTrafficin:
+        Locator: id=dns_in
+        Type: checkbox
+      DNSTrafficout:
+        Locator: id=dns_out
+        Type: checkbox
+      DirectxTrafficin:
+        Comment: The checkboxs of Traffic inthat displayed in Blocked Services
+        Locator: id=directx_in
+        Type: checkbox
+      DirectxTrafficout:
+        Comment: The checkboxs ofTraffic out that displayed in Blocked Services
+        Locator: id=directx_out
+        Type: checkbox
+      Disabled:
+        Locator: id=stealth_mode_disabled_radio
+        Type: radio
+      Enabled:
+        Comment: Stealth Mode
+        Locator: id=stealth_mode_enabled_radio
+        Type: radio
+      FTPSTrafficin:
+        Locator: id=ftps_in
+        Type: checkbox
+      FTPSTrafficout:
+        Locator: id=ftps_out
+        Type: checkbox
+      FTPTrafficin:
+        Locator: id=ftp_in
+        Type: checkbox
+      FTPTrafficout:
+        Locator: id=ftp_out
+        Type: checkbox
+      GmailTrafficin:
+        Locator: id=gmail_in
+        Type: checkbox
+      GmailTrafficout:
+        Locator: id=gmail_out
+        Type: checkbox
+      H323Trafficin:
+        Locator: id=h323_in
+        Type: checkbox
+      H323Trafficout:
+        Locator: id=h323_out
+        Type: checkbox
+      HTTPSTrafficin:
+        Locator: id=https_in
+        Type: checkbox
+      HTTPSTrafficout:
+        Locator: id=https_out
+        Type: checkbox
+      HTTPTrafficin:
+        Locator: id=http_in
+        Type: checkbox
+      HTTPTrafficout:
+        Locator: id=http_out
+        Type: checkbox
+      HighSecurity:
+        Locator: id=security_level_high
+        Type: radio
+      ICMPEchoReplyTrafficin:
+        Locator: id=icmp2_in
+        Type: checkbox
+      ICMPEchoReplyTrafficout:
+        Locator: id=icmp2_out
+        Type: checkbox
+      ICMPEchoRequestTrafficin:
+        Locator: id=icmp1_in
+        Type: checkbox
+      ICMPEchoRequestTrafficout:
+        Locator: id=icmp1_out
+        Type: checkbox
+      ICMPTTLExpireTrafficin:
+        Locator: id=icmp3_in
+        Type: checkbox
+      ICMPTTLExpireTrafficout:
+        Locator: id=icmp3_out
+        Type: checkbox
+      ICMPTraceRouteTrafficin:
+        Locator: id=icmp4_in
+        Type: checkbox
+      ICMPTraceRouteTrafficout:
+        Locator: id=icmp4_out
+        Type: checkbox
+      IMAPSTrafficin:
+        Locator: id=imaps_in
+        Type: checkbox
+      IMAPSTrafficout:
+        Locator: id=imaps_out
+        Type: checkbox
+      IMAPTrafficin:
+        Locator: id=imap_in
+        Type: checkbox
+      IMAPTrafficout:
+        Locator: id=imap_out
+        Type: checkbox
+      IPPTrafficin:
+        Locator: id=ipp_in
+        Type: checkbox
+      IPPTrafficout:
+        Locator: id=ipp_out
+        Type: checkbox
+      IPSECTrafficin:
+        Locator: id=ipsec_in
+        Type: checkbox
+      IPSECTrafficout:
+        Locator: id=ipsec_out
+        Type: checkbox
+      IRCTrafficin:
+        Locator: id=irc_in
+        Type: checkbox
+      IRCTrafficout:
+        Locator: id=irc_out
+        Type: checkbox
+      L2TPTrafficin:
+        Locator: id=l2tp_in
+        Type: checkbox
+      L2TPTrafficout:
+        Locator: id=l2tp_out
+        Type: checkbox
+      LowSecurity:
+        Locator: id=security_level_low
+        Type: radio
+      MSNGamingTrafficin:
+        Locator: id=msn_gaming_in
+        Type: checkbox
+      MSNGamingTrafficout:
+        Locator: id=msn_gaming_out
+        Type: checkbox
+      MediumSecurity:
+        Locator: id=security_level_medium
+        Type: radio
+      MySQLTrafficin:
+        Locator: id=mysql_in
+        Type: checkbox
+      MySQLTrafficout:
+        Locator: id=mysql_out
+        Type: checkbox
+      NNTPTrafficin:
+        Locator: id=nntp_in
+        Type: checkbox
+      NNTPTrafficout:
+        Locator: id=nntp_out
+        Type: checkbox
+      NTPTrafficin:
+        Locator: id=NTP_in
+        Type: checkbox
+      NTPTrafficout:
+        Locator: id=NTP_out
+        Type: checkbox
+      OracleSQLTrafficin:
+        Locator: id=oracle_in
+        Type: checkbox
+      OracleSQLTrafficout:
+        Locator: id=oracle_out
+        Type: checkbox
+      PCAnywhereTrafficin:
+        Locator: id=pcanywhere_in
+        Type: checkbox
+      PCAnywhereTrafficout:
+        Locator: id=pcanywhere_out
+        Type: checkbox
+      POP3STrafficin:
+        Locator: id=pop3s_in
+        Type: checkbox
+      POP3STrafficout:
+        Locator: id=pop3s_out
+        Type: checkbox
+      POP3Trafficin:
+        Locator: id=pop3_in
+        Type: checkbox
+      POP3Trafficout:
+        Locator: id=pop3_out
+        Type: checkbox
+      PPTPTrafficin:
+        Locator: id=pptp_in
+        Type: checkbox
+      PPTPTrafficout:
+        Locator: id=pptp_out
+        Type: checkbox
+      PS2/PS3Trafficin:
+        Locator: id=ps23_in
+        Type: checkbox
+      PS2/PS3Trafficout:
+        Locator: id=ps23_out
+        Type: checkbox
+      REALA/VTrafficin:
+        Locator: id=realav_in
+        Type: checkbox
+      REALA/VTrafficout:
+        Locator: id=realav_out
+        Type: checkbox
+      RIPTrafficin:
+        Locator: id=rip_in
+        Type: checkbox
+      RIPTrafficout:
+        Locator: id=rip_out
+        Type: checkbox
+      RTPTrafficin:
+        Locator: id=rtp_in
+        Type: checkbox
+      RTPTrafficout:
+        Locator: id=rtp_out
+        Type: checkbox
+      RealServer/QuickTimeTrafficin:
+        Locator: id=realserver_in
+        Type: checkbox
+      RealServer/QuickTimeTrafficout:
+        Locator: id=realserver_out
+        Type: checkbox
+      SFTPTrafficin:
+        Locator: id=sftp_in
+        Type: checkbox
+      SFTPTrafficout:
+        Locator: id=sftp_out
+        Type: checkbox
+      SIPTrafficin:
+        Locator: id=sip_in
+        Type: checkbox
+      SIPTrafficout:
+        Locator: id=sip_out
+        Type: checkbox
+      SMTPTrafficin:
+        Locator: id=smtp_in
+        Type: checkbox
+      SMTPTrafficout:
+        Locator: id=smtp_out
+        Type: checkbox
+      SQLTrafficin:
+        Locator: id=SQL_in
+        Type: checkbox
+      SQLTrafficout:
+        Locator: id=SQL_out
+        Type: checkbox
+      SSHTrafficin:
+        Locator: id=ssh_in
+        Type: checkbox
+      SSHTrafficout:
+        Locator: id=ssh_out
+        Type: checkbox
+      SecurityOff:
+        Comment: Security Level
+        Locator: id=security_level_off
+        Type: radio
+      SlingBoxTrafficin:
+        Locator: id=sling_in
+        Type: checkbox
+      SlingBoxTrafficout:
+        Locator: id=sling_out
+        Type: checkbox
+      Stb1Trafficin:
+        Locator: id=stb1_in
+        Type: checkbox
+      Stb1Trafficout:
+        Locator: id=stb1_out
+        Type: checkbox
+      Stb2Trafficin:
+        Locator: id=stb2_in
+        Type: checkbox
+      Stb2Trafficout:
+        Locator: id=stb2_out
+        Type: checkbox
+      Stb32Trafficin:
+        Locator: id=stb3_in
+        Type: checkbox
+      Stb32Trafficout:
+        Locator: id=stb3_out
+        Type: checkbox
+      T120Trafficin:
+        Locator: id=t120_in
+        Type: checkbox
+      T120Trafficout:
+        Locator: id=t120_out
+        Type: checkbox
+      TelnetTrafficin:
+        Locator: id=telnet_in
+        Type: checkbox
+      TelnetTrafficout:
+        Locator: id=telnet_out
+        Type: checkbox
+      VNCTrafficin:
+        Locator: id=vnc_in
+        Type: checkbox
+      VNCTrafficout:
+        Locator: id=vnc_out
+        Type: checkbox
+      WindowsMessagingTrafficin:
+        Locator: id=wm_in
+        Type: checkbox
+      WindowsMessagingTrafficout:
+        Locator: id=wm_out
+        Type: checkbox
+      WindowsServiceTrafficin:
+        Locator: id=ws_in
+        Type: checkbox
+      WindowsServiceTrafficout:
+        Locator: id=ws_out
+        Type: checkbox
+      XBox360#2Trafficin:
+        Locator: id=xbox2_in
+        Type: checkbox
+      XBox360#2Trafficout:
+        Locator: id=xbox2_out
+        Type: checkbox
+      XBox360#3Trafficin:
+        Locator: id=xbox3_in
+        Type: checkbox
+      XBox360#3Trafficout:
+        Locator: id=xbox3_out
+        Type: checkbox
+      XBox360KinectTrafficin:
+        Locator: id=xboxk_in
+        Type: checkbox
+      XBox360KinectTrafficout:
+        Locator: id=xboxk_out
+        Type: checkbox
+      XBoxTrafficin:
+        Locator: id=xbox_in
+        Type: checkbox
+      XBoxTrafficout:
+        Locator: id=xbox_out
+        Type: checkbox
+      YahooMessengerwithClientDirectoryTrafficin:
+        Locator: id=yahoo_in
+        Type: checkbox
+      YahooMessengerwithClientDirectoryTrafficout:
+        Locator: id=yahoo_out
+        Type: checkbox
+    PortForwarding:
+      AllIPAddresses:
+        Comment: Remote IP
+        Locator: id=associate_remote_with_all_radio
+        Type: radio
+      Apply:
+        Comment: AddPort Forwarding Table
+        Locator: id=apply_edit_association_button
+        Type: button
+      Cancel:
+        Comment: ''
+        Locator: id=cancel_edit_association_button
+        Type: button
+      ClearFields:
+        Comment: This button clears the remote port and IP field values in order to
+          allow the creation of a new remote entry.
+        Locator: id=clear_edit_remote_button
+        Type: button
+      ClearLocalFields:
+        Comment: This button clears the local port and IP field values in order to
+          allow the creation of a new remote entry.
+        Locator: id=clear_edit_local_button
+        Type: button
+      ClearRemoteFields:
+        Comment: This button clears the remote port and IP field values in order to
+          allow the creation of a new remote entry.
+        Locator: id=clear_edit_remote_button
+        Type: button
+      Device:
+        Comment: The Local Device Select
+        Locator: id=associate_local_with_device_radio
+        Type: radio
+      LocalIPAddress:
+        Comment: The Local IP Select
+        Locator: id=associate_local_with_ip_radio
+        Type: radio
+      LocalIPAddressValue:
+        Comment: The Local IPAddress Value
+        Locator: id=local_ip_address_field
+        Type: text
+      LocalPortEnd:
+        Comment: TheLocal Port End
+        Locator: id=local_port_end_field
+        Type: text
+      LocalPortStart:
+        Comment: TheLocal Port Start
+        Locator: id=local_port_start_field
+        Type: text
+      New:
+        Comment: This button allows a new association between a local LAN device and
+          a remote IP address to be created.
+        Locator: id=create_new_association_button
+        Type: button
+      Ok:
+        Comment: Confirm the pop-up window
+        Locator: xpath=//button[text()='Ok']
+        Type: button
+      PortForwardingList:
+        Comment: Port ForwardingList
+        Locator: xpath=//table[@id="associations_table"]
+        Type: table
+      Protocol:
+        Comment: The LocalProtocol
+        Locator: id=protocol_selector
+        Type: select
+      RemoteIPAddress:
+        Comment: Remote IP Address select
+        Locator: id=associate_remote_with_ip_radio
+        Type: radio
+      RemoteIPAddressValue:
+        Comment: Remote IP Address Value
+        Locator: id=remote_ip_address_field
+        Type: text
+      Remove:
+        Comment: Remove Port Forwarding Table
+        Locator: xpath=//button[text()='Remove']
+        Type: button
+      SelectedDevice:
+        Comment: The Local Device Select
+        Locator: id=local_lan_device_selector
+        Type: select
+      WANPortEnd:
+        Comment: WAN Ports
+        Locator: id=remote_port_end_field
+        Type: text
+      WANPortStart:
+        Comment: WAN Ports
+        Locator: id=remote_port_start_field
+        Type: text
+    UPnP:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      UPnPNAT-TList:
+        Comment: UPnP NAT-T List
+        Locator: id=upnp_nat-t_table
+        Type: table
+      UPnPNAT-TStateDisable:
+        Locator: id=upnp_nat_disable
+        Type: radio
+      UPnPNAT-TStateEnable:
+        Comment: UPnP NAT-T state
+        Locator: id=upnp_nat_enable
+        Type: radio
+      UPnPStateDisable:
+        Locator: id=upnp_disable
+        Type: radio
+      UPnPStateEnable:
+        Comment: UPnP state
+        Locator: id=upnp_enable
+        Type: radio
+  StaticRouting:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    DestinationIP:
+      Comment: ''
+      Locator: id=dstAddr
+      Type: text
+    GatewayIP:
+      Comment: ''
+      Locator: id=dstGtwy
+      Type: text
+    StaticRoutesTable:
+      Comment: Static Routes Table
+      Locator: id=static_routing_table
+      Type: table
+    SubnetMask:
+      Comment: ''
+      Locator: id=dstMask
+      Type: text
+    RemoveButton:
+      Comment: ''
+      Locator: xpath=//button[text()='Remove']
+      Type: text
+    DestinationIPInvalidMessage:
+      Comment: ''
+      Locator: xpath=//*[@id="routing_config"]/div[1]/label[2]
+      Type: Message
+    SubmaskInvalidMessage:
+      Comment: ''
+      Locator: xpath=//*[@id="routing_config"]/div[2]/label[2]
+      Type: Message
+    GatewayIPInvalidMessage:
+      Comment: ''
+      Locator: xpath=//*[@id="routing_config"]/div[3]/label[2]
+      Type: Message
+LoadingandPopup:
+  Loading:
+    waitingloader:
+      Comment: you can usethe ID to get the dom, then using the method to check it
+        and determine whether loading is displayed or not
+      Locator: id=darkenScreenObjectImage
+      Type: img
+  Popup:
+    popupcancelbutton:
+      Comment: locator is "sizzle"
+      Locator: sizzle=div.ngdialog-buttons > button.ngdialog-button-secondary
+      Type: button
+    popupokbutton:
+      Comment: locator is "sizzle"
+      Locator: sizzle=div.ngdialog-buttons > button.ngdialog-button-primary
+      Type: button
+    popupwindow:
+      Comment: locator is "sizzle"
+      Locator: sizzle=div.ngdialog-content
+      Type: window
+Login:
+  FailCloseButton:
+    Comment: only in display when enterIncorrect User Name or Password
+    Locator: id=close_btn
+    Type: button
+  LoginButton:
+    Comment: ''
+    Locator: id=login_btn
+    Type: button
+  LoginFail:
+    Comment: only in display when enter Incorrect User Name or Password
+    Locator: id=error_display
+    Type: aside
+  Password:
+    Comment: ''
+    Locator: id=password_field
+    Type: input
+  UserName:
+    Comment: ''
+    Locator: id=user_name_field
+    Type: input
+QuickStart:
+  QuickStartButton:
+    Comment: ''
+    Locator: xpath=//*[@id="insert_wireless"]/a
+    Type: Button
+  ConfigureWirelessNetwork:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    Connect:
+      Comment: ''
+      Locator: id=connect_btn
+      Type: button
+    NetworkName:
+      Comment: ''
+      Locator: id=id_ssid
+      Type: input
+    WPA/WPA2Password:
+      Comment: ''
+      Locator: id=security_key
+      Type: input
+    WirelessAccessPointDisabled:
+      Comment: ''
+      Locator: id=wireless_access_point_disable_radio
+      Type: radio
+    WirelessAccessPointEnabled:
+      Comment: ''
+      Locator: id=wireless_access_point_enable_radio
+      Type: radio
+    WirelessOff:
+      Comment: ''
+      Locator: id=id_wl_off
+      Type: radio
+    WirelessOn:
+      Comment: ''
+      Locator: id=id_wl_on
+      Type: radio
+  ConnectToInternet:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    DNSAuto:
+      Comment: ''
+      Locator: id=dns_type_dynamic
+      Type: radio
+    DNSStatic:
+      Comment: ''
+      Locator: id=dns_type_static
+      Type: radio
+    PrimaryDNS:
+      Comment: ''
+      Locator: id=primary_dns_field
+      Type: input
+    SecondaryDNS:
+      Comment: ''
+      Locator: id=secondary_dns_field
+      Type: input
+  SetTimeZone:
+    Apply:
+      Comment: ''
+      Locator: id=setTimezoneApplyButton
+      Type: button
+    CurrentTime:
+      Comment: ''
+      Locator: id=current_date_time
+      Type: span
+    CurrentZone:
+      Comment: ''
+      Locator: id=timeZoneObjectId
+      Type: span
+    Daylightsaving:
+      Comment: ''
+      Locator: id=daylightSaving
+      Type: checkbox
+    Timezone:
+      Comment: ''
+      Locator: id=timezoneSelector
+      Type: select
+Status:
+  StatusButton:
+    Comment: ''
+    Locator: xpath=//*[@id="top-horiz-navbar-button-bar"]/li[1]/a
+    Type: Button
+  Connection:
+    Connection:
+      Comment: ''
+      Locator: xpath=//table[@id="conn_tab"]
+      Type: table
+    Gateway:
+      Comment: ''
+      Locator: xpath=//table[@id="gateway_tab"]
+      Type: table
+  Devices:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    Enterthenewdevicename:
+      Comment: ''
+      Locator: id=new-device-name-id
+      Type: input
+    Selectadeviceicon:
+      Comment: ''
+      Locator: id=lan-device-icon-id
+      Type: select
+    SelecttheLANdevice:
+      Comment: ''
+      Locator: xpath=//*[@id="edit_device_section"]/select
+      Type: select
+    Showinactivedevices:
+      Comment: ''
+      Locator: xpath=//table[@id='device-table-id']
+      Type: table
+  Ethernet:
+    Ethernet:
+      Comment: ''
+      Locator: id=ethernet_list_table
+      Type: table
+  Internet:
+    6rd:
+      Comment: ''
+      Locator: id=6rd_tab_obj
+      Type: table
+    DS-Lite:
+      Comment: ''
+      Locator: id=ds_lite_tab_obj
+      Type: table
+    IPv4Addressing:
+      Comment: ''
+      Locator: xpath=//table[@id='ipv4_addr_tab_obj']
+      Type: table
+    IPv6Addressing:
+      Comment: ''
+      Locator: xpath=//table[@id='ipv6_addr_tab_obj']
+      Type: table
+    InternetSettings:
+      Comment: ''
+      Locator: id=settings_tab_obj
+      Type: table
+    InternetStatus:
+      Comment: ''
+      Locator: xpath=//*[@id="status_tab_obj"]
+      Type: table
+  NAT:
+    NetworkAddressTranslationNAT:
+      Comment: ''
+      Locator: id=natDetails
+      Type: table
+  Routing:
+    IPV4Routing:
+      Comment: ''
+      Locator: id=firewallDetails
+      Type: table
+  Security:
+    Security:
+      Comment: ''
+      Locator: id=fw_rulelist_tbl
+      Type: table
+  Wireless:
+    NetworkNameSSID:
+      Comment: ''
+      Locator: id=id_ssid
+      Type: select
+    StatusWirelessUrl:
+      Comment: ''
+      Locator: css=a[ui-sref="wirelessstatus"]
+      Type: url
+    ThelistbelowdisplaysalldevicesconnectedtotheSSIDwithwirelessconnectionstatus:
+      Comment: ''
+      Locator: id=deviceTabObjID
+      Type: table
+    WirelessNetworkStatus:
+      Comment: ''
+      Locator: xpath=//table[@id='gv_statusTabObjID']
+      Type: table
+  GFAST:
+    GeneralStatus:
+      Comment: ''
+      Locator: xpath=//table[@id='image_table']
+      Type: table
+    Line1BasicStatus:
+      Comment: ''
+      Locator: css=div:nth-child(2) > div:nth-child(2) > div:nth-child(3) > table
+      Type: table
+    Line2BasicStatus:
+      Comment: ''
+      Locator: css=div:nth-child(3) > div:nth-child(2) > div:nth-child(3) > table
+      Type: table
+Support:
+  SupportButton:
+    Comment: ''
+    Locator: xpath=//*[@id="top-horiz-navbar-button-bar"]/li[6]/a
+    Type: Button
+  ALGSetup:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    SIPALGDisable:
+      Comment: ''
+      Locator: id=sip_alg_dis
+      Type: radio
+    SIPALGEnable:
+      Comment: ''
+      Locator: id=sip_alg_enb
+      Type: radio
+  ConfigurationFile:
+    ApplySIPApplybutton:
+      Comment: ''
+      Locator: id=applySipBtnObjId
+      Type: button
+    ApplySIPconfigurationfiles:
+      Comment: ''
+      Locator: id=sip_provision_radio
+      Type: radio
+    ApplygoldenApplybutton:
+      Comment: ''
+      Locator: id=applyBtnObjId
+      Type: button
+    ApplygoldenconfigurationFiles:
+      Comment: ''
+      Locator: id=restore_radio
+      Type: radio
+    GenerateVersion:
+      Comment: ''
+      Locator: id=fileNameInputObj
+      Type: input
+    GenerategoldenGeneratebutton:
+      Comment: ''
+      Locator: id=backup_btn
+      Type: button
+    Generategoldenconfigurationfiles:
+      Comment: ''
+      Locator: id=backup_radio
+      Type: radio
+  DeviceLogs:
+    SaveLog:
+      Comment: ''
+      Locator: id=savedevicelogs_btn
+      Type: button
+  FactoryReset:
+    Reset:
+      Comment: ''
+      Locator: id=resetButObj
+      Type: button
+  FirmwareUpgrade:
+    UpgradeHistory:
+      ImageManagementtable:
+        Comment: ''
+        Locator: id=image_table
+        Type: table
+      UpgradeHistorytable:
+        Comment: ''
+        Locator: id=history_table
+        Type: table
+    Upgradeimage:
+      Upgrade:
+        Comment: ''
+        Locator: xpath=//button[contains(., 'Upgrade')]
+        Type: button
+      InputFirmware:
+       Comment: ''
+       Locator: document.getElementById("upload_input").style.visibility='visible'
+       Type: input
+      UploadInput:
+       Comment: ''
+       Locator: id=upload_input
+       Type: input
+  IGMP:
+    IGMPEventLog:
+      Clear:
+        Comment: ''
+        Locator: id=clear_btn
+        Type: button
+      Export:
+        Comment: ''
+        Locator: id=export_btn
+        Type: button
+      IGMPEVENTLOGtable:
+        Comment: ''
+        Locator: id=lanInfo
+        Type: table
+      Refresh:
+        Comment: ''
+        Locator: id=refresh_btn
+        Type: button
+    IGMPSetup:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BlockingMode:
+        Comment: ''
+        Locator: id=BlockingModeRadioObj
+        Type: radio
+      EnableIGMPSnoopFunction:
+        Comment: ''
+        Locator: id=EnableIGMPSnoopFuncCheckBoxObj
+        Type: checkbox
+      FastLeavesEnable:
+        Comment: ''
+        Locator: id=FastLeavesEnableCheckBoxObj
+        Type: checkbox
+      IGMPVersion:
+        Comment: ''
+        Locator: id=igmpVerSelObj
+        Type: select
+      Intra-LANMulticastEnable:
+        Comment: ''
+        Locator: id=IntraLANMulticastEnableCheckBoxObj
+        Type: checkbox
+      LastMemberQueryInterval:
+        Comment: ''
+        Locator: id=LastMemberQueryIntervalTxtObj
+        Type: input
+      MaxMulticastDataSource:
+        Comment: ''
+        Locator: id=MaxMultiDataSourceTxtObj
+        Type: input
+      MaxMulticastGroupMembers:
+        Comment: ''
+        Locator: id=MaxMultiGrpMembersTxtObj
+        Type: input
+      MaxMulticastGroups:
+        Comment: ''
+        Locator: id=MaxMultiGrpsTxtObj
+        Type: input
+      QueryInterval:
+        Comment: ''
+        Locator: id=queryIntervalTxtObj
+        Type: input
+      QueryResponseInterval:
+        Comment: ''
+        Locator: id=queryIntervalRespTxtObj
+        Type: input
+      RobustnessValue:
+        Comment: ''
+        Locator: id=RobustnessValueTxtObj
+        Type: input
+      StandardMode:
+        Comment: ''
+        Locator: id=StandardModeRadioObj
+        Type: radio
+    IGMPStatistics:
+      Clear:
+        Comment: ''
+        Locator: id=clear_btn
+        Type: button
+      LANInterfaceCounterstable1:
+        Comment: ''
+        Locator: ''
+        Type: table
+      LANInterfaceCounterstable2:
+        Comment: ''
+        Locator: id=lanInfo
+        Type: table
+      LANInterfaceCounterstable3:
+        Comment: ''
+        Locator: id=wifiInfo
+        Type: table
+      LANInterfaceCounterstable4:
+        Comment: ''
+        Locator: id=lanInfo2
+        Type: table
+      LANInterfaceCounterstable5:
+        Comment: ''
+        Locator: id=wifiInfo1
+        Type: table
+      Refresh:
+        Comment: ''
+        Locator: id=refresh_btn
+        Type: button
+      WANInterfaceCounterstable1:
+        Comment: ''
+        Locator: ''
+        Type: table
+      WANInterfaceCounterstable2:
+        Comment: ''
+        Locator: ''
+        Type: table
+  RemoteManagement:
+    URLTEXT:
+      Comment: ''
+      Locator: id=ipv6_url
+      Type: Text
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    Password:
+      Comment: ''
+      Locator: id=password_password_field
+      Type: input
+    PasswordShow:
+      Comment: ''
+      Locator: id=password_text_field
+      Type: input
+    RemoteGUIport:
+      Comment: ''
+      Locator: id=remote_management_port
+      Type: input
+    RemoteGUIstateDisable:
+      Comment: ''
+      Locator: id=remote_gui_disabled
+      Type: radio
+    RemoteGUIstateEnable:
+      Comment: ''
+      Locator: id=remote_gui_enabled
+      Type: radio
+    Show:
+      Comment: ''
+      Locator: id=show_password_checkbox
+      Type: checkbox
+    Username:
+      Comment: ''
+      Locator: id=admin_user_name
+      Type: input
+  ServiceStaticRoutes:
+    Apply:
+      Comment: ''
+      Locator: apply_btn
+      Type: button
+    DestinationIP:
+      Comment: ''
+      Locator: id=dstAddr
+      Type: input
+    GatewayIP:
+      Comment: ''
+      Locator: id=dstGtwy
+      Type: input
+    StaticRoutes:
+      Comment: ''
+      Locator: xpath=//table[@id='static_routing_table']
+      Type: table
+    SubnetMask:
+      Comment: ''
+      Locator: id=dstMask
+      Type: input
+  ServiceWANVLANs:
+    VersionName:
+      Comment: ''
+      Locator: version
+      Type: name
+    VersionIPv6Value:
+      Comment: ''
+      Locator: ipv6
+      Type: value
+    VersionIPv4AndIPv6Value:
+      Comment: ''
+      Locator: ipv4&ipv6
+      Type: value
+    FramName:
+      Comment: ''
+      Locator: framing
+      Type: name
+    IPoEValue:
+      Comment: ''
+      Locator: IPoE
+      Type: value
+    Apply:
+      Comment: ''
+      Locator: id=form_apply_btn
+      Type: button
+    Cancel:
+      Comment: ''
+      Locator: id=form_cancel_btn
+      Type: button
+    ConnectionAdminStatusDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='conn_admin_status' and @value='disabled']
+      Type: radio
+    ConnectionAdminStatusEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='conn_admin_status' and @value='enabled']
+      Type: radio
+    DSCPToPbit:
+      Comment: ''
+      Locator: id=dscp2pbit_edit_btn
+      Type: button
+    DSCPToPbitApply:
+      Comment: ''
+      Locator: id=create_btn
+      Type: button
+    DSCPToPbitCancel:
+      Comment: ''
+      Locator: id=cancel_btn
+      Type: button
+    DSCPToPbitDisabled:
+      Comment: ''
+      Locator: id=d2p_state_disabled_radio
+      Type: radio
+    DSCPToPbitEnabled:
+      Comment: ''
+      Locator: id=d2p_state_enabled_radio
+      Type: radio
+    DSCPToPbitTable:
+      Comment: ''
+      Locator: id=dscp2pbit_table
+      Type: table
+    DefaultNo:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='is_dcs' and @value='0']
+      Type: radio
+    DefaultYes:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='is_dcs' and @value='1']
+      Type: radio
+    Edit:
+      Comment: ''
+      Locator: xpath=//button[text()='Edit']
+      Type: button
+    FramingIPoE:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='framing' and @value='IPoE']
+      Type: radio
+    FramingPPPoE:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='framing' and @value='PPPoE']
+      Type: radio
+    IPv46rdDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_6rd' and @value='disabled']
+      Type: radio
+    IPv46rdDynamic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_6rd' and @value='dynamic']
+      Type: radio
+    IPv46rdStatic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_6rd' and @value='static']
+      Type: radio
+    IPv4BorderRelayAddress:
+      Comment: ''
+      Locator: id=ipv4_border_relay_addr
+      Type: input
+    IPv4IGMPDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_igmp' and @value='disabled']
+      Type: radio
+    IPv4IGMPEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_igmp' and @value='enabled']
+      Type: radio
+    IPv4MaskLength:
+      Comment: ''
+      Locator: id=ipv4_mask_length
+      Type: input
+    IPv4ModeDHCP:
+      Comment: ''
+      Locator: id=def_checked_dhcp
+      Type: radio
+    IPv4ModeStaticIP:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_mode' and @value='static']
+      Type: radio
+    IPv4NATDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_nat' and @value='disabled']
+      Type: radio
+    IPv4NATEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_nat' and @value='enabled']
+      Type: radio
+    IPv4NameServerModeAuto:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_name_server_mode' and @value='auto']
+      Type: radio
+    IPv4NameServerModeStatic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_name_server_mode' and @value='static']
+      Type: radio
+    IPv4PreferredLifetime:
+      Comment: ''
+      Locator: id=ipv4_preferred_lifetime
+      Type: input
+    IPv4Prefix:
+      Comment: ''
+      Locator: id=ipv4_prefix
+      Type: input
+    IPv4PrimaryDNS:
+      Comment: ''
+      Locator: id=ipv4_primary_dns_field
+      Type: input
+    IPv4SecondaryDNS:
+      Comment: ''
+      Locator: id=ipv4_secondary_dns_field
+      Type: input
+    IPv4StaticIPAddr:
+      Comment: ''
+      Locator: id=static_ip_addr
+      Type: input
+    IPv4StaticIPGateway:
+      Comment: ''
+      Locator: id=static_gateway
+      Type: input
+    IPv4StaticIPSubnetMask:
+      Comment: ''
+      Locator: id=static_subnet_mask
+      Type: input
+    IPv4ValidLifetime:
+      Comment: ''
+      Locator: id=ipv4_valid_lifetime
+      Type: input
+    IPv6AFTR:
+      Comment: ''
+      Locator: id=ipv6_aftr
+      Type: input
+    IPv6DS-LiteDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_ds_lite' and @value='disabled']
+      Type: radio
+    IPv6DS-LiteDynamic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_ds_lite' and @value='dynamic']
+      Type: radio
+    IPv6DS-LiteStatic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_ds_lite' and @value='static']
+      Type: radio
+    IPv6GRP:
+      Comment: ''
+      Locator: id=ipv6_grp
+      Type: input
+    IPv6GUA:
+      Comment: ''
+      Locator: id=ipv6_gua
+      Type: input
+    IPv6IANADisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_iana' and @value='disabled']
+      Type: radio
+    IPv6IANAEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_iana' and @value='enabled']
+      Type: radio
+    IPv6IAPDDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_iapd' and @value='disabled']
+      Type: radio
+    IPv6IAPDEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_iapd' and @value='enabled']
+      Type: radio
+    IPv6ModeDHCP:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_mode' and @value='dhcp']
+      Type: radio
+    IPv6ModeStaticIP:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_mode' and @value='static']
+      Type: radio
+    IPv6NameServerModeAuto:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_name_server_mode' and @value='auto']
+      Type: radio
+    IPv6NameServerModeStatic:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv6_name_server_mode' and @value='static']
+      Type: radio
+    IPv6PreferredLifetime:
+      Comment: ''
+      Locator: id=ipv6_preferred_lifetime
+      Type: input
+    IPv6PrefixLength:
+      Comment: ''
+      Locator: id=ipv6_prefix_length
+      Type: input
+    IPv6PrimaryDNS:
+      Comment: ''
+      Locator: id=ipv6_primary_dns_field
+      Type: input
+    IPv6SecondaryDNS:
+      Comment: ''
+      Locator: id=ipv6_secondary_dns_field
+      Type: input
+    IPv6ValidLifetime:
+      Comment: ''
+      Locator: id=ipv6_valid_lifetime
+      Type: input
+    Layer2Bridged:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='conn_type' and @value='layer2bridged']
+      Type: radio
+    Layer2BridgedEthernet:
+      Comment: ''
+      Locator: id=l2bridge
+      Type: select
+    Layer3Routed:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='conn_type' and @value='layer3routed']
+      Type: radio
+    New:
+      Comment: ''
+      Locator: id=create_new_vlan_button
+      Type: button
+    PPPoEPassword:
+      Comment: ''
+      Locator: id=pppoe_password
+      Type: input
+    PPPoEUserName:
+      Comment: ''
+      Locator: id=pppoe_username
+      Type: input
+    Priority:
+      Comment: ''
+      Locator: id=vlan_config_priority
+      Type: input
+    RemoteAccessDisable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_remote' and @value='disabled']
+      Type: radio
+    RemoteAccessEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='ipv4_remote' and @value='enabled']
+      Type: radio
+    RemoveBridgeWan1:
+     Comment: ''
+     Locator: xpath=//td[contains(., "5GHz_IPTV_SSID")]/..//button[contains(.,"Remove")]
+     Type: button
+    RemoveBridgeWan2:
+     Comment: ''
+     Locator: xpath=//td[contains(., "5GHz_Operator_1")]/..//button[contains(.,"Remove")]
+    Remove24GBridgeWan1:
+     Comment: ''
+     Locator: xpath=//td[contains(., "2.4GHz_Operator_1")]/..//button[contains(.,"Remove")]
+     Type: button
+    Remove24GBridgeWan2:
+     Comment: ''
+     Locator: xpath=//td[contains(., "2.4GHz_Operator_2")]/..//button[contains(.,"Remove")]
+    Remove:
+      Comment: ''
+      Locator: xpath=//button[text()='Remove']
+      Type: button
+    ServiceVLANLabel:
+      Comment: ''
+      Locator: id=service_label
+      Type: input
+    Tagged:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='VLAN_config' and @value='tagged']
+      Type: radio
+    Untagged:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='VLAN_config' and @value='untagged']
+      Type: radio
+    VLANID:
+      Comment: ''
+      Locator: id=vlan_config_vlan_id
+      Type: input
+    VersionIPv4:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='version' and @value='ipv4']
+      Type: radio
+    VersionIPv4andIPv6:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='version' and @value='ipv4&ipv6']
+      Type: radio
+    VersionIPv6:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='version' and @value='ipv6']
+      Type: radio
+    VoIPWANEnable:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='is_voip_wan' and @value='false']
+      Type: radio
+    WideAreaNetworkWANSettingtable:
+      Comment: ''
+      Locator: xpath=//table[@id='tab_wan']
+      Type: table
+  SmartActivate:
+    Apply:
+      Comment: ''
+      Locator: id=applyButton
+      Type: button
+    ConnectionType--DHCPIPoE:
+      Comment: ''
+      Locator: id=connTypeIPoE
+      Type: radio
+    ConnectionType--PPPoE:
+      Comment: ''
+      Locator: id=connTypePPPoE
+      Type: radio
+    ConnectionTypeAuto:
+      Comment: ''
+      Locator: id=connTypeAuto
+      Type: radio
+    ConnectionTypeDHCP:
+      Comment: IPoE
+      Locator: id=connTypeIPoE
+      Type: radio
+    ConnectionTypePPPoE:
+      Comment: ''
+      Locator: id=connTypePPPoE
+      Type: radio
+    ConnectionTypeStaticIP:
+      Comment: IPoE
+      Locator: id=connTypeStatic
+      Type: radio
+    MainACSPassword:
+      Comment: ''
+      Locator: id=acs_password_password_field
+      Type: input
+    MainACSShowcheckbox:
+      Comment: ''
+      Locator: id=acs_show_password_checkbox
+      Type: checkbox
+    MainACSURL:
+      Comment: ''
+      Locator: id=acsURL
+      Type: input
+    MainACSUsername:
+      Comment: ''
+      Locator: id=acsUserName
+      Type: input
+    PPPoEPassword:
+      Comment: ''
+      Locator: id=pppoe_password_password_field
+      Type: input
+    PPPoEPasswordshow:
+      Comment: only visible after click Show checkbox
+      Locator: id=acs_password_text_field
+      Type: input
+    PPPoEShowCheckbox:
+      Comment: ''
+      Locator: id=pppoe_show_password_checkbox
+      Type: checkbox
+    PPPoEUserName:
+      Comment: ''
+      Locator: id=pppoe_username
+      Type: input
+    RegistrationID:
+      Comment: ''
+      Locator: id=regId
+      Type: input
+    StaticIPAddress:
+      Comment: ''
+      Locator: id=ipAddr
+      Type: input
+    StaticIPDNSServer:
+      Comment: ''
+      Locator: id=dns
+      Type: input
+    StaticIPGatewayAddress:
+      Comment: ''
+      Locator: id=gwAddr
+      Type: input
+    StaticIPSubnetMask:
+      Comment: ''
+      Locator: id=subnetMask
+      Type: input
+    SupplementalACSPassword:
+      Comment: ''
+      Locator: id=spl_acs_password_password_field
+      Type: input
+    SupplementalACSPasswordshow:
+      Comment: only visible after click Show checkbox
+      Locator: id=spl_acs_password_text_field
+      Type: input
+    SupplementalACSShowcheckbox:
+      Comment: ''
+      Locator: id=spl_acs_show_password_checkbox
+      Type: checkbox
+    SupplementalACSURL:
+      Comment: ''
+      Locator: id=spl_acsURL
+      Type: input
+    SupplementalACSUsername:
+      Comment: ''
+      Locator: id=spl_acsUserName
+      Type: input
+    TaggedPriority:
+      Comment: ''
+      Locator: id=priority
+      Type: input
+    TaggedVLANID:
+      Comment: ''
+      Locator: id=vlanId
+      Type: input
+    Taggedradio:
+      Comment: ''
+      Locator: id=tagged
+      Type: radio
+    Un-taggedradio:
+      Comment: ''
+      Locator: id=un-tagged
+      Type: radio
+    BondingEnabled:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='smact_844FBBondMode' and @value='0']
+      Type: radio
+    DisableUseLine1:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='smact_844FBBondMode' and @value='1']
+      Type: radio
+    DisableUseLine2:
+      Comment: ''
+      Locator: xpath=//input[@type='radio' and @name='smact_844FBBondMode' and @value='2']
+      Type: radio
+  SubscriberInterface:
+    Apply:
+      Comment: ''
+      Locator: id=apply_btn
+      Type: button
+    SubscriberGUINormal:
+      Comment: ''
+      Locator: id=normalradio
+      Type: radio
+    SubscriberGUIReadOnly:
+      Comment: ''
+      Locator: id=readonlyradio
+      Type: radio
+    SubscriberGUIBTNNAME:
+      Comment: ''
+      Locator: radio1
+      Type: Name
+  TR069:
+    ACSURL:
+      Comment: ''
+      Locator: id=acs_url_field
+      Type: input
+    AdministrativestatusofSTUN:
+      Comment: ''
+      Locator: id=admin_stun_field
+      Type: input
+    Apply:
+      Comment: ''
+      Locator: id=apply_button
+      Type: button
+    AuthenticationFailures:
+      Comment: ''
+      Locator: id=authentication_failures_field
+      Type: input
+    Bootstrapped:
+      Comment: ''
+      Locator: id=bootstrapped_status_field
+      Type: input
+    ConnectionRequestPassword:
+      Comment: ''
+      Locator: id=connection_request_password_field
+      Type: input
+    ConnectionRequestURL:
+      Comment: ''
+      Locator: id=reqURLObj
+      Type: input
+    ConnectionRequestUsername:
+      Comment: ''
+      Locator: id=connection_request_username_field
+      Type: input
+    LastPeriodicInform:
+      Comment: ''
+      Locator: id=last_periodic_inform_field
+      Type: input
+    NATDetected:
+      Comment: ''
+      Locator: id=stun_natdect_field
+      Type: input
+    Password:
+      Comment: by default
+      Locator: id=password_field
+      Type: input
+    Password_show:
+      Comment: enabled after click "Show" checkbox
+      Locator: id=password_field_text
+      Type: input
+    PeriodicInformDisable:
+      Comment: ''
+      Locator: id=periodic_inform_state_disabled_radio
+      Type: radio
+    PeriodicInformEnable:
+      Comment: ''
+      Locator: id=periodic_inform_state_enabled_radio
+      Type: radio
+    PeriodicInformInterval:
+      Comment: ''
+      Locator: id=periodic_inform_interval_field
+      Type: input
+    STUNMAXKeepAlivePeriod:
+      Comment: ''
+      Locator: id=stun_maxka_field
+      Type: input
+    STUNMINKeepAlivePeriod:
+      Comment: ''
+      Locator: id=stun_minka_field
+      Type: input
+    STUNPassword:
+      Comment: ''
+      Locator: id=stun_password_field
+      Type: input
+    STUNServerAddress:
+      Comment: ''
+      Locator: id=stun_server_field
+      Type: input
+    STUNServerPort:
+      Comment: ''
+      Locator: id=stun_serverPort_field
+      Type: input
+    STUNUsername:
+      Comment: ''
+      Locator: id=stun_username_field
+      Type: input
+    SelectTR069Manager:
+      Comment: ''
+      Locator: id=tr069_mgr
+      Type: select
+    Show:
+      Comment: ''
+      Locator: xpath=//*[@id="password_fields"]/input[2]
+      Type: checkbox
+    TR069WANList:
+      Comment: ''
+      Locator: id=tr069_ifname
+      Type: select
+    UDPConnectionRequestAddress:
+      Comment: ''
+      Locator: id=stun_udpconn_field
+      Type: input
+    Username:
+      Comment: ''
+      Locator: id=username_field
+      Type: input
+  VideoWPS:
+    Connect:
+      Comment: ''
+      Locator: id=connect_btn
+      Type: button
+  VoiceProvisioning:
+    LineFeatures:
+      AdminStatusDisable:
+        Comment: ''
+        Locator: id=line_status_disabled
+        Type: radio
+      AdminStatusEnable:
+        Comment: ''
+        Locator: id=line_status_enabled
+        Type: radio
+      Apply:
+        Comment: ''
+        Locator: id=applyButton
+        Type: button
+      SelectLine:
+        Comment: ''
+        Locator: id=line
+        Type: select
+      SelectVoIPProfile:
+        Comment: ''
+        Locator: id=voip_profile
+        Type: select
+      SystemLossPlanANSI:
+        Comment: ''
+        Locator: id=sys_loss_plan_ansi
+        Type: radio
+      SystemLossPlanETSI:
+        Comment: ''
+        Locator: id=sys_loss_plan_etsi
+        Type: radio
+      SystemLossPlanGR-909:
+        Comment: ''
+        Locator: id=sys_loss_plan_gr909
+        Type: radio
+      SystemLossPlanManual:
+        Comment: ''
+        Locator: id=sys_loss_plan_manual
+        Type: radio
+    VoIPDiagnostics:
+      ClearStatistics:
+        Comment: ''
+        Locator: id=clear_statistic_btn
+        Type: button
+      RefreshStatistics:
+        Comment: ''
+        Locator: id=refresh_statistic_btn
+        Type: button
+      SelectLine:
+        Comment: ''
+        Locator: id=line
+        Type: select
+      Statistictable:
+        Comment: ''
+        Locator: id=statistic_table
+        Type: table
+      VoiceLinetable:
+        Comment: ''
+        Locator: id=_tab1
+        Type: table
+    VoIPGatewaySettings:
+      Apply:
+        Comment: ''
+        Locator: id=applyButton
+        Type: button
+      CallWaitingPrefix:
+        Comment: ''
+        Locator: id=call_waiting_prefix
+        Type: input
+      ControlDSCP:
+        Comment: ''
+        Locator: id=control_dscp
+        Type: input
+      CountryCode:
+        Comment: ''
+        Locator: id=h248_country_code
+        Type: select
+      DHCPFilterDisable:
+        Comment: ''
+        Locator: id=dhcp_filter_disabled
+        Type: radio
+      DHCPFilterEnable:
+        Comment: ''
+        Locator: id=dhcp_filter_enabled
+        Type: radio
+      DTMFMethod:
+        Comment: ''
+        Locator: id=dtmf_method
+        Type: select
+      DigitLongTimers:
+        Comment: ''
+        Locator: id=digit_long_timer
+        Type: input
+      DigitShortTimers:
+        Comment: ''
+        Locator: id=digit_short_timer
+        Type: input
+      DistinctiveRingPrefix:
+        Comment: ''
+        Locator: id=dist_ring_prefix
+        Type: input
+      Domain:
+        Comment: ''
+        Locator: id=domain
+        Type: input
+      Edit:
+        Comment: ''
+        Locator: xpath=//button[text()='Edit']
+        Type: button
+      EphemeralTerminationId:
+        Comment: ''
+        Locator: id=ephemeral_term_id
+        Type: input
+      EsaModeDisable:
+        Comment: ''
+        Locator: id=esa_mode_disabled
+        Type: radio
+      EsaModeEnable:
+        Comment: ''
+        Locator: id=esa_mode_enabled
+        Type: radio
+      FlashHookPersistDisable:
+        Comment: ''
+        Locator: id=flash_hook_persist_disabled
+        Type: radio
+      FlashHookPersistEnable:
+        Comment: ''
+        Locator: id=flash_hook_persist_enabled
+        Type: radio
+      HookFlashMethod:
+        Comment: ''
+        Locator: id=hook_flash_method
+        Type: select
+      IPHostName:
+        Comment: Protocol=H.248, MGCP
+        Locator: id=ip_host_name
+        Type: input
+      OffHookPersistDisable:
+        Comment: ''
+        Locator: id=off_hook_persist_disabled
+        Type: radio
+      OffHookPersistEnable:
+        Comment: ''
+        Locator: id=off_hook_persist_enabled
+        Type: radio
+      OnHookPersistDisable:
+        Comment: ''
+        Locator: id=on_hook_persist_disabled
+        Type: radio
+      OnHookPersistEnable:
+        Comment: ''
+        Locator: id=on_hook_persist_enabled
+        Type: radio
+      PacketRate:
+        Comment: ''
+        Locator: id=tdm_packet_rate_first_order
+        Type: select
+      PacketRateFirstOrder:
+        Comment: ''
+        Locator: id=packet_rate_first_order
+        Type: select
+      PacketRateSecondOrder:
+        Comment: ''
+        Locator: id=packet_rate_sec_order
+        Type: select
+      PacketRateThirdOrder:
+        Comment: ''
+        Locator: id=packet_rate_third_order
+        Type: select
+      Pattern:
+        Comment: ''
+        Locator: id=pattern
+        Type: textarea
+      PrimaryController:
+        Comment: Protocol=H.248
+        Locator: id=pri_gw_controller
+        Type: input
+      PrimaryDNS:
+        Comment: ''
+        Locator: id=pri_dns
+        Type: input
+      PrimaryProxyPort:
+        Comment: ''
+        Locator: id=pri_pxy_port
+        Type: input
+      PrimaryProxyServer:
+        Comment: Protocol=SIP
+        Locator: id=wan_interface
+        Type: input
+      PrimarySwitchType:
+        Comment: ''
+        Locator: id=pri_switch_type
+        Type: select
+      ProtocolList:
+        Comment: ''
+        Locator: id=protocol
+        Type: select
+      RTPCodec:
+        Comment: ''
+        Locator: id=h248_rtp_codec_first_order
+        Type: select
+      RTPCodecFirstOrder:
+        Comment: ''
+        Locator: id=rtp_codec_first_order
+        Type: select
+      RTPCodecSecondOrder:
+        Comment: ''
+        Locator: id=rtp_codec_sec_order
+        Type: select
+      RTPCodecThirdOrder:
+        Comment: ''
+        Locator: id=rtp_codec_third_order
+        Type: select
+      RTPDSCP:
+        Comment: ''
+        Locator: id=tdm_rtp_dscp
+        Type: input
+      RTPPort:
+        Comment: ''
+        Locator: id=rtp_port
+        Type: input
+      RegistrationPeriods:
+        Comment: ''
+        Locator: id=reg_period
+        Type: input
+      ReleaseTimers:
+        Comment: ''
+        Locator: id=release_timer
+        Type: input
+      RestartDelay:
+        Comment: ''
+        Locator: restart_delay
+        Type: input
+      RetryTimeout:
+        Comment: Protocol=MGCP
+        Locator: retry_timeout
+        Type: input
+      SecondaryController:
+        Comment: ''
+        Locator: id=sec_gw_controller
+        Type: input
+      SecondaryDNS:
+        Comment: ''
+        Locator: id=sec_dns
+        Type: input
+      SecondaryProxyPort:
+        Comment: ''
+        Locator: id=sec_pxy_port
+        Type: input
+      SecondaryProxyServer:
+        Comment: ''
+        Locator: id=sec_pxy_sev
+        Type: input
+      SecondarySwitchType:
+        Comment: ''
+        Locator: id=sec_switch_type
+        Type: select
+      ServerIP:
+        Comment: Protocol=TDM Gateway
+        Locator: id=server_ip
+        Type: input
+      SilenceSuppressionFirstOrderDisable:
+        Comment: ''
+        Locator: id=silence_suppression_first_order_disabled
+        Type: radio
+      SilenceSuppressionFirstOrderEnable:
+        Comment: ''
+        Locator: id=silence_suppression_first_order_enabled
+        Type: radio
+      SilenceSuppressionSecondOrderDisable:
+        Comment: ''
+        Locator: id=silence_suppression_sec_order_disabled
+        Type: radio
+      SilenceSuppressionSecondOrderEnable:
+        Comment: ''
+        Locator: id=silence_suppression_sec_order_enabled
+        Type: radio
+      SilenceSuppressionThirdOrderDisable:
+        Comment: ''
+        Locator: id=silence_suppression_third_order_disabled
+        Type: radio
+      SilenceSuppressionThirdOrderEnable:
+        Comment: ''
+        Locator: id=silence_suppression_third_order_enabled
+        Type: radio
+      SwitchType:
+        Comment: ''
+        Locator: id=mgcp_switch_type
+        Type: select
+      T.38FaxRelayDisable:
+        Comment: ''
+        Locator: id=fax_t38_disabled
+        Type: radio
+      T.38FaxRelayEnable:
+        Comment: ''
+        Locator: id=fax_t38_enabled
+        Type: radio
+      T1Timerms:
+        Comment: ''
+        Locator: id=t1_timer
+        Type: input
+      T2Timerms:
+        Comment: ''
+        Locator: id=t2_timer
+        Type: input
+      TerminationPrefix:
+        Comment: ''
+        Locator: id=term_prefix
+        Type: input
+      VoIPGatewaySettingtable:
+        Comment: ''
+        Locator: xpath=//table[@id='profileTableObject']
+        Type: table
+      VoIPProfile:
+        Comment: ''
+        Locator: id=profile_name
+        Type: input
+      WANInterface:
+        Comment: Protocol !=None
+        Locator: id=wan_interface
+        Type: select
+  WirelessAnalyzer:
+    ChannelMode:
+      Comment: ''
+      Locator: id=id_channel_mode
+      Type: tablevalue
+    Channelbandwidth:
+      Comment: ''
+      Locator: id=id_channel_bandwidth
+      Type: tablevalue
+    Channelfreetime:
+      Comment: ''
+      Locator: id=id_channel_free_time
+      Type: tablevalue
+    Channelinterferencetime:
+      Comment: ''
+      Locator: id=id_channel_interference_time
+      Type: tablevalue
+    Channelutilization:
+      Comment: ''
+      Locator: id=id_channel_utilization
+      Type: tablevalue
+    Frequency:
+      Comment: ''
+      Locator: id=id_frequency
+      Type: tablevalue
+    OperatingChannel:
+      Comment: ''
+      Locator: id=id_channel
+      Type: tablevalue
+    SelectRadioList:
+      Comment: ''
+      Locator: id=id_ssid
+      Type: select
+    WirelessMode:
+      Comment: ''
+      Locator: id=id_wireless_mode
+      Type: tablevalue
+    WirelessPacketsDropped:
+      Comment: ''
+      Locator: id=id_packets_dropped
+      Type: tablevalue
+    WirelessPacketsReceived:
+      Comment: ''
+      Locator: id=id_packets_received
+      Type: tablevalue
+    WirelessPacketsSent:
+      Comment: ''
+      Locator: id=id_packets_sent
+      Type: tablevalue
+    WirelessRadio:
+      Comment: ''
+      Locator: id=id_radio_enabled
+      Type: tablevalue
+    displaytable:
+      Comment: ''
+      Locator: xpath=//*[@id="deviceTabObjID"]
+      Type: table
+    displaytableinfo:
+      Comment: ''
+      Locator: xpath=//*[@id="wireless_attributes_section"]/table
+      Type: table
+    parametertable:
+      Comment: ''
+      Locator: id=wireless_analyzer_table
+      Type: table
+    piechart:
+      Comment: ''
+      Locator: id=pie
+      Type: chart-pie
+Utilities:
+  UtilitiesButton:
+    Comment: ''
+    Locator: xpath=//*[@id="top-horiz-navbar-button-bar"]/li[4]/a
+    Type: Button
+  ConfigurationSave:
+    Backupradio:
+      Comment: ''
+      Locator: id=backup_radio
+      Type: radio
+    Restore:
+      Comment: ''
+      Locator: id=applyBtnObjId
+      Type: button
+    InputConfigFile:
+       Comment: ''
+       Locator: document.getElementById("upload_input").style.visibility='visible'
+       Type: input
+    UploadInput:
+       Comment: ''
+       Locator: id=upload_input
+       Type: input
+    Restoreradio:
+      Comment: ''
+      Locator: id=restore_radio
+      Type: radio
+    BackupButton:
+      Comment:
+      Locator: xpath=//*[@id="backup_btn"]
+      Type: button
+  FirewallLog:
+    Clearlogbutton:
+      Comment: ''
+      Locator: xpath=//*[@id="clearLogBtnObjId"]
+      Type: button
+    FirewallLogTable:
+      Comment: The Firewall Log data Table
+      Locator: xpath=//table[@id="logTabObjId"]
+      Type: table
+  PingTest:
+    Packetsizeinbytes:
+      Comment: ''
+      Locator: id=packet_size
+      Type: input
+    SourceIPAddressOptional:
+      Comment: ''
+      Locator: id=source_ip
+      Type: input
+    Testbutton:
+      Comment: ''
+      Locator: id=test_btn
+      Type: button
+    URLorIPaddress:
+      Comment: ''
+      Locator: id=ip_addr
+      Type: input
+    VersionIPv4:
+      Comment: ''
+      Locator: id=ipv4_radio_obj
+      Type: radio
+    VersionIPv6:
+      Comment: ''
+      Locator: id=ipv6_radio_obj
+      Type: radio
+    resulttable:
+      Comment: The Ping Test Results Table
+      Locator: id=result_tbl
+      Type: table
+    statistictable:
+      Comment: The Ping Statistics Table
+      Locator: xpath=//table[@id='statistics_tbl']
+      Type: table
+  Reboot:
+    Reboot:
+      Comment: ''
+      Locator: id=reboot_btn
+      Type: button
+    Ok:
+      Comment: ''
+      Locator: id=xpath=//button[contains(., 'Ok')]
+      Type: button
+  RestoreDefaults:
+    Restore:
+      Comment: ''
+      Locator: id=restore_btn
+      Type: button
+  SystemLog:
+    AutoRefreshIntervalList:
+      Comment: ''
+      Locator: id=interval
+      Type: select
+    ClearonRebootradio:
+      Comment: ''
+      Locator: id=clear
+      Type: radio
+    Refresh:
+      Comment: ''
+      Locator: id=refresh_btn
+      Type: button
+    SaveLogbutton:
+      Comment: ''
+      Locator: id=savelogs_btn
+      Type: button
+    SaveonRebootradio:
+      Comment: ''
+      Locator: id=save
+      Type: radio
+    Systemlogtable:
+      Comment: The system log Table
+      Locator: id=sys_log_table
+      Type: table
+  Traceroute:
+    ModeICMPradio:
+      Comment: ''
+      Locator: id=icmp_radio_obj_id
+      Type: radio
+    ModeUDPradio:
+      Comment: ''
+      Locator: id=UDP_radio_obj_id
+      Type: radio
+    ReverseDNSDisable:
+      Comment: ''
+      Locator: id=disabled_dns_radio_obj_id
+      Type: radio
+    ReverseDNSEnable:
+      Comment: ''
+      Locator: id=enbldns_radio_obj_id
+      Type: radio
+    URLorIPAddress:
+      Comment: ''
+      Locator: id=ip_addr
+      Type: input
+    VersionIPv4:
+      Comment: ''
+      Locator: id=ipv4_radio_obj
+      Type: radio
+    VersionIPv6:
+      Comment: ''
+      Locator: id=ipv6_radio_obj
+      Type: radio
+    resulttable:
+      Comment: The Traceroute data Table
+      Locator: id=result_tbl
+      Type: table
+    traceroutebutton:
+      Comment: ''
+      Locator: id=test_btn
+      Type: button
+  UpgradeImage:
+    Imagetable:
+      Comment: The Image List Table
+      Locator: id=image_table
+      Type: table
+    Upgrade:
+      Comment: ''
+      Locator: id=upgrade_button
+      Type: button
+  WebActivityLog:
+    LogDisable:
+      Comment: ''
+      Locator: id=id_log_off
+      Type: radio
+    LogEnable:
+      Comment: ''
+      Locator: id=id_log_on
+      Type: radio
+    RefreshAuto:
+      Comment: ''
+      Locator: id=refresh_type_auto
+      Type: radio
+    RefreshIntervalList:
+      Comment: The selected Time of Auto Refresh
+      Locator: id=auto_refresh_interval
+      Type: select
+    RefreshManual:
+      Comment: ''
+      Locator: id=refresh_type_manual
+      Type: radio
+    Refreshbutton:
+      Comment: ''
+      Locator: id=manual_refresh_btn
+      Type: button
+    Refreshtable:
+      Comment: The data Table of Web Activity Log
+      Locator: id=web_log_table
+      Type: table
+Wireless:
+  WirelessButton:
+    Comment: ''
+    Locator: xpath=//*[@id="top-horiz-navbar-button-bar"]/li[3]/a
+    Type: Button
+  WirelessUrl:
+    Comment: ''
+    Locator: css=a[ng-click="wirelessfun()"]
+    Type: url
+  W24GNetwork:
+    MACAuthentication:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      EnabledModeAllowed:
+        Comment: ''
+        Locator: id=restrictTypeRadioAllow
+        Type: radio
+      EnabledModeDenied:
+        Comment: ''
+        Locator: id=restrictTypeRadioDeny
+        Type: radio
+      Enabledtable:
+        Comment: ''
+        Locator: id=deviceTableList
+        Type: table
+      MACAddress:
+        Comment: ''
+        Locator: id=MACAddressBoxObject
+        Type: input
+      MACAuthenticationStateDisable:
+        Comment: ''
+        Locator: id=macAuthStateRadioDisabled
+        Type: radio
+      MACAuthenticationStateEnable:
+        Comment: ''
+        Locator: id=macAuthStateRadioEnabled
+        Type: radio
+      SSIDList:
+        Comment: ''
+        Locator: id=ssidSelectObject
+        Type: select
+    RadioSetupPage:
+      AirtimeFairness:
+        Comment: ''
+        Locator: id=airtimeFairness
+        Type: checkbox
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BandwidthList:
+        Comment: ''
+        Locator: id=id_bandwidth
+        Type: select
+      ChannelList:
+        Comment: ''
+        Locator: id=channel_obj_id
+        Type: select
+      FrameBurst:
+        Comment: ''
+        Locator: id=frameburst
+        Type: checkbox
+      ModeList:
+        Comment: ''
+        Locator: id=id_80211bgn_mode
+        Type: select
+      MulticastForwarding:
+        Comment: ''
+        Locator: id=id_multicastForwarding
+        Type: checkbox
+      PowerLevelList:
+        Comment: ''
+        Locator: id=id_power_level
+        Type: select
+      WirelessRadioOff:
+        Comment: ''
+        Locator: id=id_wl_off
+        Type: radio
+      WirelessRadioOn:
+        Comment: ''
+        Locator: id=id_wl_on
+        Type: radio
+      WirelessRadio:
+        Comment: ''
+        Locator: wireless_onoff
+        Type: radio
+    SSIDSetupPage:
+      AllowSSIDcheckbox:
+        Comment: ''
+        Locator: id=l2bridgeObj
+        Type: checkbox
+      Allowguestcheckbox:
+        Comment: ''
+        Locator: id=clientIsolateObj
+        Type: checkbox
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BeginningIPAddress:
+        Comment: ''
+        Locator: id=ipAddressStartObj
+        Type: input
+      BroadcastSSIDDisable:
+        Comment: ''
+        Locator: id=id_mode_hide
+        Type: radio
+      BroadcastSSIDEnable:
+        Comment: ''
+        Locator: id=id_mode_bcast
+        Type: radio
+      BroadcastSSID:
+        Comment: ''
+        Locator: ssid_mode
+        Type: radio
+      EndingIPAddress:
+        Comment: ''
+        Locator: id=ipAddressEndObj
+        Type: input
+      Gateway:
+        Comment: ''
+        Locator: id=gatewayObj
+        Type: input
+      IsolateSSIDcheckbox:
+        Comment: ''
+        Locator: id=interIsolateObj
+        Type: checkbox
+      RenameSSID:
+        Comment: ''
+        Locator: id=id_ssid_name
+        Type: input
+      SSIDList:
+        Comment: ''
+        Locator: id=id_ssid
+        Type: select
+      SSIDStateDisable:
+        Comment: ''
+        Locator: id=id_ssid_disable
+        Type: radio
+      SSIDStateEnable:
+        Comment: ''
+        Locator: id=id_ssid_enable
+        Type: radio
+      SSIDState:
+        Comment: ''
+        Locator: ssid_state
+        Type: radio
+      SubnetMask:
+        Comment: ''
+        Locator: id=ipAddressMaskObj
+        Type: input
+    SecurityPage:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      CustomSecurityKeyinput:
+        Comment: ''
+        Locator: id=pskKeyInput
+        Type: input
+      CustomSecurityKeyradio:
+        Comment: ''
+        Locator: id=lshxq02
+        Type: radio
+      DefaultSecurityKeyinput:
+        Comment: ''
+        Locator: id=defaultPskKeyInput
+        Type: input
+      DefaultSecurityKeyradio:
+        Comment: ''
+        Locator: id=lshxq01
+        Type: radio
+      EncryptiontypeList:
+        Comment: ''
+        Locator: id=id_wpa_cipher
+        Type: select
+      SSIDList:
+        Comment: ''
+        Locator: id=id_ssid
+        Type: select
+      SecuritytypeList:
+        Comment: ''
+        Locator: xpath=//select[@id='security_type']
+        Type: select
+    WMMPage:
+      WMMEnable:
+        Comment: ''
+        Locator: id=id_wmm_on
+        Type: radio
+      WMMDisable:
+        Comment: ''
+        Locator: id=id_wmm_off
+        Type: radio
+      PowerSaveEnable:
+        Comment: ''
+        Locator: id=id_wmm_powersave_enable
+        Type: radio
+      PowerSaveDisable:
+        Comment: ''
+        Locator: id=id_wmm_powersave_disable
+        Type: radio
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      WMMRadioName:
+        Comment: ''
+        Locator: wmm
+        Type: radio
+      PowerSaveRadioName:
+        Comment: ''
+        Locator: wmm_powersave
+  W5GNetwork:
+    MACAuthentication:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      EnabledModeAllowedradio:
+        Comment: ''
+        Locator: id=restrictTypeRadioAllow
+        Type: radio
+      EnabledModeDeniedradio:
+        Comment: ''
+        Locator: id=restrictTypeRadioDeny
+        Type: radio
+      Enabledtable:
+        Comment: ''
+        Locator: id=deviceTableList
+        Type: table
+      MACAddress:
+        Comment: ''
+        Locator: id=MACAddressBoxObject
+        Type: input
+      MACAuthenticationStateDisable:
+        Comment: ''
+        Locator: id=macAuthStateRadioDisabled
+        Type: radio
+      MACAuthenticationStateEnable:
+        Comment: ''
+        Locator: id=macAuthStateRadioEnabled
+        Type: radio
+      SSIDList:
+        Comment: ''
+        Locator: id=ssidSelectObject
+        Type: select
+    RadioSetupPage:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BandwidthList:
+        Comment: ''
+        Locator: id=id_bandwidth
+        Type: select
+      ChannelList:
+        Comment: ''
+        Locator: id=channel_obj_id
+        Type: select
+      DFS:
+        Comment: ''
+        Locator: dfs_check_obj_id
+        Type: checkbox
+      MU-MIMO--Disabled:
+        Comment: ''
+        Locator: id=id_mimo_disable
+        Type: radio
+      MU-MIMO--Enabled:
+        Comment: ''
+        Locator: id=id_mimo_enable
+        Type: radio
+      ModeList:
+        Comment: ''
+        Locator: id=id_80211bgn_mode
+        Type: select
+      PMF--Disabled:
+        Comment: ''
+        Locator: id=id_pmf_disable
+        Type: radio
+      PMF--Enabled:
+        Comment: ''
+        Locator: id=id_pmf_enable
+        Type: radio
+      PowerLevelList:
+        Comment: ''
+        Locator: id=id_power_level
+        Type: select
+      WirelessRadioOff:
+        Comment: ''
+        Locator: id_wl_off
+        Type: radio
+      WirelessRadioOn:
+        Comment: ''
+        Locator: id=id_wl_on
+        Type: radio
+      WirelessRadio:
+        Comment: ''
+        Locator: wireless_onoff
+        Type: radio
+    SSIDSetup:
+      AllowSSIDcheckbox:
+        Comment: ''
+        Locator: id=l2bridgeObj
+        Type: checkbox
+      Allowguestcheckbox:
+        Comment: ''
+        Locator: id=clientIsolateObj
+        Type: checkbox
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      BeginningIPAddress:
+        Comment: ''
+        Locator: id=ipAddressStartObj
+        Type: input
+      BroadcastSSIDDisable:
+        Comment: ''
+        Locator: id=id_mode_hide
+        Type: radio
+      BroadcastSSIDEnable:
+        Comment: ''
+        Locator: id=id_mode_bcast
+        Type: radio
+      BroadcastSSID:
+        Comment: ''
+        Locator: ssid_mode
+        Type: radio
+      EndingIPAddress:
+        Comment: ''
+        Locator: id=ipAddressEndObj
+        Type: input
+      Gateway:
+        Comment: ''
+        Locator: id=gatewayObj
+        Type: input
+      IsolateSSIDcheckbox:
+        Comment: ''
+        Locator: id=interIsolateObj
+        Type: checkbox
+      RenameSSID:
+        Comment: ''
+        Locator: id=id_ssid_name
+        Type: input
+      SSIDList:
+        Comment: ''
+        Locator: id=id_ssid
+        Type: select
+      SSIDStateDisable:
+        Comment: ''
+        Locator: id=id_ssid_disable
+        Type: radio
+      SSIDStateEnable:
+        Comment: ''
+        Locator: id=id_ssid_enable
+        Type: radio
+      SSIDState:
+        Comment: ''
+        Locator: ssid_state
+        Type: radio
+      SubnetMask:
+        Comment: ''
+        Locator: id=ipAddressMaskObj
+        Type: input
+    SecurityPage:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      EncryptiontypeList:
+        Comment: ''
+        Locator: id=id_wpa_cipher
+        Type: select
+      SSIDList:
+        Comment: ''
+        Locator: id=id_ssid
+        Type: select
+      SecuritytypeList:
+        Comment: ''
+        Locator: id=security_type
+        Type: select
+      UseCustomSecurityKeyinput:
+        Comment: ''
+        Locator: id=pskKeyInput
+        Type: input
+      UseCustomSecurityKeyradio:
+        Comment: ''
+        Locator: id=lshxq02
+        Type: radio
+      UseDefaultSecurityKeyinput:
+        Comment: ''
+        Locator: id=defaultPskKeyInput
+        Type: input
+      UseDefaultSecurityKeyradio:
+        Comment: ''
+        Locator: id=lshxq01
+        Type: radio
+  WirelessOther:
+    AdvancedRadioSetupPage:
+      Apply:
+        Comment: ''
+        Locator: id=apply_btn
+        Type: button
+      CountryList:
+        Comment: ''
+        Locator: id=id_country
+        Type: select
+    WPSPage:
+      Connect:
+        Comment: ''
+        Locator: id=connect_btn
+        Type: button
+      ReciprocalButton:
+        Comment: ''
+        Locator: xpath=//button[contains(., 'seconds left')]
+        Type: button

@@ -1,0 +1,46 @@
+global:
+  g_844fb_gui_url: http://192.168.1.1
+  g_844fb_gui_user: support
+  g_844fb_gui_pwd: support
+  g_844fb_Firmware_image: /home/stptest2/CALIX_844F _12_2_1_20.bin  #Used normal Calix image.
+  g_844fb_Firmware_downgrade_image: /home/stptest2/CALIX_844F_12.2.0.313.bin    #Used downgrade Calix image.
+  g_844fb_Dummy_Firmware_image: /home/stptest2/844Fload/dummy.bin    #Used XVI32U Software to remove half program of the normal Calix image.
+  g_844fb_ConfigFile: /home/stptest2/Downloads/backupsettings.conf
+  g_844fb_2_4g_ssid_name: CXNK-calix-2.4G-reg
+  g_844fb_5g_ssid_name: CXNK-calix-5G-reg
+  g_844fb_dut_gw: 192.168.1.1
+  g_844fb_dut_ip_mask: 255.255.255.0
+  g_844fb_pppoe_username: test   #PPPoE username
+  g_844fb_pppoe_password: test   #PPPoE password
+  g_844fb_dummy_pppoe_username: test1
+  g_844fb_dummy_pppoe_password: error
+  g_844fb_Default_ssid: CXNK0038E740
+  g_844fb_2_4g_ssid_name_2: 2.4GHz_Guest040D1E-reg
+  g_844fb_2_4g_ssid_name_3: 2.4GHz_Operator_1-reg
+  g_844fb_2_4g_ssid_name_4: 2.4GHz_Operator_2-reg
+  g_844fb_5g_ssid_name_2: 5GHz_Guest040D1E-reg
+  g_844fb_5g_ssid_name_3: 5GHz_IPTV_SSID040D1E-reg
+  g_844fb_5g_ssid_name_4: 5GHz_Operator_1-reg
+  g_844fb_2_4g_ssid_name_default_2: 2.4GHz_Guest040D1E
+  g_844fb_2_4g_ssid_name_default_3: 2.4GHz_Operator_1
+  g_844fb_2_4g_ssid_name_default_4: 2.4GHz_Operator_2
+  g_844fb_5g_ssid_name_default_2: 5GHz_Guest040D1E
+  g_844fb_5g_ssid_name_default_3: 5GHz_IPTV_SSID040D1E
+  g_844fb_5g_ssid_name_default_4: 5GHz_Operator_1
+  #g_844fb_WANHost_IPv6IP: 2222::7cec:22cd:3f65:7778
+  g_844fb_WANHost_IPv6IP: 2001::100
+  g_844fb_LinkLocal_IPv6IP: fe80::ee4f:82ff:fecc:ec56
+  g_844fb_IPv6IP_GW: 2222::1
+  g_844fb_IPv6IP: fe80::ee4f:82ff:fecc:ec56 
+  g_844fb_LANHost_IPv6IP: 4444::7cec:22cd:3f65:7778
+  g_844fb_GUA: 2222::7cec:22cd:3f65:7777
+  g_844fb_PrefixLength: 64
+  g_844fb_GRP: 4444::/62
+  g_844fb_ValidLifeTime: 2592000
+  g_844fb_PreferredLifeTime: 604800
+  g_844fb_IPv6PrimaryDNS: 2222:250
+  g_844fb_DUT_WAN_Prefix: 2222
+  g_844fb_LAN_host_Prefix: 4444
+  g_844fb_DUT_WAN_Network_Segment_Get_From_DHCPv4: 172.18.19
+  device_IPv4_IP: 172.18.19.1
+  Remote_Gateway_Address: 172.18.19.2

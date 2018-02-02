@@ -1,0 +1,63 @@
+{
+  "desc": "Bamboo CI OMCI E7-2",
+  "nodes": {
+    "e72": {
+      "type": "e7",
+      "eq_type": "E7 (2-slot chassis)",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.8.34",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["E7Guido>"]
+          }
+        },
+        "craft_fe": {
+          "telnet": {
+            "host": "10.83.8.53",
+            "port": 3012,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["E7Guido>"]
+          }
+        }
+      }
+    },
+    "ameritec": {
+      "type": "SIP",
+      "eq_type": "Bulk Call Generator",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.8.81",
+            "port": 23,
+            "user": "NA",
+            "password": "NA",
+            "login_prompt": "NA",
+            "password_prompt": "NA",
+            "crlf": "\r",
+            "enable_log": "True",
+            "prompt": [
+              "cmd>"
+            ]
+          }
+        }
+      }
+
+    }
+  }
+}

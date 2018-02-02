@@ -1,0 +1,237 @@
+{
+  "desc": "CD Router testbed",
+  "nodes": {
+    "xc1": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.91",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-1>"]
+          }
+        }
+      }
+    },
+    "xc2": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.92",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-2>"]
+          }
+        }
+      }
+    },
+    "xc3": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.93",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-3>"]
+          }
+        }
+      }
+    },
+    "xc4": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.94",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-4>"]
+          }
+        }
+      }
+    },
+    "xc5": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.95",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-5>"]
+          }
+        }
+      }
+    },
+    "xc6": {
+      "type": "e7",
+      "eq_type": "E72",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.96",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["xconn-6>"]
+          }
+        }
+      }
+    },
+    "e72": {
+      "type": "e7",
+      "eq_type": "E72_MC",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.13",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["Drei>"]
+          },
+          "ssh": {
+            "host": "10.83.13.13",
+            "port": 22,
+            "user": "e7support",
+            "password": "admin",
+            "enable_log":"True",
+            "prompt":["Drei>"]
+          }
+        },
+        "craft_fe": {
+          "telnet": {
+            "host": "192.168.1.49",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt":"Username:",
+            "password_prompt":"Password:",
+            "crlf":"\r",
+            "enable_log":"True",
+            "prompt":["Drei>"]
+          }
+        }
+      }
+    },
+    "e720": {
+      "type": "e7",
+      "eq_type": "E720",
+      "release": "NA",
+      "build": "NA",
+      "session_profile": {
+        "mgmt_vlan": {
+          "telnet": {
+            "host": "10.83.13.12",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt": "Username:",
+            "password_prompt": "Password:",
+            "crlf": "\r",
+            "enable_log": "True",
+            "prompt": ["Tiny>"]
+          }
+        },
+        "craft_fe": {
+          "telnet": {
+            "host": "192.168.1.48",
+            "port": 23,
+            "user": "e7support",
+            "password": "admin",
+            "login_prompt": "Username:",
+            "password_prompt": "Password:",
+            "crlf": "\r",
+            "enable_log": "True",
+            "prompt": ["Tiny>"]
+          }
+        }
+      }
+    },
+    "cdrouter": {
+      "type": "cdrouter",
+      "eq_type": "cdr",
+      "session_profile": {
+        "buddyweb": {
+          "ssh": {
+            "host": "10.83.4.182",
+            "port": 22,
+            "user": "qacafe",
+            "password": "cdrouter",
+            "enable_log": "True",
+            "prompt": ["[qacafe@nta1000 ~]$"]
+          }
+        }
+      }
+    },
+    "844E_Drei": {
+      "type": "844E",
+      "eq_type": "ONT",
+      "session_profile": {
+        "terminal": {
+          "telnet": {
+            "host": "10.83.13.241",
+            "port": 907,
+            "enable_log": "True",
+            "prompt": [">"]
+          }
+        }
+      }
+    }
+  }
+}

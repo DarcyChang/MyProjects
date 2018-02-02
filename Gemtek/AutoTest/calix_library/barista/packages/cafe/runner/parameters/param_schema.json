@@ -1,0 +1,348 @@
+{
+    "cafe_runner": {
+        "path": {
+            "type": "path",
+            "default": ".",
+            "description": "Path to location of test suites to execute"
+        },
+        "renderer": {
+            "type": "procedure",
+            "default": "TextRenderer",
+            "description": "The renderer to output basic results with"
+        },
+        "test_result_path": {
+            "type": "path",
+            "default": "${CAFE_AVAILABLE_LOG_DIR}/results_${TIMESTAMP_PATH}",
+            "description": "Path to location of where results will be stored"
+        },
+        "log_path": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/logs",
+            "description": "Path to location of where logs will be stored"
+        },
+        "runner_log_name": {
+            "type": "str",
+            "default": "runner.log",
+            "description": "The filename of the runner log"
+        },
+        "db_path": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/db",
+            "description": "Path to location of where iDB files will be stored"
+        },
+        "db_type": {
+            "type": ["sqlite"],
+            "default": "sqlite",
+            "description": "The backend database type. Currently only sqlite is supported."
+        },
+        "db_echo": {
+            "type": "bool",
+            "default": "False",
+            "description": "Whether DB debug messages should be echoed"
+        },
+        "tc_exec_order": {
+            "type": "procedure",
+            "default": "in_order",
+            "description": "Order in which test cases in test suites are executed. in_order | randomized"
+        },
+        "tc_include_list": {
+            "type": "list",
+            "default": null,
+            "description": "Only the test cases specified in this list will be executed"
+        },
+        "tc_exclude_list": {
+            "type": "list",
+            "default": null,
+            "description": "The test cases specified in this list will be skipped"
+        },
+        "show_print_statements": {
+            "type": "bool",
+            "default": "True",
+            "description": "Whether the 'print' statements invoked inside tests should be printed to console"
+        },
+        "reports": {
+            "type": "list",
+            "default": "_default_report",
+            "description": "The list of reports to generate"
+        },
+        "variables": {
+            "type": "dictionary",
+            "default": "",
+            "description": "Custom variables to set before execution"
+        }
+    },
+    "cafebot": {
+        "topo_specific_init": {
+            "type": "bool",
+            "default": "True",
+            "description": "Whether the topology-specific init file (__init__.<TOPO-NAME>.robot) should be loaded & executed"
+        },
+        "write_results_to_db": {
+            "type": "bool",
+            "default": "true",
+            "description": "Whether results of Robot Framework test cases should be written to the Cafe Database"
+        },
+        "write_results_suite_mode": {
+            "type": ["one_to_one", "one_suite", "directory_suite"],
+            "default": "one_to_one",
+            "description": "Describes how RF test suites should be converted to Cafe test suites. one_to_one: Each RF test suite gets its own Cafe test suite. one_suite: all RF test cases get written to one test suite. directory_suite: Only RF test suite directories are considered Cafe test suites (test case files will not be considered as test suites)"
+        },
+        "write_results_ignore_empty_suites": {
+            "type": "bool",
+            "default": "true",
+            "description": "If true, test suites without any test cases are not created. This includes parent suites whose children have test cases."
+        },
+        "write_results_one_suite_name": {
+            "type": "str",
+            "default": "Default Test Suite",
+            "description": "If suite mode is 'one_suite', this will be used as the test suite name"
+        },
+        "reset_sessions": {
+            "type": "bool",
+            "default": "False",
+            "description": "Flag of reset cafe sessions after every test cases"
+        },
+        "session_log_markup_level": {
+            "type": "enum_list",
+            "values": [
+                "TEST_SUITE",
+                "TEST_CASE",
+                "KEYWORD",
+                "ALL",
+                "NONE"
+            ],
+            "default": "ALL",
+            "description": "The session log markup level. SUITE | CASE | KEYWORD | ALL | NONE"
+        }
+    },
+    "logger": {
+        "level": {
+            "type": [
+                "WARNING",
+                "ERROR",
+                "INFO",
+                "DEBUG",
+                "TRACE"
+            ],
+            "default": "INFO",
+            "description": "The logging level. WARNING | ERROR | DEBUG | INFO | TRACE"
+        },
+        "console": {
+            "type": "bool",
+            "default": "True",
+            "description": "Should logger output be printed to the console?"
+        },
+        "show_sessions": {
+            "type": "list",
+            "default": null,
+            "description": "enable list of sessions to be printed on console"
+        }
+
+    },
+    "session_server": {
+        "host": {
+            "type": "str",
+            "default": "localhost",
+            "description": "The hostname/IP of the session server. obsoleted"
+        },
+        "port": {
+            "type": "int",
+            "default": 18890,
+            "description": "The port of the session server. obsoleted "
+        },
+        "python_exe": {
+            "type": "str",
+            "default": "python2",
+            "description": "The python executable to run the session server"
+        },
+        "filename": {
+            "type": "path",
+            "default": "~/repo/calix/src/cafe/sessions/session_srv.py",
+            "description": "The path/filename of the session server script"
+        },
+        "kill_if_exist": {
+            "type": "bool",
+            "default": "False",
+            "description": "kill all session server(s) that exist before test run. obsoleted"
+        },
+        "kill_if_exist_timeout": {
+            "type": "int",
+            "default": 300,
+            "description": "max wait time for all session server(s) to be stopped"
+        },
+        "policy": {
+            "type": [
+                "SIMPLE"
+            ],
+            "default": "SIMPLE",
+            "description": "Cafe Session Creation policy. SIMPLE is the only supported option"
+        }
+    },
+    "topology": {
+        "file": {
+            "type": "path",
+            "default": null,
+            "description": "The path/filename of the topology file to use for this run"
+        },
+        "logical_query": {
+            "type": "path",
+            "default": null,
+            "description": "the logical topology qeury file to use for this run"
+        },
+        "session_initiation": {
+            "type":  [
+                "DO_NOTHING",
+                "CONNECT",
+                "REACHABLE"
+            ],
+            "default": "DO_NOTHING",
+            "description": "define device session initiation behavior before test start. Options: 'DO_NOTHING (default)', 'CONNECT', 'REACHABLE'"
+        }
+    },
+    "parameters": {
+        "files": {
+            "type": "path_list",
+            "default": null,
+            "description": "The list of filenames of parameter files to use for this run"
+        }
+    },
+    "test_suite": {
+        "parameter_files": {
+            "type": "path_list",
+            "default": null,
+            "description": "The list of parameter files to load for all test suites"
+        },
+        "topology_file": {
+            "type": "path",
+            "default": null,
+            "description": "The topology file to load for all test suites"
+        },
+        "abort_on_failure": {
+            "type": "bool",
+            "default": "False",
+            "description": "Stop test suite execution on first failed test case"
+        }
+    },
+    "tempfile": {
+        "cleanup_temp_files": {
+            "type": "bool",
+            "default": "True",
+            "description": "Whether temporary files created by Robot Framework should be deleted when the context is done"
+        }
+    },
+    "timeout": {
+        "default_global_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for all types sessions"
+        },
+        "cli_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for cli sessions"
+        },
+        "netconf_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for netconf sessions"
+        },
+        "snmp_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for snmp sessions"
+        },
+        "trafficgen_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for trafficgen sessions"
+        },
+        "webgui_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for webgui sessions"
+        },
+        "restful_timeout": {
+            "type": "int",
+            "default": -1,
+            "description": "Timeout value for restful sessions"
+        }
+    },
+    ":test_suite": {
+        "parameter_files": {
+            "type": "list",
+            "default": null,
+            "description": "The list of parameter files to load for the specified test suite"
+        },
+        "topology_file": {
+            "type": "path",
+            "default": null,
+            "description": "The topology file to load for the specified test suite"
+        },
+        "abort_on_failure": {
+            "type": "bool",
+            "default": "${test_suite.abort_on_failure}",
+            "description": "Stop test suite execution on first failed test case"
+        }
+    },
+    ":html_report": {
+        "filename": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/report.html",
+            "description": "The filename to save the report to"
+        },
+        "launch_browser": {
+            "type": "bool",
+            "default": "False",
+            "description": "If True, the HTML report will be opened in a web browser when complete"
+        }
+    },
+    ":jira_xml_report": {
+        "jira_project": {
+            "type": "str",
+            "default": "NO_PROJECT",
+            "description": "The JIRA project to score against"
+        },
+        "path": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/jira/",
+            "description": "The path where JIRA XML files will be saved to"
+        },
+        "create_tarball": {
+            "type": "bool",
+            "default": "True",
+            "description": "If true, all XML files produced will be archived in a .tar.gz file."
+        },
+        "tarball_name": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/jira/jira_xmls.tar.gz",
+            "description": "Usable only if create_tarball is set to True. The path and filename of where to store the tarball"
+        },
+        "tarball_cleanup": {
+            "type": "bool",
+            "default": "True",
+            "description": "Usable only if create_tarball is set to True. If true, the XML files will be deleted after being archived"
+        }
+    },
+    ":junit_xml_report": {
+        "path": {
+            "type": "path",
+            "default": "${cafe_runner.test_result_path}/junit/",
+            "description": "The path where JUnit XML files will be saved to"
+        },
+        "xml_name": {
+            "type": "str",
+            "default": "junit_report.xml",
+            "description": "The name of the file to save XML results to"
+        }
+    },
+    ":console_report": {
+
+    },
+    "traffic_gen": {
+        "ixia_version_file": {
+            "type": "path",
+            "default": "/opt/ixia/version.txt",
+            "description": "ixia version file pathname (ini format)"
+        }
+    }
+}

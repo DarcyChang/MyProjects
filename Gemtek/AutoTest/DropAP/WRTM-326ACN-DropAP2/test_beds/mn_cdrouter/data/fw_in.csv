@@ -1,0 +1,8 @@
+Scenario,Stealth Mode,Firewall,directx_in,stb1_in,stb2_in,stb3_in,dns_in,ftp_in,ftps_in,gmail_in,h323_in,http_in,https_in,icmp1_in,icmp2_in,icmp3_in,icmp4_in,imap_in,imaps_in,ipp_in,ipsec_in,irc_in,l2tp_in,msn_gaming_in,mysql_in,nntp_in,ntp_in,oracle_in,pcanywhere_in,pptp_in,pop3_in,pop3s_in,ps23_in,rip_in,realav_in,realserver_in,rtp_in,sftp_in,sip_in,sling_in,smtp_in,SQL_in,ssh_in,t120_in,telnet_in,vnc_in,wm_in,ws_in,xbox_in,xbox2_in,xbox3_in,xboxk_in,yahoo_in,all_other_ports_in
+fw_lo_dflt,en,lo,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0
+fw_udef-1,en,lo,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,1,0,0,0,0,1,0,0,0,1,1,0,0,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1
+fw_udef-2,en,lo,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+fw_med_dflt,en,med,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+fw_hi_dflt,en,hi,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1

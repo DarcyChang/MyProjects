@@ -1,0 +1,38 @@
+{
+  "base_path": "~/repo/calix/src/cafe",
+  "test_path": "~/repo/calix/src/cafe/demo",
+  "test_log_path": "/tmp/cafe/log",
+  "test_result_path": "/tmp/cafe/result",
+  "test_db_path": "/tmp/cafe/db",
+  "test_db_type": "sqlite",
+  "session_server": {
+    "host": "localhost",
+    "port": 18890,
+    "python_exe": "python2",
+    "filename": "~/repo/calix/src/cafe/sessions/session_srv.py"
+  },
+  "logging" : {
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+      "standard": {
+        "format": "[%(asctime)s] - %(name)-10s - %(levelname)s: %(message)s",
+        "datefmt": "%Y-%m-%d %H:%M:%S"
+      }
+    },
+    "handlers": {
+      "default": {
+          "level":"DEBUG",
+          "class":"logging.StreamHandler",
+          "formatter": "standard"
+      }
+    },
+    "loggers": {
+      "": {
+          "handlers": ["default"],
+          "level": "DEBUG",
+          "propagate": true
+      }
+    }
+  }
+}

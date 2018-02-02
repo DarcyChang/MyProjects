@@ -1,0 +1,34 @@
+varName,matchVar,createCmd,deleteCmd,,,,,dutIp
+,,Data4,,ontLid,ontProfile,ontSerialNo,ontNo,
+y,google,create ont 2001 profile GF110 serial-number 51903799,delete ont 2001 forced,2001,GF110,51903799,1,192.168.1.62
+y,google,create ont 2002 profile GF110 serial-number 51903791,delete ont 2002 forced,2002,GF110,51903791,2,192.168.1.62
+y,google,create ont 2003 profile GF110 serial-number 52000248,delete ont 2003 forced,2003,GF110,52000248,3,192.168.1.62
+y,google,create ont 2004 profile GF110 serial-number 52401522,delete ont 2004 forced,2004,GF110,52401522,4,192.168.1.62
+y,google,create ont 2005 profile GF110 serial-number 52000304,delete ont 2005 forced,2005,GF110,52000304,5,192.168.1.62
+y,google,create ont 2006 profile GF110 serial-number 52000488,delete ont 2006 forced,2006,GF110,52000488,6,192.168.1.62
+y,google,create ont 2007 profile GF110 serial-number 52001083,delete ont 2007 forced,2007,GF110,52001083,7,192.168.1.62
+y,google,create ont 2008 profile GF110 serial-number 52401537,delete ont 2008 forced,2008,GF110,52401537,8,192.168.1.62
+n,google,create ont 2009 profile GF110 serial-number 1,delete ont 2009 forced,2009,GF110,1,9,192.168.1.62
+n,google,create ont 2010 profile GF110 serial-number 1,delete ont 2010 forced,2010,GF110,1,10,192.168.1.62
+n,google,create ont 2011 profile GF110 serial-number 1,delete ont 2011 forced,2011,GF110,1,11,192.168.1.62
+n,google,create ont 2012 profile GF110 serial-number 1,delete ont 2012 forced,2012,GF110,1,12,192.168.1.62
+n,google,create ont 2013 profile GF110 serial-number 1,delete ont 2013 forced,2013,GF110,1,13,192.168.1.62
+n,google,create ont 2014 profile GF110 serial-number 1,delete ont 2014 forced,2014,GF110,1,14,192.168.1.62
+n,google,create ont 2015 profile GF110 serial-number 1,delete ont 2015 forced,2015,GF110,1,15,192.168.1.62
+n,google,create ont 2016 profile GF110 serial-number 1,delete ont 2016 forced,2016,GF110,1,16,192.168.1.62
+n,google,create ont 2017 profile GF110 serial-number 2,delete ont 2017 forced,2017,GF110,2,17,192.168.1.62
+n,google,create ont 2018 profile GF110 serial-number 2,delete ont 2018 forced,2018,GF110,2,18,192.168.1.62
+n,google,create ont 2019 profile GF110 serial-number 2,delete ont 2019 forced,2019,GF110,2,19,192.168.1.62
+n,google,create ont 2020 profile GF110 serial-number 2,delete ont 2020 forced,2020,GF110,2,20,192.168.1.62
+n,google,create ont 2021 profile GF110 serial-number 2,delete ont 2021 forced,2021,GF110,2,21,192.168.1.62
+n,google,create ont 2022 profile GF110 serial-number 2,delete ont 2022 forced,2022,GF110,2,22,192.168.1.62
+n,google,create ont 2023 profile GF110 serial-number 2,delete ont 2023 forced,2023,GF110,2,23,192.168.1.62
+n,google,create ont 2024 profile GF110 serial-number 2,delete ont 2024 forced,2024,GF110,2,24,192.168.1.62
+n,google,create ont 2025 profile GF110 serial-number 2,delete ont 2025 forced,2025,GF110,2,25,192.168.1.62
+n,google,create ont 2026 profile GF110 serial-number 2,delete ont 2026 forced,2026,GF110,2,26,192.168.1.62
+n,google,create ont 2027 profile GF110 serial-number 2,delete ont 2027 forced,2027,GF110,2,27,192.168.1.62
+n,google,create ont 2028 profile GF110 serial-number 2,delete ont 2028 forced,2028,GF110,2,28,192.168.1.62
+n,google,create ont 2029 profile GF110 serial-number 2,delete ont 2029 forced,2029,GF110,2,29,192.168.1.62
+n,google,create ont 2030 profile GF110 serial-number 2,delete ont 2030 forced,2030,GF110,2,30,192.168.1.62
+n,google,create ont 2031 profile GF110 serial-number 2,delete ont 2031 forced,2031,GF110,2,31,192.168.1.62
+n,google,create ont 2032 profile GF110 serial-number 2,delete ont 2032 forced,2032,GF110,2,32,192.168.1.62

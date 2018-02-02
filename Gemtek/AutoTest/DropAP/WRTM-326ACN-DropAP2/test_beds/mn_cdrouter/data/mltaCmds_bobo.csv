@@ -1,0 +1,28 @@
+varName,matchVar,createCmd,deleteCmd,,,,,,,,,,,,,,,,,,dutIp
+y,bobo,set session pager disabled,set session pager disabled,,,,,,,,,,,,,,,,,,#REF!
+y,bobo,set session timeout disabled,set session timeout disabled,,,,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,,
+y,bobo,create vlan 2012 name 2012_dualStack dhcp-snooping enabled,delete vlan 2012,,2012,2012_dualStack,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 1069 name 1069_ds-tr69 dhcp-snooping enabled,delete vlan 1069,,1069,1069_ds-tr69,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 412 name 412_6rd-cdr dhcp-snooping enabled,delete vlan 412,,412,412_6rd-cdr,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 413 name 413_dsl-cdr dhcp-snooping enabled,delete vlan 413,,413,413_dsl-cdr,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 2018 name 2018_6rd-core dhcp-snooping enabled,delete vlan 2018,,2018,2018_6rd-core,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 2019 name 2019_dsl-core dhcp-snooping enabled,delete vlan 2019,,2019,2019_dsl-core,enabled,,,,,,,,,,,,,,#REF!
+y,bobo,create vlan 3375 name 3375_ds-cdr dhcp-snooping enabled,delete vlan 3375,,3375,3375_ds-cdr,enabled,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,,
+y,bobo,add interface toto to-vlan 2012,remove interface toto from-vlan 2012,,toto,2012,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface toto to-vlan 1069,remove interface toto from-vlan 1069,,toto,1069,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface v6transition to-vlan 2018,remove interface v6transition from-vlan 2018,,v6transition,2018,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface v6transition to-vlan 2019,remove interface v6transition from-vlan 2019,,v6transition,2019,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface 1/g4 to-vlan 3375,remove interface 1/g4 from-vlan 3375,,1/g4,3375,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface 1/g4 to-vlan 412,remove interface 1/g4 from-vlan 412,,1/g4,412,,,,,,,,,,,,,,,#REF!
+y,bobo,add interface 1/g4 to-vlan 413,remove interface 1/g4 from-vlan 413,,1/g4,413,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,,
+y,bobo,add erps-domain ragnarok to-vlan 2012,remove erps-domain ragnarok from-vlan 2012,,ragnarok,2012,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 1069,remove erps-domain ragnarok from-vlan 1069,,ragnarok,1069,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 2018,remove erps-domain ragnarok from-vlan 2018,,ragnarok,2018,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 2019,remove erps-domain ragnarok from-vlan 2019,,ragnarok,2019,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 3375,remove erps-domain ragnarok from-vlan 3375,,ragnarok,3375,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 412,remove erps-domain ragnarok from-vlan 412,,ragnarok,412,,,,,,,,,,,,,,,#REF!
+y,bobo,add erps-domain ragnarok to-vlan 413,remove erps-domain ragnarok from-vlan 413,,ragnarok,413,,,,,,,,,,,,,,,#REF!
+,,,,,,,,,,,,,,,,,,,,,

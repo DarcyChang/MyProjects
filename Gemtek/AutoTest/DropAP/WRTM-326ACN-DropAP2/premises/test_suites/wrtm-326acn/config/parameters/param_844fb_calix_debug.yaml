@@ -1,0 +1,16 @@
+global:
+  g_844fb_gui_url: http://192.168.1.1
+  g_844fb_gui_user: support
+  g_844fb_gui_pwd: support
+  g_844fb_Firmware_image: /home/syan/loads/844F/CALIX_844F_12.1.1.45.bin  #Used normal Calix image.
+  g_844fb_Firmware_downgrade_image: /home/syan/loads/844F/CALIX_844F_12.1.1.25.bin    #Used downgrade Calix image.
+  g_844fb_Dummy_Firmware_image: /home/syan/loads/844F/dummy.bin    #Used XVI32U Software to remove half program of the normal Calix image.
+  g_844fb_2_4g_ssid_name: CXNK-calix-2.4G-reg
+  g_844fb_5g_ssid_name: CXNK-calix-5G-reg
+  g_844fb_dut_gw: 192.168.1.1
+  g_844fb_pppoe_username: test    #PPPoE username
+  g_844fb_pppoe_password: test    #PPPoE password
+  g_844fb_dummy_pppoe_username: test1
+  g_844fb_dummy_pppoe_password: error
+  g_844fb_Default_ssid: CXNK0038E71A
+  g_844fb_APC_outlet: 2

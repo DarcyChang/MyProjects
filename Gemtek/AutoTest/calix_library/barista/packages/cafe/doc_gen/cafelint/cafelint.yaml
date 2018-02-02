@@ -1,0 +1,26 @@
+rules:
+  directory:
+    - /home/rshang/code/repo/cafe/calix/src/cafe/doc_gen/cafelint/rules
+
+  rule:
+    ignore:
+      - all
+    error:
+      - CafeKeywordCheckSleep
+      - CafeTestCaseCheckSleep
+      - CafeTestCaseCheckDocumentation
+      - CafeKeywordCheckDocumentation
+    warning:
+      - CafeTestCaseCheckCommentLines
+    CafeTestCaseCheckLoopSteps:
+      severity: warning
+      configure: 10:True
+
+format: "{severity}, Line: {linenumber}, {message}"
+
+target:
+  - /home/rshang/code/repo/cafe/calix/src/cafe/doc_gen/cafelint/data/tc_alarm_threshold.robot
+  - /home/rshang/code/repo/dpu_mdu_automation/RF_test_suites
+  - /home/rshang/code/repo/stp/premises/test_suites
+
+debug: False

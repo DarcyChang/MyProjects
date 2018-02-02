@@ -1,0 +1,36 @@
+node_query:
+  n1:
+    type: "exa"
+  n2:
+    type: "exa"
+
+link_query:
+  l1:
+    attrs.speed: "1g"
+
+topo:
+   func: "node_chain"
+   args: [n1, l1, n2]
+
+connection:
+  tg1:
+    ip: 10.245.252.43
+    type: stc
+    protocol: stc
+    ports:
+      p1:
+        port: 7/9
+        medium: fiber
+        speed: ether1000
+      p2:
+        port: 7/10
+        medium: fiber
+        speed: ether1000
+
+  tms_1:
+    type: restful
+    protocol: tms
+    url: http://tms.calix.local/
+    user: soapuser
+    password: Soapuser
+    api_version: 2

@@ -1,0 +1,90 @@
+global:
+  g_input_enter: "\r"
+  g_input_ctrl_c: "\x03"
+  g_input_ctrl_d: "\x04"
+
+  #----------n/s/h/s/tg vlan parameters here-----------
+  g_n2_dpu_data_vlan: 1100
+  g_n2_us_vlan: 1100
+  g_n1_dpu_data_vlan: 1104
+  g_n1_dpu_video_vlan: 1154
+  g_n1_us_vlan: 1104
+
+
+  g_h1_eth2_vlan: 75
+  #-----------------------------------------------------
+
+  #for TR069,not finished ever, and need to update
+  g_tr69_regexp_any: ^.*$
+  g_tr69_regexp_string: ^[a-zA-Z]$
+  g_tr69_regexp_int: ^-?\\d+$
+  g_tr69_regexp_unsigned_int: ^\\d+$
+  g_tr69_regexp_bollean: ^true|false|0|1$
+  g_tr69_regexp_datetime: ^.*$
+  g_tr69_regexp_base64: ^.*$
+  g_tr69_regexp_any_simple_type: ^.*$
+
+  #DHCP Option
+  g_vm_option43: http://10.245.250.92:8080/test
+  g_dhcp_option67: 801FB_2.1.0.210.oneimage
+  g_dhcp_option15: option15.test
+  g_dhcp_option23: 65
+  g_dhcp_option28: 192.11.22.255
+  g_dhcp_option35: 300
+  g_dhcp_option42: 120.24.166.46
+  g_dhcp_option121: 192.11.23.0/24
+
+  g_mgmt_vlan: 899
+
+  g_ip_format: \d+\.\d+\.\d+\.\d+
+  g_version_format: \d+\.\d+\.\d+\.\d+
+  g_HWaddr_format: '[A-F0-9]{2}(:[A-F0-9]{2}){5}'
+
+  g_dpu_us_prf: auto_upstream
+
+  g_844fb_mgmt_vlan: 85
+  g_844fb_wan_port: nas0.85
+  g_844fb_cli_user: root
+  g_844fb_cli_pwd: superuser
+  g_844fb_cli_exit: exit
+
+  g_844fb_login_prompt: login
+  g_844fb_password_prompt: Password
+  g_844fb_cli_prompt: ~ #
+  g_844fb_metacli_prompt: metacli>
+  g_844fb_traf_prompt: traf\.\d+>
+
+  g_844fb_lan_ip: 192.168.1.2
+  g_844fb_lan_port_switch_state: yes
+  g_844fb_lan_port_switch_vlan: 1104
+  g_844fb_lan_port_switch_speed: 100
+
+  g_844fb_gui_url: http://192.168.1.1
+  g_844fb_gui_user: support
+  g_844fb_gui_pwd: support
+  g_844fb_sn: CXNKEC4F827E7352
+  g_844fb_default_acs_url: https://gcs.calix.com:8443
+  g_844fb_default_acs_user: ''
+  g_844fb_default_acs_pwd: activate-cxnk
+  g_844fb_wait_time: 840
+
+  g_acs_url: http://10.245.250.98:8080/testmin
+  g_acs_usr: tr069
+  g_acs_pwd: tr069
+  g_acs_req_usr: admin
+  g_acs_req_pwd: admin
+  g_acs_interval: 86400
+
+  g_cc_acs_server: http://10.245.250.98:8081
+  g_ccplus_device: ccplus
+  g_org_id: 51
+ 
+  g_tg_device_stc: tg_stc
+  g_tg_uport: uport
+  g_tg_dport: dport
+  g_tg_store_file_path: /tmp/stptest_save
+  g_cc_dwl_ont_load_path: /var/lib/tftpboot   #local path to put 801F/801FB image on localhost
+  g_844fb_sn2:    CXNKEC4F827E7202
+  g_duration_time: 200
+  g_lan_tftp_server_ip: 192.168.1.77
+  g_tar_sck_ver: 02.04.30.00

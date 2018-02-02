@@ -1,0 +1,2 @@
+Global TMS #,Build,Model,Radio,Bandwidth(MHz),# Clients per SSID,# SSIDs,Total Clients,Protocol,Frame Size (bytes),Direction,pps,Mbps
+1065802,11.1.80.11,854G-1,5GHz,80,10,1,40,UDP,1460,Unidirectional LAN->WiFi,44309.9,518

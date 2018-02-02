@@ -1,0 +1,15 @@
+varName,,,scenario,,
+,,,,,
+y,844E_6rd-d_vid412_l-dyn,844E,6rd-1,6rd,1
+y,844E_6rd-d_vid412_l-slaac,844E,6rd-2,6rd,2
+y,844E_6rd-s16_vid412_l-dyn,844E,6rd-4,6rd,4
+y,844E_6rd-s8_vid412_l-dyn,844E,6rd-3,6rd,3
+y,844E_6rd-s24_vid412_l-dyn,844E,6rd-5,6rd,5
+y,844E_ds_vid2012_l-dyn,844E,ds-1,ds,1
+y,844E_ds_vid2012_l-slaac,844E,ds-2,ds,2
+y,844E_pppoe_ds_2012_l-dyn,844E,pppoe-1,pppoe,1
+y,844E_dsl-d_vid413_l-dyn,844E,dsl-1,dsl,1
+y,844E_dsl-d_vid413_l-slaac,844E,dsl-2,dsl,2
+y,844E_dsl-s_vid413_l-dyn,844E,dsl-3,dsl,3
+y,844E_dsl-s_vid413_l-slaac,844E,dsl-4,dsl,4
+y,844E_ds_vid2012_l-dyn,844E,fw-1,fw,1

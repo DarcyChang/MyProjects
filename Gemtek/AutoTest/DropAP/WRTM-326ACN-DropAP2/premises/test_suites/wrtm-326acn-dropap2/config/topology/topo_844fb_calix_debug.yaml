@@ -1,0 +1,131 @@
+connection:
+  web:
+    type: web
+    default_element_wait: 60
+
+  n1:
+    prompt: ['~ #', '#', '>']
+    ip: '10.245.6.198'
+    port: 10024
+    protocol: telnet
+    timeout: 5
+    type: linux
+    user: ''
+    password: ''
+    login_prompt: ''
+    password_prompt: [' > ',' # ','HELO']
+    vlan: 900
+    priority: 1
+    Bonding_line1: line2
+    Bonding_line2: line3
+    apc_outlet: 2
+
+#  cisco:
+#    prompt: ['dhcpv6>', 'dhcpv6#', 'dhcpv6(config)#', 'dhcpv6(config-if-range)#', 'dhcpv6(config-line)#']
+#    vendor: dhcpv6_server
+#    ip: 10.5.161.154
+#    port: 4017
+#    protocol: telnet
+#    timeout: 5
+#    type: linux
+#    ethernet_port_number: 8
+#
+#  cisco_ip_server:
+#    prompt: ['C1800-DHCP>', 'C1800-DHCP#', 'C1800-DHCP(config)#', 'C1800-DHCP(config-if-range)#', 'C1800-DHCP(config-line)#']
+#    vendor: cisco_ip_server
+#    ip: 10.5.161.154
+#    port: 4019
+#    protocol: telnet
+#    timeout: 5
+#    type: linux
+#    gateway: 1.1.1.254
+#    ethernet_port_number: 6
+#
+  wifi_client:
+    ip: 10.245.86.203
+    type: linux
+    protocol: ssh
+    user: wificlient
+    password: Calix123
+    prompt: ['wificlient\@.*\:\~\$']
+    int: ra0
+    int_2_4g: ra0
+    assign_static_ip: 192.168.1.3
+
+  apc:
+    ip: 10.245.86.88
+    type: linux
+    protocol: telnet
+    type: apc
+    user: apc
+    password: apc
+    login_prompt: 'User Name'
+    password_prompt: 'Password'
+
+  e5:
+    ip: 10.245.86.180
+    type: linux
+    protocol: ssh
+    user: root
+    password: root
+    prompt: ['root\@E5-16F\:\~\#', 'E5-16F\#']
+    Bonding_line1: line2
+    Bonding_line2: line3
+    vlan: 900
+    priority: 1
+#
+#  lanhost:
+#    ip: 10.5.182.203
+#    traffic_ip: 192.168.1.120
+#    #timeout: 5
+#    type: linux
+#    protocol: ssh
+#    user: vagrant
+#    password: vagrant
+#    root_password: vagrant
+#    prompt: ['vagrant\@vagrant-lanhost\:\~\$']
+#    interface: eth2
+#
+#  wanhost:
+#    ip: 10.5.182.204
+#    traffic_ip: 1.1.1.189
+#    timeout: 30
+#    type: linux
+#    protocol: ssh
+#    user: vagrant
+#    password: vagrant
+#    root_password: vagrant
+#    prompt: ['vagrant\@peervm1\:\~\$']
+#    interface: eth2
+
+
+#added by shanle to adapt to CDC scritps
+#  s1:
+#    prompt: ['Guann-800CI>']
+#    ip: '10.245.7.171'
+#    user: 'e7support'
+#    timeout: '10'
+#    login_prompt: 'Username: '
+#    protocol: telnet
+#    password: 'admin'
+#    type: linux
+#    password_prompt: 'Password: '
+
+  s2:
+    prompt: [3560G_IXIA]
+    user: ''
+    password: ''
+    login_prompt: ''
+    ip: '10.245.86.30'
+    port: 23
+    timeout: '10'
+    protocol: telnet
+    type: linux
+
+  SHELL1:
+    ip: localhost
+    password: cafetest
+    type: linux
+    user: cafetest
+    protocol: ssh
+    prompt: [']\$','1\$']
