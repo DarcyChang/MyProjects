@@ -33,10 +33,10 @@ sudo pip3 install html-testRunner
 cp .bashrc ~/.bashrc
 # For Python code.
 # https://github.com/fisadev/fisa-vim-config
-curl -O https://raw.githubusercontent.com/vince67/v7_config/master/vim.sh
-bash vim.sh
-sudo apt-get install -y ctags
-sudo apt-get install -y ack-grep
+#curl -O https://raw.githubusercontent.com/vince67/v7_config/master/vim.sh
+#bash vim.sh
+#sudo apt-get install -y ctags
+#sudo apt-get install -y ack-grep
 
 # For C code.
 #cp .vimrc ~/ 
