@@ -1,0 +1,26 @@
+#!/bin/sh
+
+PREREQ=""
+prereqs()
+{
+    echo "$PREREQ"
+}
+
+case $1 in
+prereqs)
+    prereqs
+    exit 0
+;;
+esac
+
+. /scripts/functions
+
+if [ -f /img.cf.gz ]; then
+	echo "Start writing image to disk"
+	gunzip < /img.cf.gz | dd of=/dev/sda 
+	echo "Finished"
+	sleep 2
+	reboot
+else
+	echo "Image not found"
+fi
