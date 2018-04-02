@@ -223,9 +223,21 @@ for eid in $eid_list; do
                     thrput_pass=`echo "$throughput_min <= $thrput" | bc`
                     unit_is_mbit=`echo $unit | grep -c Mbits`
                     loss_rate_pass=`echo "$loss_rate < $loss_rate_max" | bc`
+                    if [ "$thrput_pass" == "0" ] ; then
+						err_msg="[ERROR] eth$eid UDP Throughput too low."
+                        result="failed"
+					elif [ "$unit_is_mbit" == "0" ] ; then 
+						err_msg="[ERROR] eth$eid UDP Unit error."
+                        result="failed"
+					elif [ "$loss_rate_pass" == "0" ] ; then
+						err_msg="[ERROR] eth$eid UDP loss rate too high."
+                        result="failed"
+                    fi
+:<<SKIP
                     if [ "$thrput_pass" == "0" ] || [ "$unit_is_mbit" == "0" ] || [ "$loss_rate_pass" == "0" ]; then
                         result="failed"
                     fi
+SKIP
                     msg="Throughput: $thrput $unit\nLoss Rate:  ($loss_rate%%)\n"
                 fi
                 if [ "$determine_result" == "0" ] || [ "$result" == "pass" ] || [ "$retries" -ge "$max_retries" ]; then
@@ -238,6 +250,9 @@ for eid in $eid_list; do
                 fi
             done
             rm -f $res_file
+			if [ $result == "failed" ] ; then
+				echo $err_msg >> /root/automation/testresults-failure.txt
+			fi
         fi
     else
         echo "[$dev_role] Start testing TCP on eth$eid..."
@@ -269,9 +284,24 @@ for eid in $eid_list; do
                     unit_is_mbit=`echo $unit | grep -c Mbits`
                     rx_errors=`ifconfig eth$phy_eid | grep 'RX packets' | awk '{print $3}' | cut -d: -f2`
                     tx_errors=`ifconfig eth$phy_eid | grep 'TX packets' | awk '{print $3}' | cut -d: -f2`
+                    if [ "$thrput_pass" == "0" ] ; then
+						err_msg="[ERROR] eth$eid TCP Throughput too low."
+                        result="failed"
+					elif [ "$unit_is_mbit" == "0" ] ; then
+						err_msg="[ERROR] eth$eid TCP Unit error."
+                        result="failed"
+					elif [ "$rx_errors" != "0" ] ; then
+						err_msg="[ERROR] eth$eid TCP RX error."
+                        result="failed"
+					elif [ "$tx_errors" != "0" ] ; then
+						err_msg="[ERROR] eth$eid TCP TX error."
+                        result="failed"
+                    fi
+:<<SKIP
                     if [ "$thrput_pass" == "0" ] || [ "$unit_is_mbit" == "0" ] || [ "$rx_errors" != "0" ] || [ "$tx_errors" != "0" ]; then
                         result="failed"
                     fi
+SKIP
                     if [ "$determine_result" == "0" ] || [ "$result" == "pass" ] || [ "$retries" -ge "$max_retries" ]; then
                         run=0
                         echo "Throughput:  $thrput $unit"
@@ -287,6 +317,9 @@ for eid in $eid_list; do
                 fi
                 rm -f $res_file
             done
+			if [ $result == "failed" ] ; then
+				echo $err_msg >> /root/automation/testresults-failure.txt
+			fi
         fi
     fi
 done

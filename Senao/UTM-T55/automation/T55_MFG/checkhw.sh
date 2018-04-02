@@ -55,9 +55,9 @@ if [ "$HOSTNAME" == "T55-wifi" ]; then
     fi
 fi
 
-if grep -q '73.10' /root/bios_version
+if grep -q '77.05' /root/bios_version
 then 
-echo BIOS version 73.10
+echo BIOS version 77.05
 else
 echo BIOS vesrion check fail
 fi

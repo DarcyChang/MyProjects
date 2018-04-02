@@ -8,12 +8,12 @@ add_list="0x56 0x57"
 
 for addr in $add_list; do
     for((num = 0; num < 3; num ++)); do 
-        echo "Set SMBUS $addr to ${num_list[$num]}"
+        echo "[DEBUG] Set SMBUS $addr to ${num_list[$num]}"
     	i2cset -y $SMBUS $addr 0x05 ${num_list[$num]}
     	result=$(i2cget -y $SMBUS $addr 0x05)
-    	echo "Get: $result  "
+    	echo "[DEBUG] Get: $result"
         if [ "$result" != "${check_num[$num]}" ]; then
-	    PASS=0
+			PASS=0
     	fi
     done
 done
@@ -23,5 +23,5 @@ if [ $PASS == "1" ]; then
     echo "ID_EEPROM_TEST: PASS" >> /root/automation/test_results.txt
 else
     echo EEPROM ID Test Fail!!
-    echo "ID_EEPROM_TEST: FAIL" >> /root/automation/test_results.txt
+    echo "ID_EEPROM_TEST: FAIL: <Result is $result>" >> /root/automation/test_results.txt
 fi

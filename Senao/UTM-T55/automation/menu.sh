@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=1.0.1
+VERSION=1.1.0
 
 
 function menu(){
@@ -29,7 +29,7 @@ echo "" | tee -a /root/automation/log.txt
 echo "###################################" | tee -a /root/automation/log.txt
 echo "###### SENAO RMA IMAGE ############" | tee -a /root/automation/log.txt
 echo "###### Version $VERSION   ############" | tee -a /root/automation/log.txt
-echo "###### Date 2018/03/26 ############" | tee -a /root/automation/log.txt
+echo "###### Date 2018/04/03 ############" | tee -a /root/automation/log.txt
 echo "###################################" | tee -a /root/automation/log.txt
 echo "" | tee -a /root/automation/log.txt
 

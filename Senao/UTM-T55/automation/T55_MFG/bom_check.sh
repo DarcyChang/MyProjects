@@ -46,7 +46,7 @@ function msata_fw_check(){
     	echo "MSATA_FIRMWARE_CHECK: PASS" >> /root/automation/test_results.txt
 		count=$[ count + 1 ]
 	else
-    	echo -n "MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> /root/automation/test_results.txt
+    	echo "MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> /root/automation/test_results.txt
 	fi
 }
 
@@ -56,7 +56,7 @@ function wifi_device_check(){
 	if [[ $t55w == "T55-W" ]] ; then
 		/root/automation/T55_MFG/hwinfo.sh | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
 		wifi=$( cat /tmp/log_tmp.txt | grep Wi-Fi)
-		#echo "[DEBUG] wifi model = $wifi"
+		#echo "[DEBUG] wifi module = $wifi"
 		if [[ $wifi == "Wi-Fi check ok" ]];then
     		echo "Wi-Fi_DEVICE_CHECK: PASS" >> /root/automation/test_results.txt
 			count=$[ count + 1 ]
@@ -64,7 +64,7 @@ function wifi_device_check(){
     		echo "Wi-Fi_DEVICE_CHECK: FAIL: Doesn't detect Wi-Fi module." >> /root/automation/test_results.txt
 		fi
 	else
-		echo "[SENAO] No Wi-Fi model $t55w" | tee -a /root/automation/log.txt
+		echo "[SENAO] No Wi-Fi module $t55w" | tee -a /root/automation/log.txt
 		count=$[ count + 1 ]
 	fi
 }
@@ -118,7 +118,7 @@ function nr_network_ports_count_check(){
     	echo "NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> /root/automation/test_results.txt
 		count=$[ count + 1 ]
 	else
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL" >> /root/automation/test_results.txt
+    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Port number is $total_port_num>" >> /root/automation/test_results.txt
 	fi
 }
 

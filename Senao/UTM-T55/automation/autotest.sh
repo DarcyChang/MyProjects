@@ -87,11 +87,24 @@ function memory_stess_pass() {
 	fi
 }
 
+function hw_version(){
+	hw_ver=$(cat /sys/class/dmi/id/board_version)
+	if [ $hw_ver == "1.0" ] ; then
+		echo "[SENAO] EVT board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+	elif [ $hw_ver == "1.1" ] ; then
+		echo "[SENAO] DVT board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+	elif [ $hw_ver == "1.2" ] ; then
+		echo "[SENAO] PVT/MP board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+	else
+		echo "[ERROR] Unknown Hardware version $hw_ver" | tee -a /root/automation/log.txt
+	fi
+}
 	
 function all() {
 
 		
 	echo "" | tee -a /root/automation/log.txt
+	hw_version
 	echo "[SENAO] All test items automation start......" | tee -a /root/automation/log.txt
 	echo "" | tee -a /root/automation/log.txt
 

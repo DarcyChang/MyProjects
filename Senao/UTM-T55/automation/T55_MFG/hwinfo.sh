@@ -10,7 +10,7 @@ if grep -q 'CPU check ok' /root/hwinfo.txt &&
    grep -q 'Disk check ok' /root/hwinfo.txt &&
    grep -q 'Network check ok' /root/hwinfo.txt &&
    grep -q 'Wi-Fi check ok' /root/hwinfo.txt && 
-   grep -q 'BIOS version 73.10' /root/hwinfo.txt &&
+   grep -q 'BIOS version 77.05' /root/hwinfo.txt &&
    [ "$HOSTNAME" == "T55-wifi" ];
 then
     echo Check Hardware Information Pass!!
@@ -18,7 +18,7 @@ elif grep -q 'CPU check ok' /root/hwinfo.txt &&
      grep -q 'Memory check ok' /root/hwinfo.txt &&
      grep -q 'Disk check ok' /root/hwinfo.txt &&
      grep -q 'Network check ok' /root/hwinfo.txt &&
-     grep -q 'BIOS version 73.10' /root/hwinfo.txt
+     grep -q 'BIOS version 77.05' /root/hwinfo.txt
 then 
     echo Check Hardware Information Pass!!    
 else 
