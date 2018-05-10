@@ -59,11 +59,13 @@ sudo apt-get install -y filezilla
 sudo apt-get install -y putty
 
 #6. Install tftp
+# https://yulun.me/2016/setup-tftp-server-on-ubuntu/
 sudo apt-get install -y xinetd tftpd tftp
 sudo apt-get install -y tftp-hpa
 sudo cp tftp /etc/xinetd.d/
 mkdir ~/tftpboot
 chmod -R 777 ~/tftpboot
+chown -R nobody ~/tftpboot
 sudo service xinetd restart
 
 #7. Install samba
