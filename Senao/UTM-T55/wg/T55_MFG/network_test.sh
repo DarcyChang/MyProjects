@@ -50,7 +50,7 @@ function is_etherphy_connection(){
 	fi
 	
 	echo "[SENAO] Detecting Golden sample five ports link status." | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee /tmp/log_tmp_golden.txt
+	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee /tmp/log_tmp_golden.txt
 	golden_link_state=$(grep -c "DOWN" /tmp/log_tmp_golden.txt)
 	if [ $golden_link_state -gt 0 ] ; then
 		echo "[ERROR] Golden sample's some ports link down." >> /root/automation/testresults-failure.txt
@@ -78,7 +78,7 @@ function is_ping(){
 function throughput_tcp(){
 	echo "[SENAO] iPerf Test with Throughput start..." | tee -a /root/automation/log.txt
 	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_tcp.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_tcp.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
 	sleep 2
 	/root/automation/T55_MFG/iperf_test.sh -T 900 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
 	tcp=$(grep -c "failed" /tmp/log_tmp.txt)
@@ -100,7 +100,7 @@ function throughput_tcp(){
 function throughput_udp_high(){
 	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a /root/automation/log.txt
 	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_high.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_high.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
 	sleep 2
 	/root/automation/T55_MFG/iperf_test.sh -u -T 800 -L 3 -r 1 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
 	udp_high=$(grep -c "failed" /tmp/log_tmp.txt)
@@ -123,7 +123,7 @@ function throughput_udp_high(){
 function throughput_udp_low(){
 	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a /root/automation/log.txt
 	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_low.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_low.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
 	sleep 2
 	/root/automation/T55_MFG/iperf_test.sh -u -l 64 -b 30 -T 25 -L 3 -r 1 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
 	udp_low=$(grep -c "failed" /tmp/log_tmp.txt)

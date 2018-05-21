@@ -23,7 +23,7 @@ else
 fi
 
 echo "BURN_IN_TEST: FAIL: iperf not terminated normally." >> /root/automation/test_results.txt
-sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/burn_in_test_golden.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/burn_in_test_golden.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
 sleep 1
 /root/automation/T55_MFG/stress.sh --no_stress --no_disk | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
 sleep 2
