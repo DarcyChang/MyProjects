@@ -8,7 +8,6 @@ gold_sample=0
 no_test=0
 daemon=0
 force=0
-v_loop=0
 throughput_min=0
 loss_rate_max=100
 max_retries=0
@@ -71,9 +70,6 @@ case $key in
     ;;
     -s)
     shift_poe=1
-    ;;
-    -V)
-    v_loop=1
     ;;
     *)
     # unknown option
@@ -187,9 +183,6 @@ for eid in $eid_list; do
                         unit=`echo $res_str | awk '{print $9}'`
                         loss_rate=`echo $res_str | awk '{print $13}' | sed 's/[(%)]//g'`
                     fi
-					if [ $throughput_min == "800" ] ; then # For WG OS
-						throughput_min=400
-					fi
                     thrput_pass=`echo "$throughput_min <= $thrput" | bc`
                     unit_is_mbit=`echo $unit | grep -c Mbits`
                     loss_rate_pass=`echo "$loss_rate < $loss_rate_max" | bc`
