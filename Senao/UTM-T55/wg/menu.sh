@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=2.0.0
+VERSION=2.1.0
 
 
 function menu(){
@@ -17,6 +17,7 @@ function menu(){
 	echo "10. BURN IN TEST" | tee -a /root/automation/log.txt
 	echo "11. SYSTEM LEDS TEST"
 	echo "12. LAN speed LED check"
+	echo "13. Force to retest all"
 	echo "97. Show Results" | tee -a /root/automation/log.txt
 	echo "98. Delete Flag" | tee -a /root/automation/log.txt
 	echo "99. Cancel" | tee -a /root/automation/log.txt
@@ -26,14 +27,12 @@ function menu(){
 }
 
 
-mount -o remount,rw /
-iptables-restore < /usr/bin/default.ipt 
 
 echo "" | tee -a /root/automation/log.txt
 echo "###################################" | tee -a /root/automation/log.txt
 echo "###### SENAO RMA IMAGE ############" | tee -a /root/automation/log.txt
 echo "###### Version $VERSION   ############" | tee -a /root/automation/log.txt
-echo "###### Date 2018/05/04 ############" | tee -a /root/automation/log.txt
+echo "###### Date 2018/05/21 ############" | tee -a /root/automation/log.txt
 echo "###################################" | tee -a /root/automation/log.txt
 echo "" | tee -a /root/automation/log.txt
 
@@ -107,6 +106,11 @@ case $select in
 	"12")
 		echo "[SENAO] You select item $select"
 		/root/automation/T55_MFG/LanLEDTest.sh
+		;;
+	"13")
+		echo "[SENAO] You select item $select"
+		/root/automation/autotest.sh del-flag
+		/root/automation/autotest.sh all
 		;;
 	"97")
 		echo "[SENAO] Show test results."

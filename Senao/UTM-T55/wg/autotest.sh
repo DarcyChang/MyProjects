@@ -11,6 +11,7 @@ function help() {
 	echo ""
 	echo "Following are commands:"
 	echo "    all              Do all item automation."
+	echo "    retest           Force to retest all."
 	echo "    fetch-results    Prints out the results."
 	echo "    del-flag         Deltet all results and flag files."
 	echo "    msata-fw         MSATA firmware check."
@@ -172,8 +173,6 @@ function all() {
 }
 
 
-mount -o remount,rw /
-iptables-restore < /usr/bin/default.ipt
 
 if [ $# -eq 1 ];then
 	case $1 in
@@ -185,6 +184,10 @@ if [ $# -eq 1 ];then
 			all
 			date > /root/automation/ALL_TEST_DONE
 			;;
+		"retest")
+			del-flag
+			all
+		;;
 		"fetch-results")
 			fetch-results
 			;;
