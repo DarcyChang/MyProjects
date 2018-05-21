@@ -40,7 +40,7 @@ function eth_stat() {
 function cpu_stat() {
     cpu_idle=`sar -u $cpu_stat_interval 1 | grep Average | awk '{ printf $8 }'`
     cpu_load=`echo "scale=1; 100 - $cpu_idle" | bc`
-    cpu_tmp=`cat /sys/devices/platform/nct6775.656/temp2_input`
+    cpu_tmp=`cat /sys/devices/platform/coretemp.0/temp2_input`
     cpu_tmp=`echo "$cpu_tmp / 1000" | bc`
     cpu_tmp_sum=`expr $cpu_tmp_sum + $cpu_tmp`
     cpu_stat_msg="CPU:$cpu_tmp|${cpu_load}%%"
@@ -50,7 +50,7 @@ function cpu_stat() {
     while [ "$core_id" -lt "$core_num" ]
     do
         temp_id=`expr $core_id \* 2 + 2`
-        core_tmp=`cat /sys/devices/platform/nct6775.656/temp${temp_id}_input`
+        core_tmp=`cat /sys/devices/platform/coretemp.0/temp${temp_id}_input`
         core_tmp=`echo "$core_tmp / 1000" | bc`
         core_tmp_sum[$core_id]=`expr ${core_tmp_sum[$core_id]} + $core_tmp`
         line=`expr $core_id + 1`
