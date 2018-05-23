@@ -111,19 +111,14 @@ function hw_monitor_device_check(){
 
 
 function nr_network_ports_count_check(){
-	port0=$(dmesg | grep "wg_dsa_init: sw10" | grep port0 | awk '{print $5}')
-	port1=$(dmesg | grep "wg_dsa_init: sw10" | grep port1 | awk '{print $5}')
-	port2=$(dmesg | grep "wg_dsa_init: sw10" | grep port2 | awk '{print $5}')
-	port3=$(dmesg | grep "wg_dsa_init: sw10" | grep port3 | awk '{print $5}')
-	port4=$(dmesg | grep "wg_dsa_init: sw10" | grep port4 | awk '{print $5}')
-	
-	#echo "[DEBUG] Total port number = $port0 $port1 $port2 $port3 $port4"
-	if [[ $port0 == "port0" ]] && [[ $port1 == "port1" ]] && [[ $port2 == "port2" ]] && [[ $port3 == "port3" ]] && [[ $port4 == "port4" ]] ;then
+	port_num=$(ifconfig -a | grep eth | wc -l)
+	port_num_criteria=5
+	#echo "[DEBUG] Total port number = $port_num"
+	if [[ $port_num -eq $port_num_criteria ]] ;then
     	echo "NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> /root/automation/test_results.txt
 		count=$[ count + 1 ]
 	else
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port4>" >> /root/automation/test_results.txt
-		echo "NR_NETWORK_PORTS_COUNT_CHECK: Detected ethernet port $port0 $port1 $port2 $port3 $port4" >> /root/automation/testresults-failure.txt
+    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port_num>" >> /root/automation/test_results.txt
 	fi
 }
 
