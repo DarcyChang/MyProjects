@@ -40,37 +40,41 @@ function network_test_result(){
 
 
 function is_etherphy_connection(){
-	echo "[SENAO] Detecting DUT five ports link status." | tee -a /root/automation/log.txt
-	igb=$(ls /proc/driver/igb/)
-	link_state=$(cat /proc/driver/igb/$igb/test_mode | grep -c "DOWN")
-	if [ $link_state -gt 0 ] ; then
-		echo "[ERROR] Some ports link down." >> /root/automation/testresults-failure.txt
-		cat /proc/driver/igb/$igb/test_mode | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt
-		return 1
-	fi
-	
-	echo "[SENAO] Detecting Golden sample five ports link status." | tee -a /root/automation/log.txt
+	link_error=0 # connection
+	port_num=$(ifconfig -a | grep eth | wc -l)
+	echo "[SENAO] Detecting DUT $port_num ports link status." | tee -a /root/automation/log.txt
+	for ((eid=0; eid<$port_num; eid++))
+	do
+		link_state=$(ethtool eth$eid | grep 'Link detected' | awk '{print $3}')
+		if [ $link_state != "yes" ] ; then
+			echo "[WARNING] DUT port eth$eid link status $link_state" | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt 
+			link_error=1 # disconnection
+		fi		
+	done
+
+	echo "[SENAO] Detecting Golden sample $port_num ports link status." | tee -a /root/automation/log.txt
 	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee /tmp/log_tmp_golden.txt
-	golden_link_state=$(grep -c "DOWN" /tmp/log_tmp_golden.txt)
+	golden_link_state=$(grep -c "no" /tmp/log_tmp_golden.txt)
 	if [ $golden_link_state -gt 0 ] ; then
-		echo "[ERROR] Golden sample's some ports link down." >> /root/automation/testresults-failure.txt
 		cat /tmp/log_tmp_golden.txt | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt
-		return 1
+		link_error=1 # disconnection
 	fi
 
-	return 0
+	return $link_error
 }
 
 
 function is_ping(){
-    eid_list="0 1 2 3 4"
-    for eid in $eid_list; do
+	port_num=$(ifconfig -a | grep eth | wc -l)
+	for ((eid=0; eid<$port_num; eid++))
+	do
+		echo "[DEBUG] ping 192.168.$eid.2"
 		ping_working=$(ping -c5 192.168.$eid.2 |grep transmitted |awk '{print $4}')
 		if [ $ping_working -eq 0 ] ; then
-			echo "[ERROR] 192.168.$eid.1 ping 192.168.$eid.2 is not working." >> /root/automation/testresults-failure.txt
+			echo "[ERROR] 192.168.$eid.1 ping 192.168.$eid.2 is not working." | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt
 			return 1
 		fi
-    done
+	done
 	return 0
 }
 
@@ -146,11 +150,11 @@ echo "[SENAO] Setting DUT network configuration." | tee -a /root/automation/log.
 /root/automation/T55_MFG/set_ip.sh
 sleep 3
 
-#is_etherphy_connection
-#if [ $? -eq 1 ] ; then
-#   	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> /root/automation/test_results.txt
-#	exit 1	
-#fi	
+is_etherphy_connection
+if [ $? -eq 1 ] ; then
+   	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> /root/automation/test_results.txt
+	exit 1	
+fi	
 
 is_ping
 if [ $? -eq 1 ] ; then
