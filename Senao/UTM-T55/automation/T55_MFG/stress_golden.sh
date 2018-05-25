@@ -121,8 +121,7 @@ disk_num=3
 no_iperf=0
 no_stress=0
 no_disk_test=0
-#time=28800
-time=30
+time=28800
 dut_id=1 # DUT = 2, GOLDEN = 1
 core_num=2
 eth_num=5
