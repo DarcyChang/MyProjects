@@ -1,8 +1,7 @@
 #!/bin/bash
 
-test_result_path="/etc/wg/log/diag/test_results.txt"
-test_result_failure_path="/etc/wg/log/diag/testresults-failure.txt"
-log_path="/etc/wg/log/diag/log.txt"
+source /root/automation/Library/path.sh
+
 
 extra_disk=$(lsblk|grep sd[bcdefg]|grep disk|awk '{print $1}')
 partition="1 2 3 4 5"

@@ -1,10 +1,6 @@
 #!/bin/bash
 
-test_result_path="/root/automation/test_results.txt"
-test_result_failure_path="/root/automation/testresults-failure.txt"
-flag_file_path="/root/automation/ALL_TEST_DONE"
-memory_stress_test_result="/root/automation/memory_stress_test.txt"
-log_path="/root/automation/log.txt"
+source /root/automation/Library/path.sh
 
 function help() {
 	echo "usage: autotest.sh <command>"
@@ -42,20 +38,28 @@ function fetch-results() {
 
 
 function del-flag() {
+	if [ ! -d "$log_backup_path" ]; then
+    	echo "Directory $log_backup_path does not exists. Creating it."
+		mkdir $log_backup_path
+	fi
+	
 	dir=$(date +%Y%m%d%H%M%S)
-	mkdir /root/automation/log_backup/$dir
-	mv $test_result_path /root/automation/log_backup/$dir
-	mv $test_result_failure_path /root/automation/log_backup/$dir
-	mv $flag_file_path /root/automation/log_backup/$dir
-	mv $memory_stress_test_result /root/automation/log_backup/$dir
-	mv $log_path /root/automation/log_backup/$dir
+	mkdir $log_backup_path/$dir
+	mv $test_result_path $log_backup_path/$dir
+	mv $test_result_failure_path $log_backup_path/$dir
+	mv $all_test_done_path $log_backup_path/$dir
+	mv $memory_stress_test_path $log_backup_path/$dir
+	mv $log_path $log_backup_path/$dir
+	mv $time_path $log_backup_path/$dir
 }
 
 
 function is_test_result_exist() {
 	if [ -f $test_result_path ];then
 		test_item=$(cat $test_result_path | cut -d ":" -f 1)
-#		echo "$test_item"
+#		echo "[DEBUG] $test_item"
+	else
+		echo "[DEBUG] File $test_result_path not found!"
 	fi
 	echo ""
 }
@@ -91,23 +95,22 @@ function memory_stess_pass() {
 function hw_version(){
 	hw_ver=$(cat /sys/class/dmi/id/board_version)
 	if [ $hw_ver == "1.0" ] ; then
-		echo "[SENAO] EVT board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+		echo "[SENAO] EVT board (Hardware version $hw_ver)" | tee -a $log_path
 	elif [ $hw_ver == "1.1" ] ; then
-		echo "[SENAO] DVT board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+		echo "[SENAO] DVT board (Hardware version $hw_ver)" | tee -a $log_path
 	elif [ $hw_ver == "1.2" ] ; then
-		echo "[SENAO] PVT/MP board (Hardware version $hw_ver)" | tee -a /root/automation/log.txt
+		echo "[SENAO] PVT/MP board (Hardware version $hw_ver)" | tee -a $log_path
 	else
-		echo "[ERROR] Unknown Hardware version $hw_ver" | tee -a /root/automation/log.txt
+		echo "[ERROR] Unknown Hardware version $hw_ver" | tee -a $log_path 
 	fi
 }
 	
 function all() {
-
-		
-	echo "" | tee -a /root/automation/log.txt
+#	echo "START TIME $(date '+%Y-%m-%d %H:%M:%S')" | tee -a $time_path
+	echo "" | tee -a $log_path
 	hw_version
-	echo "[SENAO] All test items automation start......" | tee -a /root/automation/log.txt
-	echo "" | tee -a /root/automation/log.txt
+	echo "[SENAO] All test items automation start......" | tee -a $log_path
+	echo "" | tee -a $log_path
 
 	is_test_result_exist
 
@@ -151,6 +154,7 @@ function all() {
 		/root/automation/T55_MFG/network_test.sh
 	fi
 
+	echo "MEMORY TEST TIME $(date '+%Y-%m-%d %H:%M:%S')" | tee -a $time_path
 	is_done MEMORY_TEST
 	if [ $? -eq 0 ] ; then
 		/root/automation/T55_MFG/memory_test.sh
@@ -162,14 +166,16 @@ function all() {
 		exit 1
 	fi	
 
+	echo "BURN-IN TIME $(date '+%Y-%m-%d %H:%M:%S')" | tee -a $time_path
 	is_done BURN_IN_TEST
 	if [ $? -eq 0 ] ; then
 		/root/automation/T55_MFG/burn_in_test.sh
 	fi
 
-	echo "" | tee -a /root/automation/log.txt
-	echo "[SENAO] All test items automation finished......" | tee -a /root/automation/log.txt
-	echo "" | tee -a /root/automation/log.txt
+	echo "" | tee -a $log_path
+	echo "[SENAO] All test items automation finished......" | tee -a $log_path
+	echo "" | tee -a $log_path
+	echo "END TIME $(date '+%Y-%m-%d %H:%M:%S')" | tee -a $time_path
 }
 
 
@@ -177,12 +183,12 @@ function all() {
 if [ $# -eq 1 ];then
 	case $1 in
 		"all")
-			if [ -f $flag_file_path ];then
+			if [ -f $all_test_done_path ];then
 				echo "[SENAO] ALL TEST DONE!"
 				exit 0
 			fi
 			all
-			date > /root/automation/ALL_TEST_DONE
+			date > $all_test_done_path
 			;;
 		"retest")
 			del-flag

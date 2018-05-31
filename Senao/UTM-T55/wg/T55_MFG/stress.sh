@@ -4,6 +4,9 @@
 #Date:2018/04/25
 
 
+source /root/automation/Library/path.sh
+
+
 function eth_stat() {
     rate_tmp_file="/tmp/eth_stat"
     sar -n DEV $eth_stat_interval 1 | grep Average > $rate_tmp_file
@@ -102,7 +105,8 @@ function show_stat() {
 no_iperf=0
 no_stress=0
 no_disk_test=0
-time=28800
+#time=28800
+time=$(cat /root/automation/config | grep "burn-in time(seconds)" | awk '{print $3}')
 dut_id=2 # DUT = 2, GOLDEN = 1
 core_num=2
 eth_num=5
@@ -165,6 +169,7 @@ do
     shift
     ;;
     -i)
+	# DUT = 2, GOLDEN = 1
     dut_id="$2"
     shift
     ;;
@@ -237,12 +242,14 @@ if [ "$no_iperf" == "0" ]; then
         iperf_arg="$iperf_arg -g"
     fi
     /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -f
-#	echo "[SENAO] Golden Sample /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e $eid_list -a -P $tcp_parallels -f" | tee -a /root/automation/log.txt
+#	echo "[SENAO] Golden Sample /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e $eid_list -a -P $tcp_parallels -f" | tee -a $log_path
 fi
 
 cpu_stat_interval=1
 mem_stat_interval=1
 eth_stat_interval=2
+
+echo "[SENAO] Stress test running $time seconds"
 if [ "$no_stress" == "0" ] && [ "$no_iperf" == "0" ]; then
     echo "[SENAO] Run stress and iperf test"
 elif [ "$no_stress" == "0" ]; then
@@ -298,7 +305,6 @@ do
         fi
         if [ "$stress_time" != "0" ]; then
             res_file=/tmp/stress_res
-            echo "[SENAO] Stress test running $stress_time seconds"
             /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &
 #			echo "[DEBUG] $stress_arg"
 			echo "[DEBUG] /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &"
@@ -309,7 +315,6 @@ do
                 show_stat
                 stress_running=`ps aux | grep stressapptest | grep -vc grep`
             done
-            echo "[SENAO] Stress test end"
             res=`grep 'Status: FAIL' $res_file`
             if [ "$res" != "" ]; then
                 res=`grep 'Report Error:' $res_file | grep -v ${tmp_file}`
@@ -422,8 +427,6 @@ if [ "$no_iperf" == "0" ]; then
         result="pass"
     fi
     echo "check total rx/tx rate: [$result] [$total_rx_rate/$total_tx_rate Mbits/sec]"
-
-#    read -p "Press Enter to stop iperf" ps
 
     client_pids=`ps aux | grep iperf | grep -v grep | grep -v 'iperf -s' | awk '{print $2}'`
     for pid in $client_pids; do

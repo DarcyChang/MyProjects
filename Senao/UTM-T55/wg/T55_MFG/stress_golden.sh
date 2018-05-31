@@ -1,39 +1,27 @@
 #!/bin/bash
 #Objective:Automatic Google stress
 #Author:Darcy Chang
-#Date:2018/03/20
+#Date:2018/05/21
+
+source /root/automation/Library/path.sh
 
 
 function eth_stat() {
     rate_tmp_file="/tmp/eth_stat"
     sar -n DEV $eth_stat_interval 1 | grep Average > $rate_tmp_file
-    swh_tmp_file="/tmp/swh_stat"
-    cat $Driver_Path > $swh_tmp_file
     eth_idx=0
     eth_stat_msg=""
     while [ "$eth_idx" -lt "$eth_num" ]
     do
-        is_vlan_eth=`echo ${eth_name[$eth_idx]} | grep -c '\.'`
-        if [ "$is_vlan_eth" == "0" ]; then
-            link_state=`ethtool ${eth_name[$eth_idx]} | grep 'Link detected' | awk '{print $3}'`
-            if [ "$link_state" != "yes" ]; then
-                speed="down"
-            else
-                speed=`ethtool ${eth_name[$eth_idx]} | grep 'Speed:' | awk '{print $2}' | sed 's/M.*$//g'`
-                duplex=`ethtool ${eth_name[$eth_idx]} | grep 'Duplex:' | awk '{print $2}' | sed 's/...$//g' | tr [:upper:] [:lower:]`
-                speed="${speed}${duplex}"
-            fi
-        else
-            vid=`echo ${eth_name[$eth_idx]} | cut -d. -f2`
-            num=`expr $vid - 2`
-            link_state=`grep Port$num $swh_tmp_file | awk '{print $2}'`
-            if [ "$link_state" != "UP" ]; then
-                speed="down"
-            else
-                speed=`grep Port$num $swh_tmp_file | awk '{print $3}'`
-            fi
-        fi
-        if [ "$speed" == "1000f" ]; then
+		link_state=`ethtool ${eth_name[$eth_idx]} | grep 'Link detected' | awk '{print $3}'`
+		if [ "$link_state" != "yes" ]; then
+			speed="down"
+		else
+			speed=`ethtool ${eth_name[$eth_idx]} | grep 'Speed:' | awk '{print $2}' | sed 's/M.*$//g'`
+			duplex=`ethtool ${eth_name[$eth_idx]} | grep 'Duplex:' | awk '{print $2}' | sed 's/...$//g' | tr [:upper:] [:lower:]`
+			speed="${speed}${duplex}"
+		fi
+        if [ "$speed" == "1000f" ] ; then
             speed="1g"
         elif [ "$speed" == "down" ]; then
             eth_link_down_count[$eth_idx]=`expr ${eth_link_down_count[$eth_idx]} + 1`
@@ -49,13 +37,12 @@ function eth_stat() {
     done
     eth_rate_count=`expr $eth_rate_count + 1`
     rm $rate_tmp_file
-    rm $swh_tmp_file
 }
 
 function cpu_stat() {
     cpu_idle=`sar -u $cpu_stat_interval 1 | grep Average | awk '{ printf $8 }'`
     cpu_load=`echo "scale=1; 100 - $cpu_idle" | bc`
-    cpu_tmp=`cat /sys/devices/platform/nct6779.656/temp2_input`
+    cpu_tmp=`cat /sys/devices/platform/coretemp.0/temp2_input`
     cpu_tmp=`echo "$cpu_tmp / 1000" | bc`
     cpu_tmp_sum=`expr $cpu_tmp_sum + $cpu_tmp`
     cpu_stat_msg="CPU:$cpu_tmp|${cpu_load}%%"
@@ -65,7 +52,7 @@ function cpu_stat() {
     while [ "$core_id" -lt "$core_num" ]
     do
         temp_id=`expr $core_id \* 2 + 2`
-        core_tmp=`cat /sys/class/hwmon/hwmon1/temp${temp_id}_input`
+        core_tmp=`cat /sys/devices/platform/coretemp.0/temp${temp_id}_input`
         core_tmp=`echo "$core_tmp / 1000" | bc`
         core_tmp_sum[$core_id]=`expr ${core_tmp_sum[$core_id]} + $core_tmp`
         line=`expr $core_id + 1`
@@ -111,22 +98,17 @@ function show_stat() {
     sec=`echo "( $remain_time % 3600 ) % 60 " | bc`
 
     printf "%02d:%02d:%02d ${cpu_stat_msg} ${mem_stat_msg} ${eth_stat_msg}\n" $hour $min $sec
-    #if [ "$HOSTNAME" == "T55-wifi" ]; then
-    #    wifi_stat
-    #fi                         remove to avoid invalid argument problem
 }
 
 # 2 USB + 1 MSATA
-disk_num=3
 no_iperf=0
 no_stress=0
 no_disk_test=0
-time=28800
-#time=30
+#time=28800
+time=$(cat /root/automation/config | grep "burn-in time(seconds)" | awk '{print $3}')
 dut_id=1 # DUT = 2, GOLDEN = 1
 core_num=2
 eth_num=5
-vlan=1
 eth_name[0]="eth0"
 eth_name[1]="eth1"
 eth_name[2]="eth2"
@@ -139,7 +121,9 @@ total_rate_min=200
 link_down_limit=1
 stress_duration=180
 stress_interval=600
-stress_arg="-M 100 -W -C 1 -m 1 -i 1 --cc_test -v 4"
+#free_memory=$(free -m | grep Mem | awk '{print $4}')
+#stress_arg="-M $free_memory -W -C 1 -m 1 -i 1 --cc_test -v 20"
+stress_arg="-M 100 -W -C 1 -m 1 -i 1 --cc_test -v 20"
 iperf_arg="-D"
 tcp_parallels=1
 extra_disk_error_retries=2
@@ -218,14 +202,13 @@ do
     shift # past argument or value
 done
 
-echo "Stress Test v1.1"
+echo "Stress Test v1.2"
 
-vlan=1
+
 eth_num=5
 
 if [ "$no_iperf" == "1" ]; then
     eth_num=1
-    vlan=0
 fi
 
 if [ "$no_iperf" == "1" ] && [ "$no_stress" == "1" ]; then
@@ -233,52 +216,22 @@ if [ "$no_iperf" == "1" ] && [ "$no_stress" == "1" ]; then
     exit 0
 fi
 
+eid_list="0 1 2 3 4"
+
 if [ "$no_stress" == "0" ] && [ "$no_disk_test" == "0" ]; then
-    disk_list=`fdisk -l 2>/dev/null | grep Disk | grep -v ram |grep /dev/ | awk '{print $2}' | cut -d/ -f3 | sed 's/://'`
-    sys_disk=`mount | grep 'on / ' | cut -d' ' -f1 | cut -d/ -f3 | sed 's/.$//'`
-    detected_disk_count=0
-    extra_disk_list=""
-    for disk in $disk_list; do
-        if [ "$disk" != "$sys_disk" ]; then
-            extra_disk_list="${extra_disk_list}${disk} "
-        fi
-        detected_disk_count=`expr $detected_disk_count + 1`
-    done
-
-    if [ "$detected_disk_count" -lt "$disk_num" ]; then
-        fdisk -l 2>/dev/null | grep Disk | grep /dev/
-        echo "Detected disk number is not enough"
-        exit 1
-    fi
-
-    count=0
-    extra_test_disk_count=`expr $disk_num - 1`
-    extra_test_disk_list=""
-    for disk in $extra_disk_list; do
-        if [ "$count" -lt "$extra_test_disk_count" ]; then
-            extra_test_disk_list="${extra_test_disk_list}${disk} "
-            count=`expr $count + 1`
-        fi
-    done
-    test_disk_list="${extra_test_disk_list}${sys_disk}"
-    
-    echo System Disk: ${sys_disk}
-    echo Other Disks: ${extra_disk_list}
-
-    mkdir -p /tmp/${sys_disk}
-    stress_arg="$stress_arg -f /tmp/${sys_disk}/${tmp_file}"
-    for disk in $extra_test_disk_list; do
-        disk_part=${disk}1
-        umount /dev/$disk_part 2> /dev/null
-        fsck /dev/$disk_part -p
-        mkdir -p /tmp/$disk
-        mount /dev/$disk_part /tmp/$disk
+	disk_num=$(lsblk | grep -v "NAME" | grep "-" | awk '{print $1}' |  cut -d "-" -f 2 | wc -l)
+	for ((i=2; i<=disk_num; i++)) ; do # Skip sda1. Because sda1 is boot partition.
+		disk_array[$i]=$(lsblk | grep -v "NAME" | grep "-" | awk '{print $1}' |  cut -d "-" -f 2 | awk 'NR=='$i'{print}')
+        umount /dev/${disk_array[$i]} 2> /dev/null
+        fsck -M /dev/${disk_array[$i]} -p
+		mkdir -p /tmp/${disk_array[$i]}
+        mount /dev/${disk_array[$i]} /tmp/${disk_array[$i]}
         if [ $? -ne 0 ]; then
-            echo "Failed to mount /dev/$disk_part"
+            echo "Failed to mount /dev/${disk_array[$i]}"
             exit 1
         fi
-        stress_arg="$stress_arg -f /tmp/${disk}/${tmp_file}"
-    done
+        stress_arg="$stress_arg -f /tmp/${disk_array[$i]}/${tmp_file}"
+	done
 fi
 
 
@@ -287,17 +240,20 @@ if [ "$no_iperf" == "0" ]; then
         iperf_arg="$iperf_arg -g"
     fi
     /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -f
+#	echo "[SENAO] Golden Sample /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e $eid_list -a -P $tcp_parallels -f" | tee -a $log_path
 fi
 
 cpu_stat_interval=1
 mem_stat_interval=1
 eth_stat_interval=2
+
+echo "[SENAO] Stress test running $time seconds"
 if [ "$no_stress" == "0" ] && [ "$no_iperf" == "0" ]; then
-    echo "Running stress and iperf test"
+    echo "[SENAO] Run stress and iperf test"
 elif [ "$no_stress" == "0" ]; then
-    echo "Running stress test"
+    echo "[SENAO] Run stress test"
 else
-    echo "Running iperf test"
+    echo "[SENAO] Run iperf test"
 fi
 
 eth_rate_count=0
@@ -347,8 +303,9 @@ do
         fi
         if [ "$stress_time" != "0" ]; then
             res_file=/tmp/stress_res
-            echo "Stress test running"
             /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &
+#			echo "[DEBUG] $stress_arg"
+			echo "[DEBUG] /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &"
             sleep 3
             stress_running=1
             while [ "$stress_running" != "0" ]
@@ -356,27 +313,21 @@ do
                 show_stat
                 stress_running=`ps aux | grep stressapptest | grep -vc grep`
             done
-            echo "Stress test end"
             res=`grep 'Status: FAIL' $res_file`
             if [ "$res" != "" ]; then
                 res=`grep 'Report Error:' $res_file | grep -v ${tmp_file}`
                 if [ "$res" == "" ]; then
-                    for disk in $test_disk_list; do
-                        res=`grep 'Report Error:' $res_file | grep "/tmp/${disk}/${tmp_file}"`
+					for ((i=2; i<=disk_num; i++)) ; do
+                        res=`grep 'Report Error:' $res_file | grep "/tmp/${disk_array[$i]}"`
                         if [ "$res" != "" ]; then
-                            echo "Found Disk $disk error"
-                            if [ "$disk" == "$sys_disk" ]; then
-                                stress_fail=1
-                            else
-                                disk_part=${disk}1
-                                umount /dev/$disk_part 2> /dev/null
-                                fsck /dev/$disk_part -p
-                                mount /dev/$disk_part /tmp/$disk
-                                extra_disk_error_retries=`expr $extra_disk_error_retries - 1`
-                                [ "$extra_disk_error_retries" -lt "0" ] && stress_fail=1
-                            fi
+                            echo "Found Disk ${disk_array[$i]} error"
+        					umount /dev/${disk_array[$i]} 2> /dev/null
+					        fsck -M /dev/${disk_array[$i]} -p
+					        mount /dev/${disk_array[$i]} /tmp/${disk_array[$i]}
+                            extra_disk_error_retries=`expr $extra_disk_error_retries - 1`
+                            [ "$extra_disk_error_retries" -lt "0" ] && stress_fail=1
                         fi
-                    done
+					done
                 else
                     stress_fail=1
                 fi
@@ -416,13 +367,10 @@ done
 if [ "$no_stress" == "0" ]; then
     cat $res_file
     if [ "$no_disk_test" == "0" ]; then
-        rm -rf /tmp/${sys_disk}
-        for disk in $extra_test_disk_list; do
-            disk_part=${disk}1
-            rm -f /tmp/$disk/${tmp_file}
-            umount /dev/$disk_part
-            rm -rf /tmp/$disk
-        done
+		for ((i=2; i<=disk_num; i++)) ; do
+			umount /dev/${disk_array[$i]}
+			rm -rf /tmp/${disk_array[$i]}/${tmp_file}
+		done
     fi
 fi
 
@@ -477,8 +425,6 @@ if [ "$no_iperf" == "0" ]; then
         result="pass"
     fi
     echo "check total rx/tx rate: [$result] [$total_rx_rate/$total_tx_rate Mbits/sec]"
-
-#    read -p "Press Enter to stop iperf" ps
 
     client_pids=`ps aux | grep iperf | grep -v grep | grep -v 'iperf -s' | awk '{print $2}'`
     for pid in $client_pids; do

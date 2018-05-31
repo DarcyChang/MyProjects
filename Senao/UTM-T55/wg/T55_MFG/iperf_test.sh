@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /root/automation/Library/path.sh
+
 time=0
 udp=0
 len=1472
@@ -209,7 +211,7 @@ for eid in $eid_list; do
             done
             rm -f $res_file
 			if [ $result == "failed" ] ; then
-				echo $err_msg >> /root/automation/testresults-failure.txt
+				echo $err_msg >> $test_result_failure_path
 			fi
         fi
     else
@@ -272,7 +274,7 @@ for eid in $eid_list; do
                 rm -f $res_file
             done
 			if [ $result == "failed" ] ; then
-				echo $err_msg >> /root/automation/testresults-failure.txt
+				echo $err_msg >> $test_result_failure_path
 			fi
         fi
     fi

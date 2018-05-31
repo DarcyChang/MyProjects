@@ -1,7 +1,8 @@
 #! /bin/bash 
 
+source /root/automation/Library/path.sh
+
 real_msata_fw="L17606"
-test_result_path="/root/automation/test_results.txt"
 count=0
 ERROR=0
 
@@ -40,13 +41,13 @@ function bom_check_result(){
 
 
 function msata_fw_check(){
-	iSMART_64 -d /dev/sda | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-	get_msata_fw=$( cat /tmp/log_tmp.txt | grep FW | cut -d " " -f 3)
+	iSMART_64 -d /dev/sda | tee -a $log_path | tee $tmp_path
+	get_msata_fw=$( cat $tmp_path | grep FW | cut -d " " -f 3)
 	if [[ $get_msata_fw == $real_msata_fw ]];then
-    	echo "MSATA_FIRMWARE_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "MSATA_FIRMWARE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> /root/automation/test_results.txt
+    	echo "MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> $test_result_path
 	fi
 }
 
@@ -54,45 +55,45 @@ function msata_fw_check(){
 function wifi_device_check(){
 	t55w=$(/root/automation/T55_MFG/readmfg wg | grep -q "wg: D023" && echo T55-W || echo T55)
 	if [[ $t55w == "T55-W" ]] ; then
-		/root/automation/T55_MFG/hwinfo.sh | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-		wifi=$( cat /tmp/log_tmp.txt | grep Wi-Fi)
+		/root/automation/T55_MFG/hwinfo.sh | tee -a $log_path | tee $tmp_path
+		wifi=$( cat $tmp_path | grep Wi-Fi)
 		#echo "[DEBUG] wifi module = $wifi"
 		if [[ $wifi == "Wi-Fi check ok" ]];then
-    		echo "Wi-Fi_DEVICE_CHECK: PASS" >> /root/automation/test_results.txt
+    		echo "Wi-Fi_DEVICE_CHECK: PASS" >> $test_result_path
 			count=$[ count + 1 ]
 		else
-    		echo "Wi-Fi_DEVICE_CHECK: FAIL: Doesn't detect Wi-Fi module." >> /root/automation/test_results.txt
+    		echo "Wi-Fi_DEVICE_CHECK: FAIL: Doesn't detect Wi-Fi module." >> $test_result_path
 		fi
 	else
-		echo "[SENAO] No Wi-Fi module $t55w" | tee -a /root/automation/log.txt
+		echo "[SENAO] No Wi-Fi module $t55w" | tee -a $log_path
 		count=$[ count + 1 ]
 	fi
 }
 
 
 function tpm_device_check(){
-	tpm_selftest -l info | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-	tpm=$( cat /tmp/log_tmp.txt | grep tpm_selftest | cut -d " " -f 2)
+	tpm_selftest -l info | tee -a $log_path | tee $tmp_path
+	tpm=$( cat $tmp_path | grep tpm_selftest | cut -d " " -f 2)
 	#echo "[DEBUG] tpm status = $tpm"
 	if [[ $tpm == "succeeded" ]];then
-    	echo "TPM_DEVICE_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "TPM_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "TPM_DEVICE_CHECK: FAIL" >> /root/automation/test_results.txt
+    	echo "TPM_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
 
 function id_eeprom_device_check(){
-	i2cset -y 0 0x56 0x05 0xff | tee -a /root/automation/log.txt
-	i2cset -y 0 0x57 0x05 0xff | tee -a /root/automation/log.txt
+	i2cset -y 0 0x56 0x05 0xff | tee -a $log_path
+	i2cset -y 0 0x57 0x05 0xff | tee -a $log_path
 	eeprom01=$(i2cget -y 0 0x56 0x05)
 	eeprom02=$(i2cget -y 0 0x57 0x05)
 	if [[ $eeprom01 == "0xff" ]] && [[ $eeprom02 == "0xff" ]] ; then
-    	echo "ID_EEPROM_DEVICE_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "ID_EEPROM_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "ID_EEPROM_DEVICE_CHECK: FAIL" >> /root/automation/test_results.txt
+    	echo "ID_EEPROM_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
@@ -101,10 +102,10 @@ function hw_monitor_device_check(){
 	/root/automation/T55_MFG/superIO > /root/showIO
 	pass_num=$(grep -c "pass" /root/showIO)
 	if [ "$pass_num" == "7" ]; then
-    	echo "HW_MONITOR_DEVICE_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "HW_MONITOR_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "HW_MONITOR_DEVICE_CHECK: FAIL" >> /root/automation/test_results.txt
+    	echo "HW_MONITOR_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 	rm /root/showIO
 }
@@ -115,10 +116,10 @@ function nr_network_ports_count_check(){
 	port_num_criteria=5
 	#echo "[DEBUG] Total port number = $port_num"
 	if [[ $port_num -eq $port_num_criteria ]] ;then
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port_num>" >> /root/automation/test_results.txt
+    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port_num>" >> $test_result_path
 	fi
 }
 
@@ -127,10 +128,10 @@ function memory_size_check(){
 	memory=$(/root/automation/T55_MFG/hwinfo.sh | grep Memory | cut -d " " -f 3)
 	#echo "[DEBUG] Memory size = $memory"
 	if [[ $memory == "ok" ]];then
-    	echo "MEMORY_SIZE_CHECK: PASS" >> /root/automation/test_results.txt
+    	echo "MEMORY_SIZE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "MEMORY_SIZE_CHECK: FAIL" >> /root/automation/test_results.txt
+    	echo "MEMORY_SIZE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
@@ -173,7 +174,7 @@ fi
 
 bom_check_result
 if [ "$ERROR" == "0" ] || [ "$count" == "7" ]; then
-	echo "BOM_CHECK: PASS" >> /root/automation/test_results.txt
+	echo "BOM_CHECK: PASS" >> $test_result_path
 else
-	echo "BOM_CHECK: FAIL" >> /root/automation/test_results.txt
+	echo "BOM_CHECK: FAIL" >> $test_result_path
 fi

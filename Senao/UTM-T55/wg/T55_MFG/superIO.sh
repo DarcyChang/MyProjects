@@ -1,14 +1,17 @@
 #!/bin/bash
+
+source /root/automation/Library/path.sh
+
 /root/automation/T55_MFG/superIO > /root/showIO
-cat /root/showIO | tee -a /root/automation/log.txt
+cat /root/showIO | tee -a $log_path
 Pass_count=$(grep -c "pass" /root/showIO)
 if [ "$Pass_count" == "7" ];
 then
-	echo "HW monitor Test Pass!!" | tee -a /root/automation/log.txt
-	echo "HW_MONITOR_TEST: PASS" >> /root/automation/test_results.txt
+	echo "HW monitor Test Pass!!" | tee -a $log_path
+	echo "HW_MONITOR_TEST: PASS" >> $test_result_path
 else 
-	echo "HW monitor Test Fail!!" | tee -a /root/automation/log.txt
-	echo "HW_MONITOR_TEST: FAIL" >> /root/automation/test_results.txt
+	echo "HW monitor Test Fail!!" | tee -a $log_path
+	echo "HW_MONITOR_TEST: FAIL" >> $test_result_path
 fi
 
 rm /root/showIO

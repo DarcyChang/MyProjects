@@ -1,5 +1,7 @@
 #!/bin/bash                                                                                                                                                              
 
+source /root/automation/Library/path.sh
+
 echo "*******************************************************************************"
 echo "Smart POE Test start...."
 echo "*******************************************************************************"
@@ -28,8 +30,8 @@ status4=$(/root/automation/T55_MFG/SmartPoE.sh -e | grep Smart | cut -d " " -f 5
 echo $status4
 
 if [ "$status1" == "Pass!!" ] && [ "$status2" == "Pass!!" ] && [ "$status3" == "Pass!!" ] && [ "$status4" == "Pass!!" ]; then
-    echo "SMART_POE_TEST: PASS" >> /root/automation/test_results.txt
+    echo "SMART_POE_TEST: PASS" >> $test_result_path
 else
-    echo "SMART_POE_TEST: FAIL" >> /root/automation/test_results.txt
+    echo "SMART_POE_TEST: FAIL" >> $test_result_path
 fi
 

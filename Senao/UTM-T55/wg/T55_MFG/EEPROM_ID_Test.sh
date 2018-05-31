@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /root/automation/Library/path.sh
+
 SMBUS=$(i2cdetect -l | grep smbus | cut -c 5)
 PASS=1
 num_list=(0 127 255)
@@ -20,8 +22,8 @@ done
 
 if [ $PASS == "1" ]; then 
     echo EEPROM ID Test Pass!!
-    echo "ID_EEPROM_TEST: PASS" >> /root/automation/test_results.txt
+    echo "ID_EEPROM_TEST: PASS" >> $test_result_path
 else
     echo EEPROM ID Test Fail!!
-    echo "ID_EEPROM_TEST: FAIL: <Result is $result>" >> /root/automation/test_results.txt
+    echo "ID_EEPROM_TEST: FAIL: <Result is $result>" >> $test_result_path
 fi

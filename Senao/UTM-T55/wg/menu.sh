@@ -1,54 +1,54 @@
 #!/bin/bash
 
-VERSION=2.1.0
+source /root/automation/Library/path.sh 
 
+VERSION=2.2.0
 
 function menu(){
-	echo "0. Golden Sample " | tee -a /root/automation/log.txt
-	echo "1. All test items (Default)" | tee -a /root/automation/log.txt
-	echo "2. BOM CHECK" | tee -a /root/automation/log.txt
-	echo "3. RTC TEST" | tee -a /root/automation/log.txt
-	echo "4. TPM TEST" | tee -a /root/automation/log.txt
-	echo "5. HW MONITOR TEST" | tee -a /root/automation/log.txt
-	echo "6. ID EEPROM TEST" | tee -a /root/automation/log.txt
-	echo "7. S/N, OEM S/N, MAC ADDRESS CHECK-ONLY" | tee -a /root/automation/log.txt
-	echo "8. NETWORK TEST" | tee -a /root/automation/log.txt
-	echo "9. MEMORY TEST" | tee -a /root/automation/log.txt
-	echo "10. BURN IN TEST" | tee -a /root/automation/log.txt
+	echo "0. Golden Sample " | tee -a $log_path
+	echo "1. All test items (Default)" | tee -a $log_path
+	echo "2. BOM CHECK" | tee -a $log_path
+	echo "3. RTC TEST" | tee -a $log_path
+	echo "4. TPM TEST" | tee -a $log_path
+	echo "5. HW MONITOR TEST" | tee -a $log_path
+	echo "6. ID EEPROM TEST" | tee -a $log_path
+	echo "7. S/N, OEM S/N, MAC ADDRESS CHECK-ONLY" | tee -a $log_path
+	echo "8. NETWORK TEST" | tee -a $log_path
+	echo "9. MEMORY TEST" | tee -a $log_path
+	echo "10. BURN IN TEST" | tee -a $log_path
 	echo "11. SYSTEM LEDS TEST"
 	echo "12. LAN speed LED check"
 	echo "13. Force to retest all"
-	echo "97. Show Results" | tee -a /root/automation/log.txt
-	echo "98. Delete Flag" | tee -a /root/automation/log.txt
-	echo "99. Cancel" | tee -a /root/automation/log.txt
+	echo "97. Show Results" | tee -a $log_path
+	echo "98. Delete Flag" | tee -a $log_path
+	echo "99. Cancel" | tee -a $log_path
 
-	echo "" | tee -a /root/automation/log.txt
+	echo "" | tee -a $log_path
 	
 }
 
 
-
-echo "" | tee -a /root/automation/log.txt
-echo "###################################" | tee -a /root/automation/log.txt
-echo "###### SENAO RMA IMAGE ############" | tee -a /root/automation/log.txt
-echo "###### Version $VERSION   ############" | tee -a /root/automation/log.txt
-echo "###### Date 2018/05/21 ############" | tee -a /root/automation/log.txt
-echo "###################################" | tee -a /root/automation/log.txt
-echo "" | tee -a /root/automation/log.txt
+echo "" | tee -a $log_path 
+echo "###################################" | tee -a $log_path
+echo "###### SENAO RMA IMAGE ############" | tee -a $log_path
+echo "###### Version $VERSION   ############" | tee -a $log_path
+echo "###### Date 2018/05/21 ############" | tee -a $log_path
+echo "###################################" | tee -a $log_path
+echo "" | tee -a $log_path
 
 menu
 
-device=$(cat /root/automation/config | grep Device | awk '{print $2}')        
-if [ "$device" == "2" ] ; then                                     
-	echo "[SENAO] Golden Sample mode"
-	/root/automation/T55_MFG/set_ip.sh -g                     
-	exit 1        
-else
-	echo "[SENAO] DUT mode"                          
-fi
+#device=$(cat /root/automation/config | grep Device | awk '{print $2}')        
+#if [ "$device" == "2" ] ; then                                     
+#	echo "[SENAO] Golden Sample mode"
+#	/root/automation/T55_MFG/set_ip.sh -g                     
+#	exit 1        
+#else
+#	echo "[SENAO] DUT mode"                          
+#fi
 
 read -p "Please select your test item in 10 seconds :  " -t 10 select
-echo "" | tee -a /root/automation/log.txt
+echo "" | tee -a $log_path
 
 if [ "$select" == "" ] ; then
 	select=1

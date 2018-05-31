@@ -1,6 +1,7 @@
 #! /bin/bash
 
-test_result_path="/root/automation/test_results.txt"
+source /root/automation/Library/path.sh
+
 ERROR=0
 
 
@@ -42,21 +43,21 @@ function network_test_result(){
 function is_etherphy_connection(){
 	link_error=0 # connection
 	port_num=$(ifconfig -a | grep eth | wc -l)
-	echo "[SENAO] Detecting DUT $port_num ports link status." | tee -a /root/automation/log.txt
+	echo "[SENAO] Detecting DUT $port_num ports link status." | tee -a $log_path
 	for ((eid=0; eid<$port_num; eid++))
 	do
 		link_state=$(ethtool eth$eid | grep 'Link detected' | awk '{print $3}')
 		if [ $link_state != "yes" ] ; then
-			echo "[WARNING] DUT port eth$eid link status $link_state" | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt 
+			echo "[WARNING] DUT port eth$eid link status $link_state" | tee -a $log_path | tee -a $test_result_failure_path 
 			link_error=1 # disconnection
 		fi		
 	done
 
-	echo "[SENAO] Detecting Golden sample $port_num ports link status." | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee /tmp/log_tmp_golden.txt
-	golden_link_state=$(grep -c "no" /tmp/log_tmp_golden.txt)
+	echo "[SENAO] Detecting Golden sample $port_num ports link status." | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee $tmp_golden_path
+	golden_link_state=$(grep -c "no" $tmp_golden_path)
 	if [ $golden_link_state -gt 0 ] ; then
-		cat /tmp/log_tmp_golden.txt | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt
+		cat $tmp_golden_path | tee -a $log_path | tee -a $test_result_failure_path
 		link_error=1 # disconnection
 	fi
 
@@ -71,7 +72,7 @@ function is_ping(){
 		echo "[DEBUG] ping 192.168.$eid.2"
 		ping_working=$(ping -c5 192.168.$eid.2 |grep transmitted |awk '{print $4}')
 		if [ $ping_working -eq 0 ] ; then
-			echo "[ERROR] 192.168.$eid.1 ping 192.168.$eid.2 is not working." | tee -a /root/automation/log.txt | tee -a /root/automation/testresults-failure.txt
+			echo "[ERROR] 192.168.$eid.1 ping 192.168.$eid.2 is not working." | tee -a $log_path | tee -a $test_result_failure_path
 			return 1
 		fi
 	done
@@ -80,85 +81,85 @@ function is_ping(){
 
 
 function throughput_tcp(){
-	echo "[SENAO] iPerf Test with Throughput start..." | tee -a /root/automation/log.txt
-	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_tcp.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	echo "[SENAO] iPerf Test with Throughput start..." | tee -a $log_path
+	echo "" | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_tcp.sh" | tee -a $log_path | tee $tmp_golden_path &
 	sleep 2
-	/root/automation/T55_MFG/iperf_test.sh -T 900 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-	tcp=$(grep -c "failed" /tmp/log_tmp.txt)
-	tcp_golden=$(grep -c "failed" /tmp/log_tmp_golden.txt)
+	/root/automation/T55_MFG/iperf_test.sh -T 900 -f | tee -a $log_path | tee $tmp_path
+	tcp=$(grep -c "failed" $tmp_path)
+	tcp_golden=$(grep -c "failed" $tmp_golden_path)
 	echo "[DEBUG] DUT failed count $tcp"
 	echo "[DEBUG] Golden sample failed count $tcp_golden"
 	if [ "$tcp" == "0" ] && [ "$tcp_golden" == "0" ]; then
-	    echo "TCP_Throughput: PASS" >> /root/automation/test_results.txt
+	    echo "TCP_Throughput: PASS" >> $test_result_path
 	elif [ "$tcp" != "0" ] && [ "$tcp_golden" != "0" ]; then 
-    	echo "TCP_Throughput: FAIL: <Both of DUT and Golden sample failed.>" >> /root/automation/test_results.txt
+    	echo "TCP_Throughput: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$tcp" != "0" ] ; then 
-    	echo "TCP_Throughput: FAIL: <DUT failed.>" >> /root/automation/test_results.txt
+    	echo "TCP_Throughput: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$tcp_golden" != "0" ] ; then
-    	echo "TCP_Throughput: FAIL: <Golden sample failed.>" >> /root/automation/test_results.txt
+    	echo "TCP_Throughput: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
 
 function throughput_udp_high(){
-	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a /root/automation/log.txt
-	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_high.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a $log_path
+	echo "" | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_high.sh" | tee -a $log_path | tee $tmp_golden_path &
 	sleep 2
-	/root/automation/T55_MFG/iperf_test.sh -u -T 800 -L 3 -r 1 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-	udp_high=$(grep -c "failed" /tmp/log_tmp.txt)
-	udp_high_golden=$(grep -c "failed" /tmp/log_tmp_golden.txt)
+	/root/automation/T55_MFG/iperf_test.sh -u -T 800 -L 3 -r 1 -f | tee -a $log_path | tee $tmp_path
+	udp_high=$(grep -c "failed" $tmp_path)
+	udp_high_golden=$(grep -c "failed" $tmp_golden_path)
 	echo "[DEBUG] DUT failed count $udp_high"
 	echo "[DEBUG] Golden sample failed count $udp_high_golden"
 	if [ "$udp_high" == "0" ] && [ "$udp_high_golden" == "0" ] ; then
-    	echo "UDP_packet_loss_high_rate: PASS" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_high_rate: PASS" >> $test_result_path
 	elif [ "$udp_high" != "0" ] && [ "$udp_high_golden" != "0" ]; then 
-    	echo "UDP_packet_loss_high_rate: FAIL: <Both of DUT and Golden sample failed.>" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_high_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$udp_high" != "0" ] ; then
-    	echo "UDP_packet_loss_high_rate: FAIL: <DUT failed.>" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_high_rate: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$udp_high_golden" != "0" ] ; then 
-    	echo "UDP_packet_loss_high_rate: FAIL: <Golden sample failed.>" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_high_rate: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
 
 
 function throughput_udp_low(){
-	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a /root/automation/log.txt
-	echo "" | tee -a /root/automation/log.txt
-	sshpass -p readwrite ssh -o ServerAliveInterval=60 -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_low.sh" | tee -a /root/automation/log.txt | tee /tmp/log_tmp_golden.txt &
+	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a $log_path
+	echo "" | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_low.sh" | tee -a $log_path | tee $tmp_golden_path &
 	sleep 2
-	/root/automation/T55_MFG/iperf_test.sh -u -l 64 -b 30 -T 25 -L 3 -r 1 -f | tee -a /root/automation/log.txt | tee /tmp/log_tmp.txt
-	udp_low=$(grep -c "failed" /tmp/log_tmp.txt)
-	udp_low_golden=$(grep -c "failed" /tmp/log_tmp_golden.txt)
+	/root/automation/T55_MFG/iperf_test.sh -u -l 64 -b 30 -T 25 -L 3 -r 1 -f | tee -a $log_path | tee $tmp_path
+	udp_low=$(grep -c "failed" $tmp_path)
+	udp_low_golden=$(grep -c "failed" $tmp_golden_path)
 	echo "[DEBUG] DUT failed count $udp_low"
 	echo "[DEBUG] Golden sample failed count $udp_low_golden"
 	if [ "$udp_low" == "0" ] && [ "$udp_low_golden" == "0" ]; then
-    	echo "UDP_packet_loss_low_rate: PASS" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_low_rate: PASS" >> $test_result_path
 	elif [ "$udp_low" != "0" ] && [ "$udp_low_golden" != "0" ]; then 
-    	echo "UDP_packet_loss_low_rate: FAIL: <Both of DUT and Golden sample failed.>" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_low_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$udp_low" != "0" ] ; then
-    	echo "UDP_packet_loss_low_rate: FAIL: <DUT failed.>" >> /root/automation/test_results.txt
+    	echo "UDP_packet_loss_low_rate: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$udp_low_golden" != "0" ] ; then 
-    	echo "UDP_packet_loss_low_rate: FAIL: <Golden sample failed.>" >> /root/automation/test_results.txt 
+    	echo "UDP_packet_loss_low_rate: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
 
-echo "[SENAO] Setting DUT network configuration." | tee -a /root/automation/log.txt
+echo "[SENAO] Setting DUT network configuration." | tee -a $log_path
 /root/automation/T55_MFG/set_ip.sh
 sleep 3
 
 is_etherphy_connection
 if [ $? -eq 1 ] ; then
-   	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> /root/automation/test_results.txt
+   	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> $test_result_path
 	exit 1	
 fi	
 
 is_ping
 if [ $? -eq 1 ] ; then
-   	echo "NETWORK_TEST: FAIL: <Network is not working.>" >> /root/automation/test_results.txt
+   	echo "NETWORK_TEST: FAIL: <Network is not working.>" >> $test_result_path
 	exit 1	
 fi	
 
@@ -184,7 +185,7 @@ fi
 
 network_test_result
 if [ "$ERROR" == "0" ]; then
-   	echo "NETWORK_TEST: PASS" >> /root/automation/test_results.txt
+   	echo "NETWORK_TEST: PASS" >> $test_result_path
 else
-   	echo "NETWORK_TEST: FAIL" >> /root/automation/test_results.txt
+   	echo "NETWORK_TEST: FAIL" >> $test_result_path
 fi

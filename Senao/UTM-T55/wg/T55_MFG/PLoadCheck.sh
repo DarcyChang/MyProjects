@@ -1,4 +1,7 @@
 #!/bin/bash                                                                                                                                                     
+
+source /root/automation/Library/path.sh
+
 echo "*******************************************************************************"                                                                                   
 echo "POE TEST WITH POWER LOADING start...."
 echo "*******************************************************************************"
@@ -24,10 +27,10 @@ read parameter4
 
 if [ $P1V -ge $parameter1 ] && [ $P1V -le $parameter2 ] && [ $P1C -ge $parameter3 ] && [ $P1W -ge $parameter4 ]; then
     echo Power Load Test Pass!!
-    echo "POE_TEST_WITH_POWER_LOADING: PASS" >> /root/automation/test_results.txt
+    echo "POE_TEST_WITH_POWER_LOADING: PASS" >> $test_result_path
 else
     echo Power Load Test Fail!!
-    echo "POE_TEST_WITH_POWER_LOADING: FAIL" >> /root/automation/test_results.txt
+    echo "POE_TEST_WITH_POWER_LOADING: FAIL" >> $test_result_path
 fi
 
 #rm /root/PLoadResult
