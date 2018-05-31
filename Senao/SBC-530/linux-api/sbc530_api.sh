@@ -1,13 +1,13 @@
 #!/bin/bash 
 
-VERSION=0.1.0
+VERSION=0.1.2
 
 function help() { 
 	echo "usage: sbc530_api.sh <command>"
 	echo ""
 	echo "Following are commands:"
 	echo "		version"
-	echo "			Show SENAO api version."
+	echo "			Show Linux(Ubuntu) api version."
 	echo ""
 	echo "		cpu"
 	echo "			Show CPU information."
@@ -70,10 +70,10 @@ function wdt() {
 	if [[ -z "$1" ]] ; then
 		echo "$(cat /sys/devices/platform/nct6775.512/wdt/timer) seconds"
 	elif [[ "$1" == "0" ]] ; then
-		echo "[SENAO] watchdog disable"
+		echo "watchdog disable"
 		echo 0 > /sys/devices/platform/nct6775.512/wdt/enable
 	elif [[ "$1" -gt 0 ]] && [[ "$1" -le 255 ]]; then
-		echo "[SENAO] watchdog set $1 seconds"	
+		echo "watchdog set $1 seconds"	
 		echo 1 > /sys/devices/platform/nct6775.512/wdt/enable
 		echo $1 > /sys/devices/platform/nct6775.512/wdt/timer
 	else
@@ -85,7 +85,7 @@ function wdt() {
 
 
 function gpio() {
-#	echo "[DEBUG] $1 $2"
+#	echo "$1 $2"
 	if [[ "$1" == "io"  ]] ; then	
 		if [[ -z "$2" ]] ; then
 			cat /sys/devices/platform/nct6775.512/gpio/io4
@@ -106,7 +106,7 @@ function gpio() {
 
 
 function smbus() {
-#	echo "[DEBUG] $1 $2 $3"
+#	echo "$1 $2 $3"
 	
 	if [ -z "$1" ] || [ -z "$2" ] ; then
 		echo "sbc530_api.sh smbus <dev 0x0-0x7f> <reg 0x0-0xff> [data 0x0-0xff]"
@@ -136,7 +136,7 @@ function hw_monitor() {
 
 
 function brightness() {
-#	echo "[DEBUG] $1 $2"
+#	echo "$1 $2"
 	if [[ -z "$1" ]] ; then
 		temp1=$(xrandr --verbose | grep -A 6 "HDMI-1" | grep "Brightness" | cut -f2 -d ' ')
 		temp2=$(xrandr --verbose | grep -A 6 "HDMI-2" | grep "Brightness" | cut -f2 -d ' ')
@@ -157,7 +157,7 @@ function brightness() {
 	
 	if [ $(echo $1/1|bc) == "$1" ] && [ $1 -ge 0 ]  && [ $1 -le 100 ] ; then
 		value=$(echo "scale=2; $1/100" | bc)
-#		echo "[DEBUG] value $value"
+#		echo "value $value"
 		if [[ -z "$2" ]] ; then
 			monitor=$(xrandr --current | grep " connected" | grep -v "eDP-1" | awk '{print $1}' | head -n 1)
 			xrandr --output $monitor --brightness $value
@@ -172,7 +172,7 @@ function brightness() {
 
 
 function backlight() {
-#	echo "[DEBUG] $1"
+#	echo "$1"
 	if [[ -z "$1" ]] ; then
 		temp=$(cat /sys/class/backlight/intel_backlight/actual_brightness)
 		value=$(echo "$temp / 960" | bc)
@@ -181,7 +181,7 @@ function backlight() {
 	fi
 	if [ $(echo $1/1|bc) == "$1" ] && [ $1 -ge 0 ]  && [ $1 -le 100 ] ; then
 		value=$(echo "$1 * 960" | bc)
-#		echo "[DEBUG] value $value"
+#		echo "value $value"
 		echo $value > /sys/class/backlight/intel_backlight/brightness
 	else
 		echo "[ERROR] Unknown parameter"
