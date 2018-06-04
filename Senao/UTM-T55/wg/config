@@ -1,13 +1,15 @@
 # T55 diagnostic tool parameters
 
-# 1 is DUT, 2 is Golden Sample
 [Mode]
+# 1 is DUT, 2 is Golden Sample
 Device: 1
 
 [Memory]
-Memory Test loop number: 12
+# This test item must speed time over 4 hours.
+Memory Test loop number: 10
 
 [Burn-in]
+# 8 hours = 28800 seconds
 burn-in time(seconds): 28800
 
 [Path]

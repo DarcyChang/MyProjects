@@ -1,7 +1,7 @@
 #!/bin/bash
 #Objective:Automatic Google stress
 #Author:Darcy Chang
-#Date:2018/05/21
+#Date:2018/06/01
 
 source /root/automation/Library/path.sh
 
@@ -97,7 +97,12 @@ function show_stat() {
     min=`echo "( $remain_time % 3600 ) / 60 " | bc`
     sec=`echo "( $remain_time % 3600 ) % 60 " | bc`
 
-    printf "%02d:%02d:%02d ${cpu_stat_msg} ${mem_stat_msg} ${eth_stat_msg}\n" $hour $min $sec
+#    printf "%02d:%02d:%02d ${cpu_stat_msg} ${mem_stat_msg} ${eth_stat_msg}\n" $hour $min $sec
+	if [ $dut_id == "1" ] ; then
+		printf "[GS] %02d:%02d:%02d ${cpu_stat_msg} ${mem_stat_msg} ${eth_stat_msg}\n" $hour $min $sec
+	else                                                                   
+		printf "[DUT] %02d:%02d:%02d ${cpu_stat_msg} ${mem_stat_msg} ${eth_stat_msg}\n" $hour $min $sec
+	fi
 }
 
 # 2 USB + 1 MSATA
@@ -168,6 +173,7 @@ do
     shift
     ;;
     -i)
+	# DUT = 2, GOLDEN = 1
     dut_id="$2"
     shift
     ;;
@@ -236,11 +242,11 @@ fi
 
 
 if [ "$no_iperf" == "0" ]; then
-    if [ "$dut_id" == "1" ]; then
+    if [ "$dut_id" == "1" ]; then # Golden Sample
         iperf_arg="$iperf_arg -g"
     fi
+#	echo "[DEBUG] /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e $eid_list -a -P $tcp_parallels -f" | tee -a $log_path
     /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -f
-#	echo "[SENAO] Golden Sample /root/automation/T55_MFG/iperf_test.sh $iperf_arg -e $eid_list -a -P $tcp_parallels -f" | tee -a $log_path
 fi
 
 cpu_stat_interval=1
@@ -305,7 +311,7 @@ do
             res_file=/tmp/stress_res
             /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &
 #			echo "[DEBUG] $stress_arg"
-			echo "[DEBUG] /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &"
+#			echo "[DEBUG] /root/automation/T55_MFG/stressapptest $stress_arg -s $stress_time > $res_file &"
             sleep 3
             stress_running=1
             while [ "$stress_running" != "0" ]
@@ -382,7 +388,7 @@ if [ "$no_iperf" == "0" ]; then
     do
         average_rx_rate=`echo "${eth_rx_rate_sum[$eth_idx]} / $eth_rate_count" | bc`
         average_tx_rate=`echo "${eth_tx_rate_sum[$eth_idx]} / $eth_rate_count" | bc`
-	 is_vlan_eth=`echo ${eth_name[$eth_idx]} | grep -c '\.'`
+		is_vlan_eth=`echo ${eth_name[$eth_idx]} | grep -c '\.'`
         if [ "$is_vlan_eth" == "0" ]; then
             rate_min=$nic_rate_min
             total_rx_rate=`expr $total_rx_rate + $average_rx_rate`

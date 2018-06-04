@@ -2,7 +2,7 @@
 
 source /root/automation/Library/path.sh 
 
-VERSION=2.2.0
+VERSION=2.3.0
 
 function menu(){
 	echo "0. Golden Sample " | tee -a $log_path
