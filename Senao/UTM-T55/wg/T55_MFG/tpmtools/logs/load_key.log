@@ -1,0 +1,132 @@
+
+<<<start>>>
+ beginning Load KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+	INFO : Load SRK sucessed!
+	INFO : Data read back form nvram is len=>16<, data='(nil)'
+	INFO : Data read back form nvram is len=>16<, data='0x1f9d770'
+00000000  1d 35 89 fa 35 f6 11 e7 83 c2 89 49 5e 0f ae a5   5  5      I^   
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=1d3589fa-35f6-11e7-83c2-89495e0faea5
+	INFO : Data read back form nvram is len=>16<, data='0x1f9d770'
+	INFO : Data read back form nvram is len=>16<, data='0x1f9ec00'
+00000000  1d 35 89 fb 35 f6 11 e7 83 c2 89 49 5e 0f ae a5   5  5      I^   
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=1d3589fb-35f6-11e7-83c2-89495e0faea5
+	INFO : Loading K1...
+	INFO : Load UserK1 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Loading K2...
+	INFO : Load UserK2 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	SUCCESS :  Load KEY  returned (0) TSS_SUCCESS
+Cleaning up Load KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Load KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+	INFO : Load SRK sucessed!
+	INFO : Data read back form nvram is len=>16<, data='(nil)'
+	INFO : Data read back form nvram is len=>16<, data='0x1841680'
+00000000  d9 02 19 ec 35 f5 11 e7 bf 30 d7 be 78 0f b8 23      5    0  x  #
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=d90219ec-35f5-11e7-bf30-d7be780fb823
+	INFO : Data read back form nvram is len=>16<, data='0x1841680'
+	INFO : Data read back form nvram is len=>16<, data='0x1841aa0'
+00000000  d9 02 19 ed 35 f5 11 e7 bf 30 d7 be 78 0f b8 23      5    0  x  #
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=d90219ed-35f5-11e7-bf30-d7be780fb823
+	INFO : Loading K1...
+	INFO : Load UserK1 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Loading K2...
+	INFO : Load UserK2 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	SUCCESS :  Load KEY  returned (0) TSS_SUCCESS
+Cleaning up Load KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Load KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+	INFO : Load SRK sucessed!
+	INFO : Data read back form nvram is len=>16<, data='(nil)'
+	INFO : Data read back form nvram is len=>16<, data='0x7bc350'
+00000000  dc ff 2d 78 35 f5 11 e7 92 c6 8d 99 4f b5 be 16    -x5       O   
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=dcff2d78-35f5-11e7-92c6-8d994fb5be16
+	INFO : Data read back form nvram is len=>16<, data='0x7bc350'
+	INFO : Data read back form nvram is len=>16<, data='0x7ba500'
+00000000  dc ff 2d 79 35 f5 11 e7 92 c6 8d 99 4f b5 be 16    -y5       O   
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=dcff2d79-35f5-11e7-92c6-8d994fb5be16
+	INFO : Loading K1...
+	INFO : Load UserK1 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Loading K2...
+	INFO : Load UserK2 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	SUCCESS :  Load KEY  returned (0) TSS_SUCCESS
+Cleaning up Load KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Load KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+	INFO : Load SRK sucessed!
+	INFO : Data read back form nvram is len=>16<, data='(nil)'
+	INFO : Data read back form nvram is len=>16<, data='0x11ca1e0'
+00000000  dc e1 8c 8c 35 f5 11 e7 87 ca b3 cb ba 61 f5 d7      5        a  
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=dce18c8c-35f5-11e7-87ca-b3cbba61f5d7
+	INFO : Data read back form nvram is len=>16<, data='0x11ca1e0'
+	INFO : Data read back form nvram is len=>16<, data='0x11cc0f0'
+00000000  dc e1 8c 8d 35 f5 11 e7 87 ca b3 cb ba 61 f5 d7      5        a  
+	SUCCESS :  nvread_space  returned (0) TSS_SUCCESS
+generate uuid=dce18c8d-35f5-11e7-87ca-b3cbba61f5d7
+	INFO : Loading K1...
+	INFO : Load UserK1 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Loading K2...
+	INFO : Load UserK2 sucessed!
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	SUCCESS :  Load KEY  returned (0) TSS_SUCCESS
+Cleaning up Load KEY
+<<<end>>>

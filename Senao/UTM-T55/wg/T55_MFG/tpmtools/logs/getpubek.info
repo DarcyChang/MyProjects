@@ -1,0 +1,408 @@
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success
+Tspi_Context_Create success
+Tspi_Context_Connect success
+Tspi_Context_GetTpmObject success
+Public PubEk access blocked, owner password required
+Tspi_GetPolicyObject success
+Tspi_Policy_SetSecret success
+Tspi_TPM_GetPubEndorsementKey success
+Public Endorsement Key:
+Tspi_GetAttribData success
+  Version:   01010000
+Tspi_GetAttribUint32 success
+  Usage:     0x0002 (Unknown)
+Tspi_GetAttribUint32 success
+  Flags:     0x00000000 (!VOLATILE, !MIGRATABLE, !REDIRECTION)
+Tspi_GetAttribUint32 success
+  AuthUsage: 0x00 (Never)
+Tspi_GetAttribUint32 success
+  Algorithm:         0x00000020 (Unknown)
+Tspi_GetAttribUint32 success
+  Encryption Scheme: 0x00000012 (Unknown)
+Tspi_GetAttribUint32 success
+  Signature Scheme:  0x00000010 (Unknown)
+Tspi_GetAttribData success
+  Public Key:
+	f5d66064 4e48dbae a3aa6afd 20295969 de6ff7f0 c9053395 1ee51c87 2e319eb7
+	9711936c 50f75851 18bab24d 5b29e1d6 9ec760c2 98809327 eaf86751 800f1fb8
+	9d29ae3d 1db1c819 ef23e740 a54ab72a 54bc650d 11183001 bac434b0 94ddd823
+	451cdca2 26a946e4 b7541208 1e0a3934 eab24640 33f12fe8 5e9774f3 350b4cd7
+	7980c9e2 ae649187 455b7fad d286acb3 c6f53b70 1650fa7e 063d915b ed881c14
+	3b27a195 e2dea2d9 09a2556d 3213c8e4 a8e83268 e967f18d 2bf2ab18 6d54d464
+	b4f7b14f a9b500cf 49670636 5a4c42eb 4914a255 ab660f85 e0a8d471 9b996462
+	192c8093 bfcf3ae2 bf015957 f099fe0a a03947ff 8046fd51 cf825583 31926bbf
+tpm_getpubek succeeded
+Tspi_Context_FreeMemory success
+Tspi_Context_Close success

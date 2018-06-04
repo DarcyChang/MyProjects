@@ -1,0 +1,26 @@
+
+Pre-requisites for ODM's MfgOS:
+ - system should have valid WG serial installed before using the TPM tools
+ - ODM's MfgOS system should be NOT be using the mSATA device beyond offset 15G.
+   - Partition table should not be using sector 30000000 or beyond.
+ - All Winthrop units have a 16GB boot flash (And not a 64 GB one)
+ - All T55* units have a 16GB boot flash
+ - Do not boot with USB connected (Ignore)
+   - Talor Verified: It does not matter MFG OS os booted from USB or mSATA.
+ - TPM should be cleared from BIOS if a unit was used with previous version of tpmtools.
+ - Use the same mSATA used during manufacturing. DO NOT switch it with an other one. // mSATA is where we store keys
+ - tcsd should be configured to re-spawn if killed or dead.
+   - Lanner's MfgOS is not a init-bases system. Work around provided in
+      verify_tpm_keys.sh to launch tcsd with a Flag '--workaround' or '-w'.
+
+Lanner MfgOS Checks:
+ - The Lanner's MfgOS partitons does not use sector(512) 3000000 or beyond. // VERIFIED
+
+Senao MfgOS Checks:
+ - The Senoa's MfgOS partitons does not use sector(512) 3000000 or beyond. // VERIFIED
+
+WG Internal Notes:
+  Presumptions:
+   - USB device will NOT be detected as '/dev/sda' during production when manufacturing is using thier owm OS
+        
+	 

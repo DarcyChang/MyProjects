@@ -1,0 +1,9 @@
+What is this?
+	TPM manufacturing tools for Winthrop
+	Added support for storing UUID in TPM's nvram
+	Add support to store system.data to /dev/sda (unpartitioned location) - limited to Intel platforms
+	Add login to allow the user to run the scripts only once.
+	Fix the .sh files to support Senao ENV
+
+Date		: Wed Jun  8 09:30:43 PDT 2017
+release version	: 0.7

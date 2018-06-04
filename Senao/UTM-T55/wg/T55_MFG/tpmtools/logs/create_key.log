@@ -1,0 +1,92 @@
+
+<<<start>>>
+ beginning Create KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+generate uuid_k1=1d3589fa-35f6-11e7-83c2-89495e0faea5
+generate uuid_k2=1d3589fb-35f6-11e7-83c2-89495e0faea5
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	INFO : Create UserK1 and register it to disk.
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Create and register K1 successed!
+	INFO : Create UserK2 and register it to disk.
+	INFO : Create and register K2 successed!
+	SUCCESS :  Create KEY  returned (0) TSS_SUCCESS
+Cleaning up Create KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Create KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+generate uuid_k1=d90219ec-35f5-11e7-bf30-d7be780fb823
+generate uuid_k2=d90219ed-35f5-11e7-bf30-d7be780fb823
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	INFO : Create UserK1 and register it to disk.
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Create and register K1 successed!
+	INFO : Create UserK2 and register it to disk.
+	INFO : Create and register K2 successed!
+	SUCCESS :  Create KEY  returned (0) TSS_SUCCESS
+Cleaning up Create KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Create KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+generate uuid_k1=dcff2d78-35f5-11e7-92c6-8d994fb5be16
+generate uuid_k2=dcff2d79-35f5-11e7-92c6-8d994fb5be16
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	INFO : Create UserK1 and register it to disk.
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Create and register K1 successed!
+	INFO : Create UserK2 and register it to disk.
+	INFO : Create and register K2 successed!
+	SUCCESS :  Create KEY  returned (0) TSS_SUCCESS
+Cleaning up Create KEY
+<<<end>>>
+
+<<<start>>>
+ beginning Create KEY
+	INFO : KEY structure:
+SRK
+|__UserK1(Storage key, unmigratable)
+|__UserK2(Signing key, unmigratable)
+
+generate uuid_k1=dce18c8c-35f5-11e7-87ca-b3cbba61f5d7
+generate uuid_k2=dce18c8d-35f5-11e7-87ca-b3cbba61f5d7
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	SUCCESS :  nvwrite_space  returned (0) TSS_SUCCESS
+	INFO : Create UserK1 and register it to disk.
+	INFO : OK: Tspi_GetPubKey stage3, result=:0: Success
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : dump:1: result=0
+	INFO : Create and register K1 successed!
+	INFO : Create UserK2 and register it to disk.
+	INFO : Create and register K2 successed!
+	SUCCESS :  Create KEY  returned (0) TSS_SUCCESS
+Cleaning up Create KEY
+<<<end>>>

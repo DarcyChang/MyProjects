@@ -1,0 +1,40 @@
+storing
+model = T55-W
+model = T55-W
+model = T55-W
+blockmedia: config_update
+blockmedia: read_paramblock
+lseek to sec.loc=30000000, sector size (512)
+lseek to byte.loc=15360000000
+model = T55-W
+store complete: systemdata_payload read OK, lenght:5844
+storing
+model = T55-W
+model = T55-W
+model = T55-W
+blockmedia: config_update
+blockmedia: read_paramblock
+lseek to sec.loc=30000000, sector size (512)
+lseek to byte.loc=15360000000
+model = T55-W
+store complete: systemdata_payload read OK, lenght:6144
+storing
+model = T55-W
+model = T55-W
+model = T55-W
+blockmedia: config_update
+blockmedia: read_paramblock
+lseek to sec.loc=30000000, sector size (512)
+lseek to byte.loc=15360000000
+model = T55-W
+store complete: systemdata_payload read OK, lenght:6144
+storing
+model = T55-W
+model = T55-W
+model = T55-W
+blockmedia: config_update
+blockmedia: read_paramblock
+lseek to sec.loc=30000000, sector size (512)
+lseek to byte.loc=15360000000
+model = T55-W
+store complete: systemdata_payload read OK, lenght:6144
