@@ -121,7 +121,8 @@ function show_stat() {
 no_iperf=0
 no_stress=0
 no_disk_test=0
-time=$(cat /root/automation/T55_MFG/mfg_version | grep "burn-in time(seconds)" | awk '{print $3}')
+#time=$(cat /root/automation/T55_MFG/mfg_version | grep "burn-in time(seconds)" | awk '{print $3}')
+time=7200
 dut_id=2 # DUT = 2, GOLDEN = 1
 core_num=2
 eth_num=5

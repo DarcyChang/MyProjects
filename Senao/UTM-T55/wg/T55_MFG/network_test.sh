@@ -1,8 +1,30 @@
 #! /bin/bash
 
-source /root/automation/Library/path.sh
+#source /root/automation/Library/path.sh
+test_result_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_path" | awk '{print $2}')
+test_result_failure_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_failure_path" | awk '{print $2}')
+all_test_done_path=$(cat /root/automation/T55_MFG/mfg_version | grep "all_test_done_path" | awk '{print $2}')
+network_fail_path=$(cat /root/automation/T55_MFG/mfg_version | grep "network_fail_path" | awk '{print $2}')
+memory_stress_test_path=$(cat /root/automation/T55_MFG/mfg_version | grep "memory_stress_test_path" | awk '{print $2}')
+log_backup_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_backup_path" | awk '{print $2}')
+log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{print $2}')
+time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
+tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
+tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 
 ERROR=0
+
+
+function network_retry() {
+	if [ ! -f $network_fail_path ] ; then
+		echo "1" > $network_fail_path
+	else
+        fail_time=$(cat $network_fail_path)
+        fail_time=`expr $fail_time + 1`
+        echo "[SENAO] Network test fail $fail_time times"
+        echo "$fail_time" > $network_fail_path
+	fi
+}
 
 
 function is_test_result_exist() {
@@ -36,7 +58,7 @@ function network_test_result(){
 	if [ "$tmp01" != "PASS" ] || [ "$tmp02" != "PASS" ] || [ "$tmp03" != "PASS" ] ; then
 		ERROR=1
 	fi
-	echo "[DEBUG] ERROR number $ERROR"
+#	echo "[DEBUG] ERROR number $ERROR"
 }
 
 
@@ -154,12 +176,14 @@ sleep 3
 is_etherphy_connection
 if [ $? -eq 1 ] ; then
    	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> $test_result_path
+	network_retry
 	exit 1	
 fi	
 
 is_ping
 if [ $? -eq 1 ] ; then
    	echo "NETWORK_TEST: FAIL: <Network is not working.>" >> $test_result_path
+	network_retry
 	exit 1	
 fi	
 
@@ -186,6 +210,8 @@ fi
 network_test_result
 if [ "$ERROR" == "0" ]; then
    	echo "NETWORK_TEST: PASS" >> $test_result_path
+	rm $network_fail_path 2> /dev/null 
 else
    	echo "NETWORK_TEST: FAIL" >> $test_result_path
+	network_retry
 fi

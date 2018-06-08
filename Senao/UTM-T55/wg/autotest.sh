@@ -1,6 +1,17 @@
 #!/bin/bash
 
-source /root/automation/Library/path.sh
+#source /root/automation/Library/path.sh
+test_result_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_path" | awk '{print $2}')
+test_result_failure_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_failure_path" | awk '{print $2}')
+all_test_done_path=$(cat /root/automation/T55_MFG/mfg_version | grep "all_test_done_path" | awk '{print $2}')
+network_fail_path=$(cat /root/automation/T55_MFG/mfg_version | grep "network_fail_path" | awk '{print $2}')
+memory_stress_test_path=$(cat /root/automation/T55_MFG/mfg_version | grep "memory_stress_test_path" | awk '{print $2}')
+log_backup_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_backup_path" | awk '{print $2}')
+log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{print $2}')
+time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
+tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
+tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
+
 
 function help() {
 	echo "usage: autotest.sh <command>"
@@ -28,7 +39,7 @@ function fetch-results() {
 	if [ -f $test_result_path ];then
 		cat $test_result_path
 		echo ""
-		cat $test_result_failure_path
+		cat $test_result_failure_path 2> /dev/null
 		exit 0
 	else
 		echo "No test results!"	
@@ -45,12 +56,13 @@ function del-flag() {
 	
 	dir=$(date +%Y%m%d%H%M%S)
 	mkdir $log_backup_path/$dir
-	mv $test_result_path $log_backup_path/$dir
-	mv $test_result_failure_path $log_backup_path/$dir
-	mv $all_test_done_path $log_backup_path/$dir
-	mv $memory_stress_test_path $log_backup_path/$dir
-	mv $log_path $log_backup_path/$dir
-	mv $time_path $log_backup_path/$dir
+	mv $test_result_path $log_backup_path/$dir 2> /dev/null
+	mv $test_result_failure_path $log_backup_path/$dir 2> /dev/null
+	mv $all_test_done_path $log_backup_path/$dir 2> /dev/null
+	mv $memory_stress_test_path $log_backup_path/$dir 2> /dev/null
+	mv $log_path $log_backup_path/$dir 2> /dev/null
+	mv $time_path $log_backup_path/$dir 2> /dev/null
+	mv $network_fail_path $log_backup_path/$dir 2> /dev/null
 }
 
 
@@ -179,12 +191,23 @@ function all() {
 }
 
 
+if [ ! -d "/etc/wg/log/diag" ] ; then
+    mkdir /etc/wg/log/diag
+fi
 
 if [ $# -eq 1 ];then
 	case $1 in
 		"all")
 			if [ -f $all_test_done_path ];then
 				echo "[SENAO] ALL TEST DONE!"
+				if [ -f $network_fail_path ] ; then
+        			fail_time=$(cat $network_fail_path)
+					if [[ $fail_time -lt 3 ]] ; then
+						/root/automation/T55_MFG/network_test.sh
+					else
+				        echo "[SENAO] Fail $fail_time times"
+					fi
+				fi
 				exit 0
 			fi
 			all

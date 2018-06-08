@@ -1,8 +1,18 @@
 #!/bin/bash
 
-source /root/automation/Library/path.sh 
+#source /root/automation/Library/path.sh 
+test_result_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_path" | awk '{print $2}')
+test_result_failure_path=$(cat /root/automation/T55_MFG/mfg_version | grep "test_result_failure_path" | awk '{print $2}')
+all_test_done_path=$(cat /root/automation/T55_MFG/mfg_version | grep "all_test_done_path" | awk '{print $2}')
+memory_stress_test_path=$(cat /root/automation/T55_MFG/mfg_version | grep "memory_stress_test_path" | awk '{print $2}')
+log_backup_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_backup_path" | awk '{print $2}')
+log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{print $2}')
+time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
+tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
+tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 
-VERSION=2.3.0
+VERSION=2.4.1
+DATE=2018/06/07
 
 function menu(){
 	echo "0. Golden Sample " | tee -a $log_path
@@ -28,39 +38,43 @@ function menu(){
 }
 
 
+if [ ! -d "/etc/wg/log/diag" ] ; then
+    mkdir /etc/wg/log/diag
+fi
+
 echo "" | tee -a $log_path 
 echo "###################################" | tee -a $log_path
 echo "###### SENAO RMA IMAGE ############" | tee -a $log_path
 echo "###### Version $VERSION   ############" | tee -a $log_path
-echo "###### Date 2018/05/21 ############" | tee -a $log_path
+echo "###### Date $DATE ############" | tee -a $log_path
 echo "###################################" | tee -a $log_path
 echo "" | tee -a $log_path
 
-menu
+device=$(cat /root/automation/T55_MFG/mfg_version | grep "Device Mode" | awk '{print $3}') 
 
-#device=$(cat /root/automation/config | grep Device | awk '{print $2}')        
-#if [ "$device" == "2" ] ; then                                     
-#	echo "[SENAO] Golden Sample mode"
-#	/root/automation/T55_MFG/set_ip.sh -g                     
-#	exit 1        
-#else
-#	echo "[SENAO] DUT mode"                          
-#fi
+menu
 
 read -p "Please select your test item in 10 seconds :  " -t 10 select
 echo "" | tee -a $log_path
 
 if [ "$select" == "" ] ; then
-	select=1
+	if [ "$device" == "2" ] ; then
+		select=0
+	else
+		select=1
+	fi
 fi
 
 case $select in 
 	"0")
 		echo "[SENAO] Be a golden sample."
+		sed -i '/Device Mode:/s/1/2/g' /root/automation/T55_MFG/mfg_version
 		/root/automation/T55_MFG/set_ip.sh -g
 		;;
 	"1")
+		echo "[SENAO] DUT mode"                          
 		echo "[SENAO] You select All test items."
+		sed -i '/Device Mode:/s/2/1/g' /root/automation/T55_MFG/mfg_version
 		/root/automation/autotest.sh all
 		;;
 	"2")
@@ -109,6 +123,8 @@ case $select in
 		;;
 	"13")
 		echo "[SENAO] You select item $select"
+		echo "[SENAO] DUT mode"                          
+		sed -i '/Device Mode:/s/2/1/g' /root/automation/T55_MFG/mfg_version
 		/root/automation/autotest.sh del-flag
 		/root/automation/autotest.sh all
 		;;
