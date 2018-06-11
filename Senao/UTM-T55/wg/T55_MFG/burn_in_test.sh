@@ -22,6 +22,7 @@ fi
 echo "BURN_IN_TEST: FAIL: Burn-in test not terminated normally." >> $test_result_path
 sleep 1
 sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/burn_in_test_golden.sh" | tee -a $log_path | tee $tmp_golden_path &
+sleep 1
 /root/automation/T55_MFG/stress.sh | tee -a $log_path | tee $tmp_path 
 sleep 2
 stress_cpu=$( cat $tmp_path | grep "Status:" | awk '{print $3}' )
@@ -36,8 +37,6 @@ fi
 if [ "$stress_iperf" == "[pass]" ]; then
 	echo "BURN_IN_TEST: PASS: iperf pass" >> $test_result_path
 else
-#	eid_list="0 1 2 3 4"
-#	for eid in $eid_list;
     port_num=$(ifconfig -a | grep eth | wc -l)                                                                                                                           
     for ((eid=0; eid<$port_num; eid++))
 	do

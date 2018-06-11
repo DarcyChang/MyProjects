@@ -11,8 +11,8 @@ time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 
-VERSION=2.4.1
-DATE=2018/06/07
+VERSION=2.5.0
+DATE=2018/06/11
 
 function menu(){
 	echo "0. Golden Sample " | tee -a $log_path
