@@ -105,8 +105,12 @@ function is_ping(){
 function throughput_tcp(){
 	echo "[SENAO] iPerf Test with Throughput start..." | tee -a $log_path
 	echo "" | tee -a $log_path
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_tcp.sh" | tee -a $log_path | tee $tmp_golden_path &
-	sleep 2
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
+	/root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
+	sleep 1
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_test.sh -g -T 900 -f" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
 	/root/automation/T55_MFG/iperf_test.sh -T 900 -f | tee -a $log_path | tee $tmp_path
 	tcp=$(grep -c "failed" $tmp_path)
 	tcp_golden=$(grep -c "failed" $tmp_golden_path)
@@ -127,8 +131,12 @@ function throughput_tcp(){
 function throughput_udp_high(){
 	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a $log_path
 	echo "" | tee -a $log_path
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_high.sh" | tee -a $log_path | tee $tmp_golden_path &
-	sleep 2
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
+	/root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
+	sleep 1
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_test.sh -g -u -T 800 -L 3 -r 1 -f" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
 	/root/automation/T55_MFG/iperf_test.sh -u -T 800 -L 3 -r 1 -f | tee -a $log_path | tee $tmp_path
 	udp_high=$(grep -c "failed" $tmp_path)
 	udp_high_golden=$(grep -c "failed" $tmp_golden_path)
@@ -150,8 +158,12 @@ function throughput_udp_high(){
 function throughput_udp_low(){
 	echo "[SENAO] iPerf Test with Packet loss start..." | tee -a $log_path
 	echo "" | tee -a $log_path
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/network_test_golden_udp_low.sh" | tee -a $log_path | tee $tmp_golden_path &
-	sleep 2
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
+	/root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
+	sleep 1
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "root/automation/T55_MFG/iperf_test.sh -g -u -l 64 -b 30 -T 25 -L 3 -r 1 -f" | tee -a $log_path | tee $tmp_golden_path &
+	sleep 1
 	/root/automation/T55_MFG/iperf_test.sh -u -l 64 -b 30 -T 25 -L 3 -r 1 -f | tee -a $log_path | tee $tmp_path
 	udp_low=$(grep -c "failed" $tmp_path)
 	udp_low_golden=$(grep -c "failed" $tmp_golden_path)
@@ -210,7 +222,7 @@ fi
 network_test_result
 if [ "$ERROR" == "0" ]; then
    	echo "NETWORK_TEST: PASS" >> $test_result_path
-	rm $network_fail_path 2> /dev/null 
+#	rm $network_fail_path 2> /dev/null 
 else
    	echo "NETWORK_TEST: FAIL" >> $test_result_path
 	network_retry

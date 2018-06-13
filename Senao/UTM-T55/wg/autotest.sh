@@ -50,7 +50,7 @@ function fetch-results() {
 
 function del-flag() {
 	if [ ! -d "$log_backup_path" ]; then
-    	echo "Directory $log_backup_path does not exists. Creating it."
+    	echo "[SENAO] Directory $log_backup_path does not exists. Creating it."
 		mkdir $log_backup_path
 	fi
 	

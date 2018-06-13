@@ -21,7 +21,11 @@ fi
 
 echo "BURN_IN_TEST: FAIL: Burn-in test not terminated normally." >> $test_result_path
 sleep 1
-sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/burn_in_test_golden.sh" | tee -a $log_path | tee $tmp_golden_path &
+sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
+sleep 1
+/root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
+sleep 1
+sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/stress_iperf.sh" | tee -a $log_path | tee $tmp_golden_path &
 sleep 1
 /root/automation/T55_MFG/stress.sh | tee -a $log_path | tee $tmp_path 
 sleep 2
