@@ -5,32 +5,34 @@
 # or
 # ./exec_shc.sh your_dir_name
 #
-# version 1.0.1
+# version 1.1.0
+
+usb_dir=$(ls /media/darcy/)
 
 files[0]=autotest.sh
 files[1]=menu.sh 
 #files[2]=
 files[3]=Library/path.sh
 files[4]=T55_MFG/bom_check.sh 
-files[5]=T55_MFG/burn_in_test_golden.sh
+files[5]=T55_MFG/memory_test.bak.sh
 files[6]=T55_MFG/burn_in_test.sh
 files[7]=T55_MFG/button_test.sh
 files[8]=T55_MFG/checkhw.sh
 files[9]=T55_MFG/do_upg
 files[10]=T55_MFG/EEPROM_ID_Test.sh
 files[11]=T55_MFG/golden_networking.sh
-#files[12]=T55_MFG/hwconfig
+files[12]=T55_MFG/iperf_server.sh
 files[13]=T55_MFG/hwinfo.sh
 files[14]=T55_MFG/img_copy
 files[15]=T55_MFG/iperf_test.sh
 files[16]=T55_MFG/LanLEDTest.sh
 files[17]=T55_MFG/memory_test.sh
 files[18]=T55_MFG/mem_size_check.sh
-#files[19]=T55_MFG/
+files[19]=T55_MFG/stress_iperf.sh
 files[20]=T55_MFG/msata_fw_check.sh
-files[21]=T55_MFG/network_test_golden_tcp.sh
-files[22]=T55_MFG/network_test_golden_udp_high.sh
-files[23]=T55_MFG/network_test_golden_udp_low.sh
+#files[21]=T55_MFG/network_test_golden_tcp.sh
+#files[22]=T55_MFG/network_test_golden_udp_high.sh
+#files[23]=T55_MFG/network_test_golden_udp_low.sh
 files[24]=T55_MFG/network_test.sh
 files[25]=T55_MFG/PLoadCheck.sh
 files[26]=T55_MFG/rtc_battery_test.sh
@@ -80,12 +82,16 @@ do
 	mv $dir_name/$name.x $dir_name/$name
 done
  
-tar -czvf diag.tar.gz automation diag_tools
+rm -rf /media/darcy/$usb_dir/automation
+rm -rf /media/darcy/$usb_dir/automation_WG_v2.7.0/wg
+cp -rf automation /media/darcy/$usb_dir/
+cp -rf wg /media/darcy/$usb_dir/automation_WG_v2.7.0/
 
-cp diag_install.sh /media/darcy/16G/
-cp diag.tar.gz /media/darcy/16G/
-rm -rf /media/darcy/16G/automation
-rm -rf /media/darcy/16G/automation_WG_v2.4.0/wg
-cp -rf automation /media/darcy/16G/
-cp -rf wg /media/darcy/16G/automation_WG_v2.4.0/
-cp diag_install_bak.sh diag_install.sh
+rm automation/T55_MFG/memory_test.sh
+rm automation/T55_MFG/stress.sh
+mv automation/T55_MFG/memory_test.bak.sh automation/T55_MFG/memory_test.sh
+
+tar -czvf diag.tar.gz automation diag_tools
+cp diag_install.sh /media/darcy/$usb_dir/
+cp diag.tar.gz /media/darcy/$usb_dir/
+
