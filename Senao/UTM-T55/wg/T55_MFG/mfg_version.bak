@@ -1,0 +1,27 @@
+[Diagnostic tool]
+VERSION: 2.7.0
+DATE: 2018/06/14
+
+[Mode]
+# 1 = DUT, 2 = Golden Sample
+Device Mode: 1
+
+[Memory]
+# This test item must speed time over 4 hours.
+Memory Test loop number: 10
+
+[Burn-in]
+# 8 hours = 28800 seconds
+burn-in time(seconds): 28800
+
+[Path]
+test_result_path: /etc/wg/log/diag/test_results.txt
+test_result_failure_path: /etc/wg/log/diag/testresults-failure.txt
+all_test_done_path: /etc/wg/log/diag/ALL_TEST_DONE
+network_fail_path: /etc/wg/log/diag/NETWORK_FAIL_TIMES
+memory_stress_test_path: /etc/wg/log/diag/memory_stress_test.txt
+log_backup_path: /etc/wg/log/diag/log_backup
+log_path: /etc/wg/log/diag/log.txt
+time_path: /etc/wg/log/diag/time.txt
+tmp_path: /tmp/log_tmp.txt
+tmp_golden_path: /tmp/log_tmp_golden.txt

@@ -12,6 +12,24 @@ tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{pr
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 
 
+function kill_iperf(){
+	killall -9 iperf &> /dev/null
+	sleep 1
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "killall -9 iperf &> /dev/null" &
+	sleep 1
+}
+
+
+function ps_iperf(){
+	echo "" | tee -a $log_path
+	echo "[SENAO] DUT ps -ax" | tee -a $log_path
+	ps -ax | tee -a $log_path
+	echo "" | tee -a $log_path
+	echo "[SENAO] GS ps -ax" | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "ps -ax" | tee -a $log_path
+}
+
+
 /root/automation/T55_MFG/usb_format.sh | tee -a $log_path | tee $tmp_path
 usb_format=$( cat $tmp_path | grep "Format process is completed.")
 #echo "[DEBUG] usb_format = $usb_format" | tee -a $log_path
@@ -20,11 +38,14 @@ if [ "$usb_format" != "Format process is completed." ]; then
 fi
 
 echo "BURN_IN_TEST: FAIL: Burn-in test not terminated normally." >> $test_result_path
+kill_iperf
 sleep 1
 sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
 sleep 1
 /root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
-sleep 1
+#sleep 1
+#ps_iperf
+sleep 10
 sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/stress_iperf.sh" | tee -a $log_path | tee $tmp_golden_path &
 sleep 1
 /root/automation/T55_MFG/stress.sh | tee -a $log_path | tee $tmp_path 
@@ -58,6 +79,5 @@ else
 fi
 sleep 1
 
-killall -9 iperf &> /dev/null
-sleep 1
-sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "killall -9 iperf &> /dev/null" &
+kill_iperf
+#ps_iperf

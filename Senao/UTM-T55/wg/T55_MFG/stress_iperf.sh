@@ -9,5 +9,6 @@ do
 done
 
 sleep 1
-ps -ax | grep iperf
+#echo "[SENAO] GS ps -ax" | tee -a $log_path
+#ps -ax | grep iperf
 

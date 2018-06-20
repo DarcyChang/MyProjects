@@ -20,11 +20,10 @@ echo "" | tee -a $log_path
 echo "" | tee -a $log_path
 
 free_memory=$(free -m | grep Mem | awk '{print $4}')
-memory_loop=$(cat /root/automation/T55_MFG/mfg_version | grep "Memory Test loop number" | awk '{print $5}')
 #echo "[DEBUG] free memory : $free_memory , memory test loop : $memory_loop"
 echo "Memory test start..." | tee -a $log_path
 #echo "This could take 4 hours, so wait for it." | tee -a $log_path
-time memtester $free_memory $memory_loop | tee -a $log_path | tee -a $memory_stress_test_path
+time memtester $free_memory 10 | tee -a $log_path | tee -a $memory_stress_test_path
 
 failure_count=$(grep -c "FAILURE" $memory_stress_test_path)
 #echo "[DEBUG] FAILURE number $failure_count"

@@ -10,9 +10,10 @@ log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{pr
 time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
+mfg_path=/root/automation/T55_MFG/mfg_version
 
-VERSION=2.6.0
-DATE=2018/06/12
+VERSION=$(cat /root/automation/T55_MFG/mfg_version | grep "VERSION:" | awk '{print $2}')
+DATE=$(cat /root/automation/T55_MFG/mfg_version | grep "DATE:" | awk '{print $2}')
 
 function menu(){
 	echo "0. Golden Sample " | tee -a $log_path
@@ -37,7 +38,13 @@ function menu(){
 	
 }
 
+function is_mfg_exist(){
+    if [ ! -f $mfg_path ];then                                                                                                                                   
+        ln -s /root/automation/T55_MFG/mfg_version.bak /root/automation/T55_MFG/mfg_version 
+    fi
+}
 
+is_mfg_exist
 if [ ! -d "/etc/wg/log/diag" ] ; then
     mkdir /etc/wg/log/diag
 fi

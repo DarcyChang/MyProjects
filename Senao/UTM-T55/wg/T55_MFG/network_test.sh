@@ -15,6 +15,24 @@ tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_pa
 ERROR=0
 
 
+function kill_iperf(){
+	killall -9 iperf &> /dev/null
+	sleep 1
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "killall -9 iperf &> /dev/null" &
+	sleep 1
+}
+
+
+function ps_iperf(){
+	echo "" | tee -a $log_path
+	echo "[SENAO] DUT ps -ax" | tee -a $log_path
+	ps -ax | tee -a $log_path
+	echo "" | tee -a $log_path
+	echo "[SENAO] GS ps -ax" | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "ps -ax" | tee -a $log_path
+}
+
+
 function network_retry() {
 	if [ ! -f $network_fail_path ] ; then
 		echo "1" > $network_fail_path
@@ -162,7 +180,7 @@ function throughput_udp_low(){
 	sleep 1
 	/root/automation/T55_MFG/iperf_server.sh | tee -a $log_path | tee $tmp_path
 	sleep 1
-	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "root/automation/T55_MFG/iperf_test.sh -g -u -l 64 -b 30 -T 25 -L 3 -r 1 -f" | tee -a $log_path | tee $tmp_golden_path &
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_test.sh -g -u -l 64 -b 30 -T 25 -L 3 -r 1 -f" | tee -a $log_path | tee $tmp_golden_path &
 	sleep 1
 	/root/automation/T55_MFG/iperf_test.sh -u -l 64 -b 30 -T 25 -L 3 -r 1 -f | tee -a $log_path | tee $tmp_path
 	udp_low=$(grep -c "failed" $tmp_path)
@@ -218,7 +236,6 @@ if [ $? -eq 0 ] ; then
 	throughput_udp_low
 fi
 
-
 network_test_result
 if [ "$ERROR" == "0" ]; then
    	echo "NETWORK_TEST: PASS" >> $test_result_path
@@ -227,3 +244,6 @@ else
    	echo "NETWORK_TEST: FAIL" >> $test_result_path
 	network_retry
 fi
+
+kill_iperf
+#ps_iperf

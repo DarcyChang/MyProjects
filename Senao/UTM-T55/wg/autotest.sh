@@ -11,7 +11,7 @@ log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{pr
 time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
-
+mfg_path=/root/automation/T55_MFG/mfg_version
 
 function help() {
 	echo "usage: autotest.sh <command>"
@@ -65,6 +65,23 @@ function del-flag() {
 	mv $network_fail_path $log_backup_path/$dir 2> /dev/null
 }
 
+
+function fix_sda3_error(){
+# EXT2-fs (sda3): error: ext2_lookup deleted inode
+	ext2_error=$(dmesg | grep "EXT2-fs (sda3): error: ext2_lookup deleted inode")
+	echo "[DEBUG] Found error message $ext2_error"
+	if [[ -n "$ext2_error" ]] ; then
+		mount -o remount,ro / && e2fsck -p /dev/sda3 && mount -o remount,rw /
+		reboot
+	fi
+}
+
+
+function is_mfg_exist(){
+	if [ ! -f $mfg_path ];then
+		ln -s /root/automation/T55_MFG/mfg_version.bak /root/automation/T55_MFG/mfg_version	
+	fi
+}
 
 function is_test_result_exist() {
 	if [ -f $test_result_path ];then
@@ -190,7 +207,8 @@ function all() {
 	echo "END TIME $(date '+%Y-%m-%d %H:%M:%S')" | tee -a $time_path
 }
 
-
+#	fix_sda3_error
+is_mfg_exist
 if [ ! -d "/etc/wg/log/diag" ] ; then
     mkdir /etc/wg/log/diag
 fi
