@@ -53,7 +53,7 @@ sleep 2
 stress_cpu=$( cat $tmp_path | grep "Status:" | awk '{print $3}' )
 #echo "[DEBUG] stress_cpu = $stress_cpu" | tee -a $log_path
 stress_iperf=$( cat $tmp_path | grep "check total" | awk '{ print $6 }' )
-sed -i '$d' $test_result_path
+sed -i '/BURN_IN_TEST: FAIL: Burn-in test not terminated normally/d' $test_result_path
 if [ "$stress_cpu" == "PASS" ]; then
 	echo "BURN_IN_TEST: PASS: USB/CPU/Memory pass" >> $test_result_path
 else

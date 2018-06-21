@@ -27,7 +27,7 @@ time memtester $free_memory 10 | tee -a $log_path | tee -a $memory_stress_test_p
 
 failure_count=$(grep -c "FAILURE" $memory_stress_test_path)
 #echo "[DEBUG] FAILURE number $failure_count"
-sed -i '$d' $test_result_path
+sed -i '/MEMORY_TEST: FAIL: Not terminated normally/d' $test_result_path
 if [ "$failure_count" == "0" ]; then
 	echo "MEMORY_TEST: PASS" >> $test_result_path
 else
