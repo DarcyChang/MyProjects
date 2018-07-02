@@ -8,14 +8,26 @@ memory_stress_test_path=$(cat /root/automation/T55_MFG/mfg_version | grep "memor
 log_backup_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_backup_path" | awk '{print $2}')
 log_path=$(cat /root/automation/T55_MFG/mfg_version | grep "log_path" | awk '{print $2}')
 time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{print $2}')
+current_time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "current_time_path" | awk '{print $2}')
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
+
+
+function get_time(){
+	date "+%G-%m-%d %H:%M:%S" > $current_time_path
+    CURRENT_TIME=$(cat $current_time_path)
+}
+
+get_time
 
 /root/automation/T55_MFG/testRtc.sh set | tee -a $log_path
 sleep 2
 /root/automation/T55_MFG/testRtc.sh check | tee -a $log_path | tee $tmp_path
 
-rtc=$( cat $tmp_path)
+rtc=$(cat $tmp_path)
+
+date -s "$CURRENT_TIME"
+
 if [[ $rtc == "pass" ]] ; then                                                                                                                                       
 	echo "RTC_TEST: PASS" >> $test_result_path
 else

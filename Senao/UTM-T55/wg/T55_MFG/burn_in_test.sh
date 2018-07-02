@@ -55,12 +55,12 @@ stress_cpu=$( cat $tmp_path | grep "Status:" | awk '{print $3}' )
 stress_iperf=$( cat $tmp_path | grep "check total" | awk '{ print $6 }' )
 sed -i '/BURN_IN_TEST: FAIL: Burn-in test not terminated normally/d' $test_result_path
 if [ "$stress_cpu" == "PASS" ]; then
-	echo "BURN_IN_TEST: PASS: USB/CPU/Memory pass" >> $test_result_path
+	echo "BURN_IN_TEST: PASS: USB/CPU/Memory PASS" >> $test_result_path
 else
 	echo "BURN_IN_TEST: FAIL: USB/CPU/Memory test failed." >> $test_result_path
 fi
 if [ "$stress_iperf" == "[pass]" ]; then
-	echo "BURN_IN_TEST: PASS: iperf pass" >> $test_result_path
+	echo "BURN_IN_TEST: PASS: iperf PASS" >> $test_result_path
 else
     port_num=$(ifconfig -a | grep eth | wc -l)                                                                                                                           
     for ((eid=0; eid<$port_num; eid++))

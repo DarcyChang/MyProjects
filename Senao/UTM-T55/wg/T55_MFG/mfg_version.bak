@@ -1,6 +1,6 @@
 [Diagnostic tool]
-VERSION: 2.7.0
-DATE: 2018/06/14
+VERSION: 2.8.0
+DATE: 2018/06/26
 
 [Mode]
 # 1 = DUT, 2 = Golden Sample
@@ -23,5 +23,6 @@ memory_stress_test_path: /etc/wg/log/diag/memory_stress_test.txt
 log_backup_path: /etc/wg/log/diag/log_backup
 log_path: /etc/wg/log/diag/log.txt
 time_path: /etc/wg/log/diag/time.txt
+current_time_path: /etc/wg/log/diag/current_time.txt
 tmp_path: /tmp/log_tmp.txt
 tmp_golden_path: /tmp/log_tmp_golden.txt
