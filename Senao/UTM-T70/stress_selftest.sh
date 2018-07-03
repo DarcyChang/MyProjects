@@ -1,7 +1,7 @@
 #!/bin/bash
 #Objective:Automatic Google stress
-#Author:Teddy Chung
-#Date:2016/5/11
+#Author:Darcy Chang
+#Date:2018/07/02
 
 function eth_stat() {
     rate_tmp_file="/tmp/eth_stat"
@@ -187,9 +187,11 @@ do
     shift
     ;;
     -v)
-    vlan=1
+#    vlan=1
+#    eth_num=9
     eth_num=9
-    iperf_arg="$iperf_arg -v"
+#    iperf_arg="$iperf_arg -v"
+    iperf_arg="$iperf_arg"
     ;;
     -t)
     time="$2"
@@ -257,10 +259,6 @@ if [ "$eid_list" == "" ]; then
     fi
 fi
 
-while [ "$no_iperf" == "0" -a "$dut_id" != "1" -a "$dut_id" != "2" ]
-do
-    read -p "Enter DUT ID (1/2): " dut_id
-done
 
 if [ "$no_stress" == "0" ] && [ "$no_disk_test" == "0" ]; then
     disk_list=`fdisk -l 2>/dev/null | grep Disk | grep /dev/ | awk '{print $2}' | cut -d/ -f3 | sed 's/://'`
@@ -314,7 +312,8 @@ if [ "$no_iperf" == "0" ]; then
     if [ "$dut_id" == "1" ]; then
         iperf_arg="$iperf_arg -g"
     fi
-    ./iperf_test_selftest.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -x "$test_speed"
+
+    ./iperf_test_leon.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -x "$test_speed"
 fi
 
 cpu_stat_interval=1
@@ -376,7 +375,8 @@ do
         if [ "$stress_time" != "0" ]; then
             res_file=/tmp/stress_res
             echo "Stress test running"
-            ./stressapptest $stress_arg -s $stress_time > $res_file &
+#            /root/T70_MFG/stressapptest $stress_arg -s $stress_time > $res_file &
+            /root/T70_MFG/stressapptest $stress_arg -s $time > $res_file &
             sleep 3
             stress_running=1
             while [ "$stress_running" != "0" ]
@@ -413,11 +413,12 @@ do
         if [ "$stress_fail" == "0" ]; then
             cur_time=`cat /proc/uptime | cut -d. -f1`
             next_time=`expr $cur_time + $stress_interval`
-            while [ "$cur_time" -lt "$next_time" ] && [ "$cur_time" -lt "$end_time" ]
-            do
-                show_stat
-                cur_time=`cat /proc/uptime | cut -d. -f1`
-            done
+#			Following script will stop stress and compare file is correct or not.
+#            while [ "$cur_time" -lt "$next_time" ] && [ "$cur_time" -lt "$end_time" ]
+#            do
+#                show_stat
+#                cur_time=`cat /proc/uptime | cut -d. -f1`
+#            done
         fi
     fi
     cur_time=`cat /proc/uptime | cut -d. -f1`
