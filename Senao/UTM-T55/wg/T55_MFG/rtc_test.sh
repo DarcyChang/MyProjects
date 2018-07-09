@@ -26,7 +26,11 @@ sleep 2
 
 rtc=$(cat $tmp_path)
 
-date -s "$CURRENT_TIME"
+echo "[SENAO] Set current time :" | tee -a $log_path
+date -s "$CURRENT_TIME" | tee -a $log_path
+echo "[SENAO] Set RTC time :" | tee -a $log_path
+hwclock -w
+hwclock -r | tee -a $log_path
 
 if [[ $rtc == "pass" ]] ; then                                                                                                                                       
 	echo "RTC_TEST: PASS" >> $test_result_path
