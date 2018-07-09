@@ -279,9 +279,6 @@ else
     echo "[SENAO] Run iperf test"
 fi
 
-ps -ax | grep iperf
-ps -ax | grep stress
-
 eth_rate_count=0
 eth_idx=0
 while [ "$eth_idx" -lt "$eth_num" ]
