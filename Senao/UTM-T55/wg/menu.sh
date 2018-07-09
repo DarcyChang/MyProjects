@@ -61,11 +61,29 @@ function func_set_time(){
 	echo $num
 }
 
+
+function func_set_day(){
+	if [[ $1 == 1 ]] || [[ $1 == 3 ]] || [[ $1 == 5 ]] || [[ $1 == 7 ]] || [[ $1 == 8 ]] || [[ $1 == 10 ]] || [[ $1 == 12 ]]; then
+		max_day=31
+	elif  [[ $1 == 2 ]] ; then
+		leap_year=$(($2%4))
+		if [[ $leap_year == 0 ]] ; then
+			max_day=29
+		else
+			max_day=28
+		fi
+	else
+		max_day=30
+	fi
+}
+
+
 function set_time(){
 	#yyyy-MM-dd HH:mm:ss
 	yyyy=$(func_set_time 2000 2200 year)
 	MM=$(func_set_time 1 12 month)
-	dd=$(func_set_time 1 31 day)
+	func_set_day $MM $yyyy
+	dd=$(func_set_time 1 $max_day day)
 	HH=$(func_set_time 0 23 hour)
 	mm=$(func_set_time 0 59 minute)
 	ss=$(func_set_time 0 59 second)
@@ -87,7 +105,7 @@ function get_time(){
 
 is_mfg_exist
 if [ ! -d "/etc/wg/log/diag" ] ; then
-    mkdir /etc/wg/log/diag
+	mkdir -p /etc/wg/log/diag
 fi
 
 get_time

@@ -1,6 +1,6 @@
 [Diagnostic tool]
-VERSION: 2.8.0
-DATE: 2018/06/26
+VERSION: 2.8.1
+DATE: 2018/07/13
 
 [Mode]
 # 1 = DUT, 2 = Golden Sample
