@@ -313,7 +313,7 @@ if [ "$no_iperf" == "0" ]; then
         iperf_arg="$iperf_arg -g"
     fi
 
-    ./iperf_test_leon.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -x "$test_speed"
+    ./iperf_test_selftest.sh $iperf_arg -e "$eid_list" -a "-P $tcp_parallels" -x "$test_speed"
 fi
 
 cpu_stat_interval=1
