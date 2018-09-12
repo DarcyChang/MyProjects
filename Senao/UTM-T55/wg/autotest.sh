@@ -12,6 +12,12 @@ time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 mfg_path=/root/automation/T55_MFG/mfg_version
+tpm_folder_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tpm_folder_path" | awk '{print $2}')
+
+
+VERSION=$(cat /root/automation/T55_MFG/mfg_version | grep "VERSION:" | awk '{print $2}')                                                                                 
+DATE=$(cat /root/automation/T55_MFG/mfg_version | grep "DATE:" | awk '{print $2}')
+
 
 function help() {
 	echo "usage: autotest.sh <command>"
@@ -63,6 +69,7 @@ function del-flag() {
 	mv $log_path $log_backup_path/$dir 2> /dev/null
 	mv $time_path $log_backup_path/$dir 2> /dev/null
 	mv $network_fail_path $log_backup_path/$dir 2> /dev/null
+	mv $tpm_folder_path $log_backup_path/$dir/ 2> /dev/null 
 }
 
 
@@ -85,7 +92,7 @@ function is_mfg_exist(){
 
 function is_test_result_exist() {
 	if [ -f $test_result_path ];then
-		test_item=$(cat $test_result_path | cut -d ":" -f 1)
+		test_item=$(cat $test_result_path | awk '{print $3}' | cut -d ":" -f 1)
 #		echo "[DEBUG] $test_item"
 	else
 		echo "[DEBUG] File $test_result_path not found!"
@@ -108,7 +115,7 @@ function is_done() {
 
 function memory_stess_pass() {
 	if [ -f $test_result_path ];then
-		tmp=$(cat $test_result_path | grep "MEMORY_TEST" |awk '{print $2}')
+		tmp=$(cat $test_result_path | grep "MEMORY_TEST" |awk '{print $4}')
 #		echo "[DEBUG] Memory test $tmp"
 	else
 		echo "$test_result_path isn't exist."
@@ -120,6 +127,13 @@ function memory_stess_pass() {
 		return 1
 	fi
 }
+
+
+function get_wg_serial(){
+    wg_sn=$(/root/automation/T55_MFG/readmfg wg | awk '{print $2}')
+    echo "$(date '+%Y-%m-%d %H:%M:%S') WG_SN: $wg_sn" >> $test_result_path
+}
+
 
 function hw_version(){
 	hw_ver=$(cat /sys/class/dmi/id/board_version)
@@ -142,6 +156,11 @@ function all() {
 	echo "" | tee -a $log_path
 
 	is_test_result_exist
+
+	echo "Build Version $VERSION" | tee -a $test_result_path
+	echo "Build Date $DATE" | tee -a $test_result_path
+	date +"Current Date: %Y/%m/%d %H:%M" | tee -a $test_result_path
+	get_wg_serial
 
 	is_done BOM_CHECK 
 	if [ $? -eq 0 ] ; then
@@ -191,7 +210,7 @@ function all() {
 
 	memory_stess_pass
 	if [ $? -eq 1 ] ; then
-		echo "BURN_IN_TEST: FAIL: Memory test failure, skip this step." >> $test_result_path
+		echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: Memory test failure, skip this step." >> $test_result_path
 		exit 1
 	fi	
 

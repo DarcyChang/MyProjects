@@ -31,8 +31,8 @@ done
 
 if [ $PASS == "1" ]; then 
     echo EEPROM ID Test Pass!!
-    echo "ID_EEPROM_TEST: PASS" >> $test_result_path
+    echo "$(date '+%Y-%m-%d %H:%M:%S') ID_EEPROM_TEST: PASS" >> $test_result_path
 else
     echo EEPROM ID Test Fail!!
-    echo "ID_EEPROM_TEST: FAIL: <Result is $result>" >> $test_result_path
+    echo "$(date '+%Y-%m-%d %H:%M:%S') ID_EEPROM_TEST: FAIL: <Result is $result>" >> $test_result_path
 fi

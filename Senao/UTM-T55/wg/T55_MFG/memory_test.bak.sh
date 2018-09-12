@@ -11,7 +11,7 @@ time_path=$(cat /root/automation/T55_MFG/mfg_version | grep "time_path" | awk '{
 tmp_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_path" | awk '{print $2}')
 tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_path" | awk '{print $2}')   
 
-echo "MEMORY_TEST: FAIL: Not terminated normally." >> $test_result_path
+echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_TEST: FAIL: Not terminated normally." >> $test_result_path
 
 echo "" | tee -a $log_path
 echo "" | tee -a $log_path
@@ -29,7 +29,7 @@ failure_count=$(grep -c "FAILURE" $memory_stress_test_path)
 #echo "[DEBUG] FAILURE number $failure_count"
 sed -i '/MEMORY_TEST: FAIL: Not terminated normally/d' $test_result_path
 if [ "$failure_count" == "0" ]; then
-	echo "MEMORY_TEST: PASS" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_TEST: PASS" >> $test_result_path
 else
-	echo "MEMORY_TEST: FAIL" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_TEST: FAIL" >> $test_result_path
 fi

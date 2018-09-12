@@ -67,7 +67,7 @@ function func_set_day(){
 		max_day=31
 	elif  [[ $1 == 2 ]] ; then
 		leap_year=$(($2%4))
-		if [[ $leap_year == 0 ]] ; then
+		if [[ $leap_year == 0 ]] && [[ $2 != 2100 ]] && [[ $2 != 2200 ]] ; then
 			max_day=29
 		else
 			max_day=28
@@ -110,7 +110,7 @@ fi
 
 get_time
 
-echo "" | tee -a $log_path 
+echo "" | tee -a $log_path | tee -a $test_result_path 
 echo "#########################################" | tee -a $log_path
 echo "###### SENAO RMA IMAGE ##################" | tee -a $log_path
 echo "###### Build Version $VERSION   ############" | tee -a $log_path
@@ -133,6 +133,7 @@ if [ "$select" == "" ] ; then
 		select=1
 	fi
 fi
+
 
 case $select in 
 	"0")

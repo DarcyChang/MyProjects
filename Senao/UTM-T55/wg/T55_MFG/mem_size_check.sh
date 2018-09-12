@@ -15,9 +15,9 @@ tmp_golden_path=$(cat /root/automation/T55_MFG/mfg_version | grep "tmp_golden_pa
 get_mem_size=$( cat $tmp_path | grep Memory: | awk '{print $2}' )
 
 if [[ $get_mem_size == "1.8GB" ]];then
-    echo "MEMORY_SIZE_CHECK: PASS" >> $test_result_path
+    echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_SIZE_CHECK: PASS" >> $test_result_path
 else
-    echo "MEMORY_SIZE_CHECK: FAIL: <Memory size is $get_mem_size>" >> $test_result_path
+    echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_SIZE_CHECK: FAIL: <Memory size is $get_mem_size>" >> $test_result_path
 fi
 
 

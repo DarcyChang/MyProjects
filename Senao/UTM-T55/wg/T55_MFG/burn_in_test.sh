@@ -34,10 +34,10 @@ function ps_iperf(){
 usb_format=$( cat $tmp_path | grep "Format process is completed.")
 #echo "[DEBUG] usb_format = $usb_format" | tee -a $log_path
 if [ "$usb_format" != "Format process is completed." ]; then
-	echo "BURN_IN_TEST: FAIL: USB format is not complete." >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: USB format is not complete." >> $test_result_path
 fi
 
-echo "BURN_IN_TEST: FAIL: Burn-in test not terminated normally." >> $test_result_path
+echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: Burn-in test not terminated normally." >> $test_result_path
 kill_iperf
 sleep 1
 sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/iperf_server.sh" | tee -a $log_path | tee $tmp_golden_path &
@@ -55,12 +55,12 @@ stress_cpu=$( cat $tmp_path | grep "Status:" | awk '{print $3}' )
 stress_iperf=$( cat $tmp_path | grep "check total" | awk '{ print $6 }' )
 sed -i '/BURN_IN_TEST: FAIL: Burn-in test not terminated normally/d' $test_result_path
 if [ "$stress_cpu" == "PASS" ]; then
-	echo "BURN_IN_TEST: PASS: USB/CPU/Memory PASS" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: PASS: USB/CPU/Memory PASS" >> $test_result_path
 else
-	echo "BURN_IN_TEST: FAIL: USB/CPU/Memory test failed." >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: USB/CPU/Memory test failed." >> $test_result_path
 fi
 if [ "$stress_iperf" == "[pass]" ]; then
-	echo "BURN_IN_TEST: PASS: iperf PASS" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: PASS: iperf PASS" >> $test_result_path
 else
     port_num=$(ifconfig -a | grep eth | wc -l)                                                                                                                           
     for ((eid=0; eid<$port_num; eid++))
@@ -68,12 +68,12 @@ else
 		tmp=$( cat $tmp_path | grep "eth$eid check average" | awk '{ print $7 }' )
 #		echo "[DEBUG] eth$eid = $tmp" | tee -a $log_path
 		if [ "$tmp" == "[failed]" ]; then
-			echo "BURN_IN_TEST: FAIL: [DUT] eth$eid average rx/tx rate failed." >> $test_result_path
+			echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: [DUT] eth$eid average rx/tx rate failed." >> $test_result_path
 		fi
 		tmp=$( cat $tmp_path | grep "eth$eid check link" | awk '{ print $6 }' )
 #		echo "[DEBUG] eth$eid = $tmp" | tee -a $log_path
 		if [ "$tmp" == "[failed]" ]; then
-			echo "BURN_IN_TEST: FAIL: [DUT] eth$eid link status failed." >> $test_result_path
+			echo "$(date '+%Y-%m-%d %H:%M:%S') BURN_IN_TEST: FAIL: [DUT] eth$eid link status failed." >> $test_result_path
 		fi
 	done
 fi

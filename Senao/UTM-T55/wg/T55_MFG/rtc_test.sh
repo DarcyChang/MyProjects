@@ -33,7 +33,7 @@ hwclock -w
 hwclock -r | tee -a $log_path
 
 if [[ $rtc == "pass" ]] ; then                                                                                                                                       
-	echo "RTC_TEST: PASS" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') RTC_TEST: PASS" >> $test_result_path
 else
-	echo "RTC_TEST: FAIL" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') RTC_TEST: FAIL" >> $test_result_path
 fi

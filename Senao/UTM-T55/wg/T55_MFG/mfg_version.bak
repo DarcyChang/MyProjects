@@ -1,6 +1,6 @@
 [Diagnostic tool]
-VERSION: 2.8.1
-DATE: 2018/07/13
+VERSION: 3.2.0
+DATE: 2018/08/31
 
 [Mode]
 # 1 = DUT, 2 = Golden Sample
@@ -22,7 +22,9 @@ network_fail_path: /etc/wg/log/diag/NETWORK_FAIL_TIMES
 memory_stress_test_path: /etc/wg/log/diag/memory_stress_test.txt
 log_backup_path: /etc/wg/log/diag/log_backup
 log_path: /etc/wg/log/diag/log.txt
+log_folder_path: /etc/wg/log/diag/
 time_path: /etc/wg/log/diag/time.txt
 current_time_path: /etc/wg/log/diag/current_time.txt
 tmp_path: /tmp/log_tmp.txt
 tmp_golden_path: /tmp/log_tmp_golden.txt
+tpm_folder_path: /etc/wg/log/diag/logs

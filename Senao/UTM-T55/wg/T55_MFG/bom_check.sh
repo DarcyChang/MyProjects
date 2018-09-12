@@ -17,7 +17,7 @@ ERROR=0
 
 function is_test_result_exist() {
     if [ -f $test_result_path ];then
-        test_item=$(cat $test_result_path | cut -d ":" -f 1)
+        test_item=$(cat $test_result_path | awk '{print $3}' | cut -d ":" -f 1)
     fi
     echo ""                                                                                                                                                              
 }
@@ -53,10 +53,10 @@ function msata_fw_check(){
 	iSMART_64 -d /dev/sda | tee -a $log_path | tee $tmp_path
 	get_msata_fw=$( cat $tmp_path | grep FW | cut -d " " -f 3)
 	if [[ $get_msata_fw == $real_msata_fw ]];then
-    	echo "MSATA_FIRMWARE_CHECK: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') MSATA_FIRMWARE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') MSATA_FIRMWARE_CHECK: FAIL: Wrong MSATA FW version!" >> $test_result_path
 	fi
 }
 
@@ -68,10 +68,10 @@ function wifi_device_check(){
 		wifi=$( cat $tmp_path | grep Wi-Fi)
 		#echo "[DEBUG] wifi module = $wifi"
 		if [[ $wifi == "Wi-Fi check ok" ]];then
-    		echo "Wi-Fi_DEVICE_CHECK: PASS" >> $test_result_path
+    		echo "$(date '+%Y-%m-%d %H:%M:%S') Wi-Fi_DEVICE_CHECK: PASS" >> $test_result_path
 			count=$[ count + 1 ]
 		else
-    		echo "Wi-Fi_DEVICE_CHECK: FAIL: Doesn't detect Wi-Fi module." >> $test_result_path
+    		echo "$(date '+%Y-%m-%d %H:%M:%S') Wi-Fi_DEVICE_CHECK: FAIL: Doesn't detect Wi-Fi module." >> $test_result_path
 		fi
 	else
 		echo "[SENAO] No Wi-Fi module $t55w" | tee -a $log_path
@@ -85,10 +85,10 @@ function tpm_device_check(){
 	tpm=$( cat $tmp_path | grep tpm_selftest | cut -d " " -f 2)
 	#echo "[DEBUG] tpm status = $tpm"
 	if [[ $tpm == "succeeded" ]];then
-    	echo "TPM_DEVICE_CHECK: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') TPM_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "TPM_DEVICE_CHECK: FAIL" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') TPM_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
@@ -99,10 +99,10 @@ function id_eeprom_device_check(){
 	eeprom01=$(i2cget -y 0 0x56 0x05)
 	eeprom02=$(i2cget -y 0 0x57 0x05)
 	if [[ $eeprom01 == "0xff" ]] && [[ $eeprom02 == "0xff" ]] ; then
-    	echo "ID_EEPROM_DEVICE_CHECK: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') ID_EEPROM_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "ID_EEPROM_DEVICE_CHECK: FAIL" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') ID_EEPROM_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
@@ -111,10 +111,10 @@ function hw_monitor_device_check(){
 	/root/automation/T55_MFG/superIO > /root/showIO
 	pass_num=$(grep -c "pass" /root/showIO)
 	if [ "$pass_num" == "7" ]; then
-    	echo "HW_MONITOR_DEVICE_CHECK: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') HW_MONITOR_DEVICE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "HW_MONITOR_DEVICE_CHECK: FAIL" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') HW_MONITOR_DEVICE_CHECK: FAIL" >> $test_result_path
 	fi
 	rm /root/showIO
 }
@@ -124,11 +124,37 @@ function nr_network_ports_count_check(){
 	port_num=$(ifconfig -a | grep eth | wc -l)
 	port_num_criteria=5
 	#echo "[DEBUG] Total port number = $port_num"
-	if [[ $port_num -eq $port_num_criteria ]] ;then
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> $test_result_path
-		count=$[ count + 1 ]
+	link_error=0 # connection
+	
+	echo "[SENAO] Setting DUT network configuration." | tee -a $log_path
+	/root/automation/T55_MFG/set_ip.sh                                                                                                                                 
+	sleep 3
+
+    echo "[SENAO] Detecting DUT $port_num ports link status." | tee -a $log_path
+    for ((eid=0; eid<$port_num; eid++))
+    do
+        link_state=$(ethtool eth$eid | grep 'Link detected' | awk '{print $3}')
+        if [ $link_state != "yes" ] ; then
+            echo "[WARNING] DUT port eth$eid link status $link_state" | tee -a $log_path | tee -a $test_result_failure_path 
+            link_error=1 # disconnection
+        fi      
+    done
+
+	echo "[SENAO] Detecting Golden Sample $port_num ports link status." | tee -a $log_path
+	sshpass -p readwrite ssh -p 4118 root@192.168.1.2 "/root/automation/T55_MFG/golden_networking.sh" | tee $tmp_golden_path
+	golden_link_state=$(grep -c "no" $tmp_golden_path)
+	if [ $golden_link_state -gt 0 ] ; then
+		cat $tmp_golden_path | tee -a $log_path | tee -a $test_result_failure_path
+		link_error=1 # disconnection
+	fi
+
+	if [[ $link_error == "1" ]] ;then
+		echo "$(date '+%Y-%m-%d %H:%M:%S') NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <RJ-45 disconnection>" >> $test_result_path
+	elif [[ $port_num -ne $port_num_criteria ]] ;then
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port_num>" >> $test_result_path
 	else
-    	echo "NR_NETWORK_PORTS_COUNT_CHECK: FAIL: <Total port number is $port_num>" >> $test_result_path
+		echo "$(date '+%Y-%m-%d %H:%M:%S') NR_NETWORK_PORTS_COUNT_CHECK: PASS" >> $test_result_path
+		count=$[ count + 1 ]
 	fi
 }
 
@@ -137,10 +163,10 @@ function memory_size_check(){
 	memory=$(/root/automation/T55_MFG/hwinfo.sh | grep Memory | cut -d " " -f 3)
 	#echo "[DEBUG] Memory size = $memory"
 	if [[ $memory == "ok" ]];then
-    	echo "MEMORY_SIZE_CHECK: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_SIZE_CHECK: PASS" >> $test_result_path
 		count=$[ count + 1 ]
 	else
-    	echo "MEMORY_SIZE_CHECK: FAIL" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') MEMORY_SIZE_CHECK: FAIL" >> $test_result_path
 	fi
 }
 
@@ -183,7 +209,7 @@ fi
 
 bom_check_result
 if [ "$ERROR" == "0" ] || [ "$count" == "7" ]; then
-	echo "BOM_CHECK: PASS" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BOM_CHECK: PASS" >> $test_result_path
 else
-	echo "BOM_CHECK: FAIL" >> $test_result_path
+	echo "$(date '+%Y-%m-%d %H:%M:%S') BOM_CHECK: FAIL" >> $test_result_path
 fi

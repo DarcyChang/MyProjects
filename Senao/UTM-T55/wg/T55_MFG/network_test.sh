@@ -47,7 +47,7 @@ function network_retry() {
 
 function is_test_result_exist() {
     if [ -f $test_result_path ];then
-        test_item=$(cat $test_result_path | cut -d ":" -f 1)
+        test_item=$(cat $test_result_path | awk '{print $3}' | cut -d ":" -f 1)
     fi
     echo ""
 }
@@ -67,9 +67,9 @@ function is_done() {
 
 function network_test_result(){
 #	echo "[DEBUG] ERROR $ERROR"
-	tmp01=$( cat $test_result_path | grep -a "TCP_Throughput" | awk '{print $2}')
-	tmp02=$( cat $test_result_path | grep -a "UDP_packet_loss_high_rate" | awk '{print $2}')
-	tmp03=$( cat $test_result_path | grep -a "UDP_packet_loss_low_rate" | awk '{print $2}')
+	tmp01=$( cat $test_result_path | grep -a "TCP_Throughput" | awk '{print $4}')
+	tmp02=$( cat $test_result_path | grep -a "UDP_packet_loss_high_rate" | awk '{print $4}')
+	tmp03=$( cat $test_result_path | grep -a "UDP_packet_loss_low_rate" | awk '{print $4}')
 	echo "[DEBUG] TCP Throughput $tmp01"
 	echo "[DEBUG] UDP packet loss high rate $tmp02"
 	echo "[DEBUG] UDP packet loss low rate $tmp03"
@@ -135,13 +135,13 @@ function throughput_tcp(){
 	echo "[DEBUG] DUT failed count $tcp"
 	echo "[DEBUG] Golden sample failed count $tcp_golden"
 	if [ "$tcp" == "0" ] && [ "$tcp_golden" == "0" ]; then
-	    echo "TCP_Throughput: PASS" >> $test_result_path
+	    echo "$(date '+%Y-%m-%d %H:%M:%S') TCP_Throughput: PASS" >> $test_result_path
 	elif [ "$tcp" != "0" ] && [ "$tcp_golden" != "0" ]; then 
-    	echo "TCP_Throughput: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') TCP_Throughput: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$tcp" != "0" ] ; then 
-    	echo "TCP_Throughput: FAIL: <DUT failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') TCP_Throughput: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$tcp_golden" != "0" ] ; then
-    	echo "TCP_Throughput: FAIL: <Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') TCP_Throughput: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
@@ -161,13 +161,13 @@ function throughput_udp_high(){
 	echo "[DEBUG] DUT failed count $udp_high"
 	echo "[DEBUG] Golden sample failed count $udp_high_golden"
 	if [ "$udp_high" == "0" ] && [ "$udp_high_golden" == "0" ] ; then
-    	echo "UDP_packet_loss_high_rate: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_high_rate: PASS" >> $test_result_path
 	elif [ "$udp_high" != "0" ] && [ "$udp_high_golden" != "0" ]; then 
-    	echo "UDP_packet_loss_high_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_high_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$udp_high" != "0" ] ; then
-    	echo "UDP_packet_loss_high_rate: FAIL: <DUT failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_high_rate: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$udp_high_golden" != "0" ] ; then 
-    	echo "UDP_packet_loss_high_rate: FAIL: <Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_high_rate: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
@@ -188,13 +188,13 @@ function throughput_udp_low(){
 	echo "[DEBUG] DUT failed count $udp_low"
 	echo "[DEBUG] Golden sample failed count $udp_low_golden"
 	if [ "$udp_low" == "0" ] && [ "$udp_low_golden" == "0" ]; then
-    	echo "UDP_packet_loss_low_rate: PASS" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_low_rate: PASS" >> $test_result_path
 	elif [ "$udp_low" != "0" ] && [ "$udp_low_golden" != "0" ]; then 
-    	echo "UDP_packet_loss_low_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_low_rate: FAIL: <Both of DUT and Golden sample failed.>" >> $test_result_path
 	elif [ "$udp_low" != "0" ] ; then
-    	echo "UDP_packet_loss_low_rate: FAIL: <DUT failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_low_rate: FAIL: <DUT failed.>" >> $test_result_path
 	elif [ "$udp_low_golden" != "0" ] ; then 
-    	echo "UDP_packet_loss_low_rate: FAIL: <Golden sample failed.>" >> $test_result_path
+    	echo "$(date '+%Y-%m-%d %H:%M:%S') UDP_packet_loss_low_rate: FAIL: <Golden sample failed.>" >> $test_result_path
 	fi
 	sleep 1
 }
@@ -205,14 +205,14 @@ sleep 3
 
 is_etherphy_connection
 if [ $? -eq 1 ] ; then
-   	echo "NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> $test_result_path
+   	echo "$(date '+%Y-%m-%d %H:%M:%S') NETWORK_TEST: FAIL: <RJ-45 disconnection>" >> $test_result_path
 	network_retry
 	exit 1	
 fi	
 
 is_ping
 if [ $? -eq 1 ] ; then
-   	echo "NETWORK_TEST: FAIL: <Network is not working.>" >> $test_result_path
+   	echo "$(date '+%Y-%m-%d %H:%M:%S') NETWORK_TEST: FAIL: <Network is not working.>" >> $test_result_path
 	network_retry
 	exit 1	
 fi	
@@ -238,10 +238,10 @@ fi
 
 network_test_result
 if [ "$ERROR" == "0" ]; then
-   	echo "NETWORK_TEST: PASS" >> $test_result_path
+   	echo "$(date '+%Y-%m-%d %H:%M:%S') NETWORK_TEST: PASS" >> $test_result_path
 #	rm $network_fail_path 2> /dev/null 
 else
-   	echo "NETWORK_TEST: FAIL" >> $test_result_path
+   	echo "$(date '+%Y-%m-%d %H:%M:%S') NETWORK_TEST: FAIL" >> $test_result_path
 	network_retry
 fi
 
