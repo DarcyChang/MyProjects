@@ -17,9 +17,10 @@ esac
 
 if [ -f /img.cf.gz ]; then
 	echo "Start writing image to disk"
-	gunzip < /img.cf.gz | dd of=/dev/sda 
+	gunzip < /img.cf.gz | dd of=/dev/sda
 	echo "Finished"
-	sleep 2
+	sync && sync && sync
+	sleep 10
 	reboot
 else
 	echo "Image not found"
