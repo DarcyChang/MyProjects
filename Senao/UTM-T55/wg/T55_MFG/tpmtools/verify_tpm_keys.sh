@@ -1,8 +1,12 @@
 #!/bin/sh -x
 
+cd /root/automation/T55_MFG/tpmtools/
+
 if [ ! -d logs ]; then
   mkdir logs
 fi
+
+mkdir -p /var/lib && mkdir -p /var/lib/tpm
 
 echo "STAGE1: ====== verification: getting started ======" >> logs/stage.txt
 tpm_version -l debug     >> logs/version.info
