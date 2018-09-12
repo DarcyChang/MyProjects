@@ -83,9 +83,9 @@ do
 done
  
 rm -rf /media/darcy/$usb_dir/automation
-rm -rf /media/darcy/$usb_dir/automation_WG_v2.7.0/wg
+rm -rf /media/darcy/$usb_dir/automation_WG_v3.2.0/wg
 cp -rf automation /media/darcy/$usb_dir/
-cp -rf wg /media/darcy/$usb_dir/automation_WG_v2.7.0/
+cp -rf wg /media/darcy/$usb_dir/automation_WG_v3.2.0/
 
 rm automation/T55_MFG/memory_test.sh
 rm automation/T55_MFG/stress.sh
@@ -94,4 +94,12 @@ mv automation/T55_MFG/memory_test.bak.sh automation/T55_MFG/memory_test.sh
 tar -czvf diag.tar.gz automation diag_tools
 cp diag_install.sh /media/darcy/$usb_dir/
 cp diag.tar.gz /media/darcy/$usb_dir/
+cp diag.README /media/darcy/$usb_dir/
+
+cp diag.tar.gz t55_diag_pkg/senao/
+cp diag.README t55_diag_pkg/senao/
+tar -czvf t55_diag_pkg.tar.gz t55_diag_pkg
+sha1sum t55_diag_pkg.tar.gz > t55_diag_pkg.sha1sum.txt
+cp t55_diag_pkg.tar.gz /mnt/hgfs/Shared/ 
+cp t55_diag_pkg.sha1sum.txt /mnt/hgfs/Shared/ 
 
