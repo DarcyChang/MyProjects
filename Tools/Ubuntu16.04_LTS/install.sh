@@ -17,7 +17,7 @@ sudo apt-get install -y quicksynergy synergy
 sudo apt-get install -y vim
 sudo apt-get install -y notepadqq
 
-#18. python
+#3. Install python
 sudo apt-get install -y python3.6
 sudo apt-get install -y python
 sudo apt-get install -y python-pip
@@ -30,6 +30,7 @@ sudo pip3 install pyinstaller
 sudo pip3 install pyserial
 sudo pip3 install html-testRunner
 
+#4. set environment
 cp .bashrc ~/.bashrc
 # For Python code.
 # https://github.com/fisadev/fisa-vim-config
@@ -45,20 +46,20 @@ cp .bashrc ~/.bashrc
 #sudo apt-get install -y screen
 #sudo apt-get install -y cscope
 
-#3. Install SSH
+#5. Install SSH
 sudo apt-get install -y openssh-server
 sudo /etc/init.d/ssh restart
 
-#4. Install Git
+#6. Install Git
 sudo apt-get install -y git git-review 
 sudo apt-get install -y git-core
 sudo apt-get install -y subversion
 
-#5. Install filezilla, PuTTY, 
+#7. Install filezilla, PuTTY, 
 sudo apt-get install -y filezilla
 sudo apt-get install -y putty
 
-#6. Install tftp
+#8. Install tftp
 # https://yulun.me/2016/setup-tftp-server-on-ubuntu/
 sudo apt-get install -y xinetd tftpd tftp
 sudo apt-get install -y tftp-hpa
@@ -68,9 +69,9 @@ chmod -R 777 ~/tftpboot
 chown -R nobody ~/tftpboot
 sudo service xinetd restart
 
-#7. Install samba
+#9. Install samba
 #https://wiki.ubuntu.com/Ubuntu_14.04_LTS
-sudo apt-get install -y samba samba-common
+sudo apt-get install -y samba samba-common smbclient
 sudo apt-get install -y python-glade2 system-config-samba
 sudo cp /etc/samba/smb.conf ~/tftpboot/
 sudo cp smb.conf /etc/samba/smb.conf
@@ -81,12 +82,12 @@ sudo service smbd restart
 #\\192.168.75.103
 #\\192.168.75.103\darcy
 
-#8. Ubuntu 底下讓終端機使用彩色提示
+# Ubuntu 底下讓終端機使用彩色提示
 #sudo vi ~/.bashrc
 #搜尋「#force_color_prompt=yes」這一行字，找到之後將這一行開頭的 # 字號刪除。
 #存檔，關閉終端機後重開。
 
-# 9. 
+# 10. Install compiler environment
 sudo apt-get install -y build-essential
 sudo apt-get install -y manpages manpages-posix manpages-posix-dev manpages-dev
 sudo apt-get install -y tree
@@ -101,8 +102,9 @@ sudo apt-get install -y bison
 sudo apt-get install -y automake
 sudo apt-get install -y kpartx gdisk
 sudo apt-get install -y curl
+sudo apt-get install -y texinfo
 
-#10. 安裝 Team Viewer 10
+#11. 安裝 Team Viewer 10
 #https://www.teamviewer.com/zhtw/download/linux.aspx
 #https://www.teamviewer.com/zhtw/help/363-How-do-I-install-TeamViewer-on-my-Linux-distribution.aspx
 #下載 deb 檔 (預設會放進家目錄的 下載)
@@ -127,7 +129,7 @@ sudo apt-get install -y curl
 sudo apt-get install -f libjpeg62
 #sudo dpkg -i teamviewer_10.0.46203_i386.deb
 
-#11. 安裝 wireshark
+#12. 安裝 wireshark
 sudo apt-get install -y wireshark
 
 #13. RS232
@@ -177,3 +179,6 @@ sudo apt-get install firefox
 # nodejs 6.x is LTS
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+#20. Install tools
+sudo apt-get install -y mtr
