@@ -1,0 +1,8 @@
+#!/bin/bash 
+while [ 1 ]
+do
+	i2cset -y 0 0x25 0x06 0xFF
+	sleep 0.1
+	i2cset -y 0 0x25 0x06 0x00
+	sleep 0.1
+done
