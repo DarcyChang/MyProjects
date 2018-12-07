@@ -1,8 +1,8 @@
 #!/bin/bash
 #Objective:Automatic stress
 #Author:Darcy Chang
-#Date:2018/11/01
-#Version:1.4
+#Date:2018/11/02
+#Version:1.5
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -29,14 +29,18 @@ SBC-1100)
     ;;
 COM-7000)
     loopback_list="eth1:eth2,eth3:eth4"
-	disk_count=5
+	disk_count=0
     ;;
 esac
 mmc_disk='mmcblk0'
 stress_cpu_arg="-W -C 1 --cc_test -m 1 -i 1"
 iperf_arg="-w 512k -P 2"
 stat_timer=3
-rate_criteria=10
+rate_criteria=50
+first_packet=1
+first_tx=0
+first_rx=0
+
 
 while [[ $# > 0 ]]
 do
@@ -129,6 +133,16 @@ function is_link {
 }
 
 
+function i2c_detect {
+	bus_num=$(/root/i2c_bus.sh)
+	if [ "$bus_num" == 2 ] ; then
+        	echo "0"
+	else
+        	echo "12"
+	fi
+}
+
+
 function get_iface_link {
     if [ "$model" == "ENA-1011" ]; then
         local port_num=$(echo $1 | sed 's/^po//g')
@@ -206,12 +220,17 @@ function show_stat() {
             local tx_rate=$(grep "${if_name[$i]} " /tmp/7.stat.tmp | awk '{print $6}')
             if_rx_rate_sum[i]=$(echo "${if_rx_rate_sum[$i]} + ($rx_rate * 8) / 1000" | bc)
             if_tx_rate_sum[i]=$(echo "${if_tx_rate_sum[$i]} + ($tx_rate * 8) / 1000" | bc)
+			if [[ $i == 0 ]] && [[ $first_packet == 1 ]]; then
+				first_rx=${if_rx_rate_sum[$i]}
+				first_tx=${if_tx_rate_sum[$i]}
+			fi 
+
             get_iface_link ${if_name[$i]}
             if [ "$get_iface_link_ret" == "0" ]; then
                 if_no_link[i]=$(( if_no_link[i] + 1 ))
                 echo "warning: ${if_name[$i]} link down"
             fi
-            
+            first_packet=$(( first_packet + 1 ))
         done
         stat_rate_count=$(( stat_rate_count + 1 ))
     fi
@@ -249,6 +268,8 @@ min=$(echo $time | grep -o -e '[0-9]\+[Mm]' | sed -n 's/[Mm]*//gp')
 sec=$(echo $time | grep -o -e '[0-9]\+[Ss]\|^[0-9]\+$' | sed -n 's/[Ss]*//gp')
 [ -z "$sec" ] && sec=0
 time=$(echo "( $day * 3600 * 24 ) + ( $hour * 3600 ) + ( $min * 60 ) + $sec " | bc)
+
+i2c_num=$(i2c_detect)
 
 if [ -z "$no_disk" ]; then
     sys_disk=$(mount | grep 'on / ' | cut -d' ' -f1 | cut -d/ -f3 | sed 's/.$//')
@@ -321,11 +342,11 @@ if [ -z "$no_disk" ]; then
 fi
 
 if [ -z "$no_iperf" ]; then
-	is_link
+#	is_link
 	i2cdetect -l
-	i2cdetect -y 0
-	i2cset -y 0 0x25 0x02 0x00
-	i2cset -y 0 0x25 0x06 0xFF
+	i2cdetect -y $i2c_num
+	i2cset -y $i2c_num 0x25 0x02 0x00
+	i2cset -y $i2c_num 0x25 0x06 0xFF
 
     service network-manager stop 2> /dev/null
     iptables --flush -t nat
@@ -333,7 +354,7 @@ if [ -z "$no_iperf" ]; then
     if [ ! -z "$(echo $loopback_list | grep ,)" ]; then
         loopback_list=$(echo $loopback_list | sed -n 's/,/ /gp')
     fi
-	iperf_ip_list="10.0.1.168 "
+	iperf_ip_list="10.0.1.1 "
     for pair in $loopback_list;
     do
         iface1=$(echo $pair | cut -d: -f1)
@@ -415,7 +436,7 @@ stressapptest $stress_cpu_arg $stress_mem_arg $stress_disk_arg $stress_filesize_
 echo "Stress test running"
 sleep 2
 #/root/ctl_led.sh &
-i2cset -y 0 0x25 0x06 0x00
+i2cset -y $i2c_num 0x25 0x06 0x00
 stress_running=1
 while [ "$stress_running" != "0" ]
 do
@@ -451,16 +472,21 @@ if [ -z "$no_iperf" ]; then
     for (( i = 0; i < $if_count; i++));
     do
         result="[PASS]"
-        average_rx_rate=$(echo "${if_rx_rate_sum[$i]} / $stat_rate_count" | bc)
-        average_tx_rate=$(echo "${if_tx_rate_sum[$i]} / $stat_rate_count" | bc)
+#		if [ $i == 0 ] ; then
+#			average_rx_rate=$first_rx
+#			average_tx_rate=$first_tx
+#		else
+	        average_rx_rate=$(echo "${if_rx_rate_sum[$i]} / $stat_rate_count" | bc)
+	        average_tx_rate=$(echo "${if_tx_rate_sum[$i]} / $stat_rate_count" | bc)
+#		fi
         if (( average_rx_rate < rate_criteria )) || (( average_tx_rate < rate_criteria )); then
             result="[FAIL]"
         fi
         if_tx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/tx_errors) - ${if_tx_error[i]})
         if_rx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/rx_errors) - ${if_rx_error[i]})
         if (( if_tx_error[i] > 0 )) || (( if_rx_error[i] > 0 )); then
-		if_tx_error[i]=0
-		if_rx_error[i]=0
+			if_tx_error[i]=0
+			if_rx_error[i]=0
 #            result="[FAIL]"
         fi
         if (( if_no_link[i] > 0 )); then
@@ -471,4 +497,4 @@ if [ -z "$no_iperf" ]; then
 fi
 
 #killall -9 ctl_led.sh 2> /dev/null
-i2cset -y 0 0x25 0x06 0xFF
+i2cset -y $i2c_num 0x25 0x06 0xFF
