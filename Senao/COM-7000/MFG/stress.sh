@@ -1,8 +1,8 @@
 #!/bin/bash
 #Objective:Automatic stress
 #Author:Darcy Chang
-#Date:2018/10/04
-#Version:1.2
+#Date:2018/11/01
+#Version:1.3
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -325,6 +325,7 @@ if [ -z "$no_iperf" ]; then
         loopback_list=$(echo $loopback_list | sed -n 's/,/ /gp')
     fi
 
+	iperf_ip_list="10.0.1.168 "
     for pair in $loopback_list;
     do
         iface1=$(echo $pair | cut -d: -f1)
@@ -352,6 +353,13 @@ if [ -z "$no_iperf" ]; then
     done
 
     if_count=0
+	if_name[if_count]=eth0
+	if_rx_rate_sum[if_count]=0
+	if_tx_rate_sum[if_count]=0
+	if_rx_error[if_count]=$(cat /sys/class/net/eth0/statistics/rx_errors)
+	if_tx_error[if_count]=$(cat /sys/class/net/eth0/statistics/tx_errors)
+	if_no_link[if_count]=0
+	if_count=1
     stat_rate_count=0
     for iface in $(echo $loopback_list | sed -n 's/[:,]/ /gp');
     do
@@ -370,7 +378,6 @@ if [ -z "$no_iperf" ]; then
     done
 fi
 
-killall -9 iperf 2> /dev/null
 killall stressapptest 2> /dev/null
 trap 'killall stressapptest; killall -9 iperf; echo "Test is stopped by user"; exit 0' SIGINT
 
@@ -444,7 +451,9 @@ if [ -z "$no_iperf" ]; then
         if_tx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/tx_errors) - ${if_tx_error[i]})
         if_rx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/rx_errors) - ${if_rx_error[i]})
         if (( if_tx_error[i] > 0 )) || (( if_rx_error[i] > 0 )); then
-            result="[FAIL]"
+#            result="[FAIL]"
+			if_tx_error[i]=0
+			if_rx_error[i]=0
         fi
         if (( if_no_link[i] > 0 )); then
             result="[FAIL]"
