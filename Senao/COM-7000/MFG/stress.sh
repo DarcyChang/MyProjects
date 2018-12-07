@@ -1,8 +1,8 @@
 #!/bin/bash
 #Objective:Automatic stress
 #Author:Darcy Chang
-#Date:2018/11/02
-#Version:1.5
+#Date:2018/11/14
+#Version:1.6
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -29,7 +29,7 @@ SBC-1100)
     ;;
 COM-7000)
     loopback_list="eth1:eth2,eth3:eth4"
-	disk_count=0
+	disk_count=5
     ;;
 esac
 mmc_disk='mmcblk0'
@@ -37,9 +37,6 @@ stress_cpu_arg="-W -C 1 --cc_test -m 1 -i 1"
 iperf_arg="-w 512k -P 2"
 stat_timer=3
 rate_criteria=50
-first_packet=1
-first_tx=0
-first_rx=0
 
 
 while [[ $# > 0 ]]
@@ -115,21 +112,25 @@ do
 done
 
 
-function is_link {
-	port_num=$(ifconfig -a | grep eth | wc -l)
-	for ((eid=0; eid<$port_num; eid++))
-    do
-        link_state=$(ethtool eth$eid | grep 'Link detected' | awk '{print $3}')
-#		echo "[DEBUG] eth$eid $link_state"
-        if [ $link_state != "yes" ] ; then
-            echo "[ERROR] Port eth$eid link status $link_state" 
-			lspci
-			ifconfig
-			lspci -v
-			ifconfig -a
-            exit
-        fi      
-    done
+function memory_test {
+	mem_speed=$(dmidecode -t 17 | grep "Configured Clock Speed: 2133 MHz" | wc -l)
+	mem_type=$(dmidecode -t 17 | grep "Type: DDR4" | wc -l)
+	mem_size=$(dmidecode -t 17 | grep "Size: 8192 MB" | wc -l)
+
+	if [[ $mem_speed != 2 ]] || [[ $mem_type != 2 ]] || [[ $mem_size != 2 ]] ; then
+		dmidecode -t 17
+		echo "[ERROR] Memory information ERROR"
+		exit
+	fi
+	free_memory=$(free -m | grep Mem | awk '{print $4}')
+	echo "[DEBUG] free memory $free_memory MB"
+#	time memtester $free_memory 1 | tee /tmp/mem_test.log
+	time memtester 14000 1 | tee /tmp/mem_test.log
+	failure_count=$(grep -c "FAILURE" /tmp/mem_test.log)
+	if [ "$failure_count" != "0" ]; then
+		echo "[ERROR] Memory stress test fail."
+		exit
+	fi
 }
 
 
@@ -220,10 +221,6 @@ function show_stat() {
             local tx_rate=$(grep "${if_name[$i]} " /tmp/7.stat.tmp | awk '{print $6}')
             if_rx_rate_sum[i]=$(echo "${if_rx_rate_sum[$i]} + ($rx_rate * 8) / 1000" | bc)
             if_tx_rate_sum[i]=$(echo "${if_tx_rate_sum[$i]} + ($tx_rate * 8) / 1000" | bc)
-			if [[ $i == 0 ]] && [[ $first_packet == 1 ]]; then
-				first_rx=${if_rx_rate_sum[$i]}
-				first_tx=${if_tx_rate_sum[$i]}
-			fi 
 
             get_iface_link ${if_name[$i]}
             if [ "$get_iface_link_ret" == "0" ]; then
@@ -269,6 +266,7 @@ sec=$(echo $time | grep -o -e '[0-9]\+[Ss]\|^[0-9]\+$' | sed -n 's/[Ss]*//gp')
 [ -z "$sec" ] && sec=0
 time=$(echo "( $day * 3600 * 24 ) + ( $hour * 3600 ) + ( $min * 60 ) + $sec " | bc)
 
+memory_test
 i2c_num=$(i2c_detect)
 
 if [ -z "$no_disk" ]; then
@@ -342,7 +340,6 @@ if [ -z "$no_disk" ]; then
 fi
 
 if [ -z "$no_iperf" ]; then
-#	is_link
 	i2cdetect -l
 	i2cdetect -y $i2c_num
 	i2cset -y $i2c_num 0x25 0x02 0x00
@@ -354,7 +351,7 @@ if [ -z "$no_iperf" ]; then
     if [ ! -z "$(echo $loopback_list | grep ,)" ]; then
         loopback_list=$(echo $loopback_list | sed -n 's/,/ /gp')
     fi
-	iperf_ip_list="10.0.1.1 "
+	iperf_ip_list="10.0.1.168 "
     for pair in $loopback_list;
     do
         iface1=$(echo $pair | cut -d: -f1)
@@ -472,13 +469,8 @@ if [ -z "$no_iperf" ]; then
     for (( i = 0; i < $if_count; i++));
     do
         result="[PASS]"
-#		if [ $i == 0 ] ; then
-#			average_rx_rate=$first_rx
-#			average_tx_rate=$first_tx
-#		else
-	        average_rx_rate=$(echo "${if_rx_rate_sum[$i]} / $stat_rate_count" | bc)
-	        average_tx_rate=$(echo "${if_tx_rate_sum[$i]} / $stat_rate_count" | bc)
-#		fi
+	average_rx_rate=$(echo "${if_rx_rate_sum[$i]} / $stat_rate_count" | bc)
+	average_tx_rate=$(echo "${if_tx_rate_sum[$i]} / $stat_rate_count" | bc)
         if (( average_rx_rate < rate_criteria )) || (( average_tx_rate < rate_criteria )); then
             result="[FAIL]"
         fi
@@ -496,5 +488,4 @@ if [ -z "$no_iperf" ]; then
     done
 fi
 
-#killall -9 ctl_led.sh 2> /dev/null
 i2cset -y $i2c_num 0x25 0x06 0xFF
