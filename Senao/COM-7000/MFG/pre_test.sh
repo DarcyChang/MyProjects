@@ -1,7 +1,7 @@
 #!/bin/bash
 #Objective: Before stress item, we do pre-test for HW detection.
 #Author:Darcy Chang
-#Date:2018/11/30
+#Date:2018/12/04
 
 disk_count=4
 port_count=5
@@ -21,12 +21,13 @@ function i2c_detect {
 
 function is_link {
         port_num=$(ifconfig -a | grep eth | wc -l)
-	if [ $port_num -lt $port_count ] ; then
+	if [ $port_num -ne $port_count ] ; then
 		echo "[ERROR] Port number is $port_num"
-		ifconfig 
+		ifconfig -a
+		echo "Pre-test status: FAIL"
 		exit
 	fi
-        for ((eid=0; eid<$port_num-1; eid++))
+        for ((eid=0; eid<$port_num; eid++))
 	do
         	link_state=$(ethtool eth$eid | grep 'Link detected' | awk '{print $3}')
 		echo "[DEBUG] eth$eid $link_state"
@@ -35,6 +36,7 @@ function is_link {
 			lspci
 			lspci -v
 			ifconfig -a
+			echo "Pre-test status: FAIL"
 			exit
 		fi
 	done
@@ -69,6 +71,7 @@ count"
 		lsusb
 		lsblk
 		lsusb -v
+		echo "Pre-test status: FAIL"
 		exit
 	fi
 }

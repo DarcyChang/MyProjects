@@ -1,8 +1,8 @@
 #!/bin/bash
 #Objective:Automatic stress
 #Author:Darcy Chang
-#Date:2018/11/14
-#Version:1.6
+#Date:2018/11/21
+#Version:1.7
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -29,7 +29,7 @@ SBC-1100)
     ;;
 COM-7000)
     loopback_list="eth1:eth2,eth3:eth4"
-	disk_count=5
+	disk_count=3
     ;;
 esac
 mmc_disk='mmcblk0'
@@ -112,34 +112,14 @@ do
 done
 
 
-function memory_test {
-	mem_speed=$(dmidecode -t 17 | grep "Configured Clock Speed: 2133 MHz" | wc -l)
-	mem_type=$(dmidecode -t 17 | grep "Type: DDR4" | wc -l)
-	mem_size=$(dmidecode -t 17 | grep "Size: 8192 MB" | wc -l)
-
-	if [[ $mem_speed != 2 ]] || [[ $mem_type != 2 ]] || [[ $mem_size != 2 ]] ; then
-		dmidecode -t 17
-		echo "[ERROR] Memory information ERROR"
-		exit
-	fi
-	free_memory=$(free -m | grep Mem | awk '{print $4}')
-	echo "[DEBUG] free memory $free_memory MB"
-#	time memtester $free_memory 1 | tee /tmp/mem_test.log
-	time memtester 14000 1 | tee /tmp/mem_test.log
-	failure_count=$(grep -c "FAILURE" /tmp/mem_test.log)
-	if [ "$failure_count" != "0" ]; then
-		echo "[ERROR] Memory stress test fail."
-		exit
-	fi
-}
-
-
 function i2c_detect {
 	bus_num=$(/root/i2c_bus.sh)
 	if [ "$bus_num" == 2 ] ; then
         	echo "0"
-	else
+	elif [ "$bus_num" == 14 ] ; then
         	echo "12"
+	else
+		i2cdetect -l
 	fi
 }
 
@@ -266,7 +246,6 @@ sec=$(echo $time | grep -o -e '[0-9]\+[Ss]\|^[0-9]\+$' | sed -n 's/[Ss]*//gp')
 [ -z "$sec" ] && sec=0
 time=$(echo "( $day * 3600 * 24 ) + ( $hour * 3600 ) + ( $min * 60 ) + $sec " | bc)
 
-memory_test
 i2c_num=$(i2c_detect)
 
 if [ -z "$no_disk" ]; then
@@ -340,7 +319,6 @@ if [ -z "$no_disk" ]; then
 fi
 
 if [ -z "$no_iperf" ]; then
-	i2cdetect -l
 	i2cdetect -y $i2c_num
 	i2cset -y $i2c_num 0x25 0x02 0x00
 	i2cset -y $i2c_num 0x25 0x06 0xFF
@@ -351,7 +329,7 @@ if [ -z "$no_iperf" ]; then
     if [ ! -z "$(echo $loopback_list | grep ,)" ]; then
         loopback_list=$(echo $loopback_list | sed -n 's/,/ /gp')
     fi
-	iperf_ip_list="10.0.1.168 "
+
     for pair in $loopback_list;
     do
         iface1=$(echo $pair | cut -d: -f1)
@@ -379,13 +357,6 @@ if [ -z "$no_iperf" ]; then
     done
 
     if_count=0
-        if_name[if_count]=eth0
-        if_rx_rate_sum[if_count]=0
-        if_tx_rate_sum[if_count]=0
-        if_rx_error[if_count]=$(cat /sys/class/net/eth0/statistics/rx_errors)
-        if_tx_error[if_count]=$(cat /sys/class/net/eth0/statistics/tx_errors)
-        if_no_link[if_count]=0
-        if_count=1
     stat_rate_count=0
     for iface in $(echo $loopback_list | sed -n 's/[:,]/ /gp');
     do
@@ -408,8 +379,8 @@ killall stressapptest 2> /dev/null
 trap 'killall stressapptest; killall -9 iperf; echo "Test is stopped by user"; exit 0' SIGINT
 
 if [ -z "$no_iperf" ]; then
-#    iperf -s -D -w 512k
-#    iperf -s -D -u -w 512k
+    iperf -s -D -w 512k
+    iperf -s -D -u -w 512k
     iperf_count=0
     rm /tmp/*.iperf_res 2> /dev/null
     for ipaddr in $iperf_ip_list;
@@ -432,7 +403,6 @@ stressapptest $stress_cpu_arg $stress_mem_arg $stress_disk_arg $stress_filesize_
 
 echo "Stress test running"
 sleep 2
-#/root/ctl_led.sh &
 i2cset -y $i2c_num 0x25 0x06 0x00
 stress_running=1
 while [ "$stress_running" != "0" ]

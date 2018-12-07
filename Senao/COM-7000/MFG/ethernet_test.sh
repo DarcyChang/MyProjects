@@ -53,7 +53,6 @@ sleep 10
 eth0_tx=$(cat /tmp/1.txt  | grep "Mbits" | awk '{print $7}')
 eth5_tx=$(cat /tmp/2.txt  | grep "Mbits" | awk '{print $7}')
 
-#if [[ $eth0_tx -gt $rate_criteria ]] && [[ $eth5_tx -gt $rate_criteria ]] ; then
 if [ $(echo "$eth0_tx >= $rate_criteria" | bc) -eq 1 ] && [ $(echo "$eth5_tx >= $rate_criteria" | bc) -eq 1 ] ; then
 	echo "Ethernet port: PASS"
 else
