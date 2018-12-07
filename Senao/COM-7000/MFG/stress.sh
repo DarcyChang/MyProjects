@@ -2,7 +2,7 @@
 #Objective:Automatic stress
 #Author:Darcy Chang
 #Date:2018/11/01
-#Version:1.3
+#Version:1.4
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -119,6 +119,10 @@ function is_link {
 #		echo "[DEBUG] eth$eid $link_state"
         if [ $link_state != "yes" ] ; then
             echo "[ERROR] Port eth$eid link status $link_state" 
+			lspci
+			ifconfig
+			lspci -v
+			ifconfig -a
             exit
         fi      
     done
@@ -270,8 +274,11 @@ if [ -z "$no_disk" ]; then
     echo Other Disks: ${extra_disk_list}
     
    if [ "$extra_disk_count" -lt "$disk_count" ]; then
-      echo "Detect: $extra_disk_count, Disk resource not enough $disk_count"
-      exit
+		echo "Detect: $extra_disk_count, Disk resource not enough $disk_count"
+		lsusb
+		lsblk
+		lsusb -v	
+		exit
    fi
 
     tmp_file="tmp_dd"
@@ -315,6 +322,8 @@ fi
 
 if [ -z "$no_iperf" ]; then
 	is_link
+	i2cdetect -l
+	i2cdetect -y 0
 	i2cset -y 0 0x25 0x02 0x00
 	i2cset -y 0 0x25 0x06 0xFF
 
@@ -324,7 +333,6 @@ if [ -z "$no_iperf" ]; then
     if [ ! -z "$(echo $loopback_list | grep ,)" ]; then
         loopback_list=$(echo $loopback_list | sed -n 's/,/ /gp')
     fi
-
 	iperf_ip_list="10.0.1.168 "
     for pair in $loopback_list;
     do
@@ -353,13 +361,13 @@ if [ -z "$no_iperf" ]; then
     done
 
     if_count=0
-	if_name[if_count]=eth0
-	if_rx_rate_sum[if_count]=0
-	if_tx_rate_sum[if_count]=0
-	if_rx_error[if_count]=$(cat /sys/class/net/eth0/statistics/rx_errors)
-	if_tx_error[if_count]=$(cat /sys/class/net/eth0/statistics/tx_errors)
-	if_no_link[if_count]=0
-	if_count=1
+        if_name[if_count]=eth0
+        if_rx_rate_sum[if_count]=0
+        if_tx_rate_sum[if_count]=0
+        if_rx_error[if_count]=$(cat /sys/class/net/eth0/statistics/rx_errors)
+        if_tx_error[if_count]=$(cat /sys/class/net/eth0/statistics/tx_errors)
+        if_no_link[if_count]=0
+        if_count=1
     stat_rate_count=0
     for iface in $(echo $loopback_list | sed -n 's/[:,]/ /gp');
     do
@@ -382,8 +390,8 @@ killall stressapptest 2> /dev/null
 trap 'killall stressapptest; killall -9 iperf; echo "Test is stopped by user"; exit 0' SIGINT
 
 if [ -z "$no_iperf" ]; then
-    iperf -s -D -w 512k
-    iperf -s -D -u -w 512k
+#    iperf -s -D -w 512k
+#    iperf -s -D -u -w 512k
     iperf_count=0
     rm /tmp/*.iperf_res 2> /dev/null
     for ipaddr in $iperf_ip_list;
@@ -451,9 +459,9 @@ if [ -z "$no_iperf" ]; then
         if_tx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/tx_errors) - ${if_tx_error[i]})
         if_rx_error[i]=$(expr $(cat /sys/class/net/${if_name[$i]}/statistics/rx_errors) - ${if_rx_error[i]})
         if (( if_tx_error[i] > 0 )) || (( if_rx_error[i] > 0 )); then
+		if_tx_error[i]=0
+		if_rx_error[i]=0
 #            result="[FAIL]"
-			if_tx_error[i]=0
-			if_rx_error[i]=0
         fi
         if (( if_no_link[i] > 0 )); then
             result="[FAIL]"
