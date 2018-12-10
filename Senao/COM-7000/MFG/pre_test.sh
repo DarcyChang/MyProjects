@@ -1,11 +1,12 @@
 #!/bin/bash
 #Objective: Before stress item, we do pre-test for HW detection.
 #Author:Darcy Chang
-#Date:2018/12/04
+#Date:2018/12/10
 
 disk_count=4
 port_count=5
 hdd_size_criteria=100
+fail=0
 
 function i2c_detect {
         bus_num=$(/root/i2c_bus.sh)
@@ -85,13 +86,10 @@ function hdd_test(){
 	size=$(smartctl -i /dev/$1 | grep "User Capacity" | awk '{print $5}' | cut -d "[" -f 2)
 	if [ $(echo "$size > $hdd_size_criteria" | bc) -eq 1 ] ; then
 		hdparm -t --direct /dev/$1 | tee /tmp/hdd.txt
-		fail=$(cat /tmp/hdd.txt | grep -c "failed")
-	fi
-	if [[ $fail == "1" ]] ; then
-		echo "Pre-test status: FAIL"
-		exit
 	fi
 }
+
+rm /tmp/hdd.txt
 
 echo ""
 echo "FW Version: "$(cat /etc/version)
@@ -105,6 +103,17 @@ i2cset -y $i2c_num 0x25 0x06 0x00
 is_link
 echo ""
 detect_disk
+
+if [ -f /tmp/hdd.txt ] ; then
+	fail=$(cat /tmp/hdd.txt | grep -c "failed")
+else
+	echo "[ERROR] SSD/HDD has not detected."
+	fail=1
+fi
 echo ""
-echo "Pre-test status: PASS"
+if [[ $fail == "1" ]] ; then
+	echo "Pre-test status: FAIL"
+else
+	echo "Pre-test status: PASS"
+fi
 echo ""
