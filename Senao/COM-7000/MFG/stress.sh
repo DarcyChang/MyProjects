@@ -1,8 +1,8 @@
 #!/bin/bash
 #Objective:Automatic stress
 #Author:Darcy Chang
-#Date:2018/11/21
-#Version:1.7
+#Date:2018/12/11
+#Version:1.8
 
 model=$(pwd | cut -d/ -f 3)
 model=COM-7000
@@ -32,11 +32,12 @@ COM-7000)
 	disk_count=3
     ;;
 esac
+
 mmc_disk='mmcblk0'
 stress_cpu_arg="-W -C 1 --cc_test -m 1 -i 1"
 iperf_arg="-w 512k -P 2"
 stat_timer=3
-rate_criteria=50
+rate_criteria=500
 
 
 while [[ $# > 0 ]]

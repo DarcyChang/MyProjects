@@ -1,11 +1,12 @@
 #!/bin/bash
 #Objective: Before stress item, we do pre-test for HW detection.
 #Author:Darcy Chang
-#Date:2018/12/10
+#Date:2018/12/11
 
 disk_count=4
 port_count=5
 hdd_size_criteria=100
+hdd_speed_criteria=50
 fail=0
 
 function i2c_detect {
@@ -86,6 +87,11 @@ function hdd_test(){
 	size=$(smartctl -i /dev/$1 | grep "User Capacity" | awk '{print $5}' | cut -d "[" -f 2)
 	if [ $(echo "$size > $hdd_size_criteria" | bc) -eq 1 ] ; then
 		hdparm -t --direct /dev/$1 | tee /tmp/hdd.txt
+		hdd_speed=$(cat /tmp/hdd.txt | grep "MB/sec" | awk '{print $11}')
+		if [ $(echo "$hdd_speed > $hdd_speed_criteria" | bc) -ne 1 ] ; then
+			echo "[ERROR] SSD/HDD transfer rate $hdd_speed is too low. "
+			fail=1
+		fi
 	fi
 }
 
