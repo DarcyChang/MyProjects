@@ -164,6 +164,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 # Pycharm
 export PATH=${PATH}:/home/$username/Tools/pycharm-community-2017.2.3/bin/
 
+# history command
+xport HISTTIMEFORMAT="%d/%m/%y %T "
+
 # tar and untar
 # tar -czvf file.tar.gz files # tar gz
 # tar -xzvf file.tar.gz # untar gz
