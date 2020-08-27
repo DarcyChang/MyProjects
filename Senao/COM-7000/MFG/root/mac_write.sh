@@ -1,0 +1,8 @@
+#!/bin/bash
+
+eeupdate64e /NIC=1 /MAC=00A0C9000022
+eeupdate64e /NIC=2 /MAC=00A0C9003333
+eeupdate64e /NIC=3 /MAC=00A0C9007777
+eeupdate64e /NIC=4 /MAC=00A0C9009999
+eeupdate64e /NIC=5 /MAC=00A0C9113355
+
