@@ -1,11 +1,13 @@
 #!/bin/bash
 # Author Darcy.Chang
-# Date 2020.08.31
-# Version 1.2.0
+# Date 2020.09.18
+# Version 1.3.0
 
 result_file=/root/MFG/logs/result.txt
 stress_log_file=/root/MFG/logs/log.txt
 tmp_stress_file=/root/MFG/logs/tmp_stress.txt
+
+rm /root/MFG/logs/*
 
 #timedatectl set-timezone Asia/Taipei
 #timestamp=$(date +%Y%m%d%H%M%S)
